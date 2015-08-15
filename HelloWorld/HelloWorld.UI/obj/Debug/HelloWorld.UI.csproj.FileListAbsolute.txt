@@ -1,0 +1,2 @@
+C:\Temp\udemy\samples-csharp\HelloWorld.UI\HelloWorld.UI\bin\Debug\HelloWorld.UI.exe.config
+C:\Temp\udemy\samples-csharp\HelloWorld\HelloWorld.UI\bin\Debug\HelloWorld.UI.exe.config
