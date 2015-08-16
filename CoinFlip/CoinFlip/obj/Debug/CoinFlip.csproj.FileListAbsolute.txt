@@ -1,0 +1,6 @@
+C:\Temp\udemy\samples-csharp\CoinFlip\CoinFlip\bin\Debug\CoinFlip.exe.config
+C:\Temp\udemy\samples-csharp\CoinFlip\CoinFlip\bin\Debug\CoinFlip.exe
+C:\Temp\udemy\samples-csharp\CoinFlip\CoinFlip\bin\Debug\CoinFlip.pdb
+C:\Temp\udemy\samples-csharp\CoinFlip\CoinFlip\obj\Debug\CoinFlip.csprojResolveAssemblyReference.cache
+C:\Temp\udemy\samples-csharp\CoinFlip\CoinFlip\obj\Debug\CoinFlip.exe
+C:\Temp\udemy\samples-csharp\CoinFlip\CoinFlip\obj\Debug\CoinFlip.pdb
