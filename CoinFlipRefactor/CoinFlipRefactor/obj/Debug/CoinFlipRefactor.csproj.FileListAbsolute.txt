@@ -1,0 +1,5 @@
+C:\Temp\udemy\samples-csharp\CoinFlipRefactor\CoinFlipRefactor\bin\Debug\CoinFlipRefactor.exe.config
+C:\Temp\udemy\samples-csharp\CoinFlipRefactor\CoinFlipRefactor\bin\Debug\CoinFlipRefactor.exe
+C:\Temp\udemy\samples-csharp\CoinFlipRefactor\CoinFlipRefactor\bin\Debug\CoinFlipRefactor.pdb
+C:\Temp\udemy\samples-csharp\CoinFlipRefactor\CoinFlipRefactor\obj\Debug\CoinFlipRefactor.exe
+C:\Temp\udemy\samples-csharp\CoinFlipRefactor\CoinFlipRefactor\obj\Debug\CoinFlipRefactor.pdb
