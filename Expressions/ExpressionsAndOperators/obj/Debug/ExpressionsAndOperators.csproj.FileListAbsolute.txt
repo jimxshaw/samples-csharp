@@ -1,0 +1,1 @@
+C:\Temp\udemy\samples-csharp\Expressions\ExpressionsAndOperators\bin\Debug\ExpressionsAndOperators.exe.config
