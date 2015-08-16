@@ -1,0 +1,9 @@
+C:\Users\James\Desktop\comments\CommentsAndFormattingStrings\bin\Debug\CommentsAndFormattingStrings.exe.config
+C:\Users\James\Desktop\comments\CommentsAndFormattingStrings\bin\Debug\CommentsAndFormattingStrings.exe
+C:\Users\James\Desktop\comments\CommentsAndFormattingStrings\bin\Debug\CommentsAndFormattingStrings.pdb
+C:\Users\James\Desktop\comments\CommentsAndFormattingStrings\obj\Debug\CommentsAndFormattingStrings.csprojResolveAssemblyReference.cache
+C:\Users\James\Desktop\comments\CommentsAndFormattingStrings\obj\Debug\CommentsAndFormattingStrings.exe
+C:\Users\James\Desktop\comments\CommentsAndFormattingStrings\obj\Debug\CommentsAndFormattingStrings.pdb
+C:\Temp\udemy\samples-csharp\Comments\CommentsAndFormattingStrings\bin\Debug\CommentsAndFormattingStrings.exe.config
+C:\Temp\udemy\samples-csharp\Comments\CommentsAndFormattingStrings\obj\Debug\CommentsAndFormattingStrings.exe
+C:\Temp\udemy\samples-csharp\Comments\CommentsAndFormattingStrings\obj\Debug\CommentsAndFormattingStrings.pdb

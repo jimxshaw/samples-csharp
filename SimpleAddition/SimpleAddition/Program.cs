@@ -18,7 +18,7 @@ namespace SimpleAddition
             userInput = Console.ReadLine();
             int number2 = int.Parse(userInput);
 
-            Console.WriteLine("The sum is: " + (number1 + number2));
+            Console.WriteLine("The sum is: {0}", (number1 + number2));
             Console.ReadLine();
         }
     }
