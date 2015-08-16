@@ -1,0 +1,5 @@
+C:\Temp\udemy\samples-csharp\SimpleAddition\SimpleAddition\bin\Debug\SimpleAddition.exe.config
+C:\Temp\udemy\samples-csharp\SimpleAddition\SimpleAddition\bin\Debug\SimpleAddition.exe
+C:\Temp\udemy\samples-csharp\SimpleAddition\SimpleAddition\bin\Debug\SimpleAddition.pdb
+C:\Temp\udemy\samples-csharp\SimpleAddition\SimpleAddition\obj\Debug\SimpleAddition.exe
+C:\Temp\udemy\samples-csharp\SimpleAddition\SimpleAddition\obj\Debug\SimpleAddition.pdb

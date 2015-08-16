@@ -1,0 +1,6 @@
+C:\Temp\udemy\samples-csharp\HelloName\HelloName\bin\Debug\HelloName.exe.config
+C:\Temp\udemy\samples-csharp\HelloName\HelloName\bin\Debug\HelloName.exe
+C:\Temp\udemy\samples-csharp\HelloName\HelloName\bin\Debug\HelloName.pdb
+C:\Temp\udemy\samples-csharp\HelloName\HelloName\obj\Debug\HelloName.csprojResolveAssemblyReference.cache
+C:\Temp\udemy\samples-csharp\HelloName\HelloName\obj\Debug\HelloName.exe
+C:\Temp\udemy\samples-csharp\HelloName\HelloName\obj\Debug\HelloName.pdb
