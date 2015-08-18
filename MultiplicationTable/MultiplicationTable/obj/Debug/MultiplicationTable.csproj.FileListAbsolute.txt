@@ -1,0 +1,6 @@
+C:\Temp\udemy\samples-csharp\MultiplicationTable\MultiplicationTable\bin\Debug\MultiplicationTable.exe.config
+C:\Temp\udemy\samples-csharp\MultiplicationTable\MultiplicationTable\bin\Debug\MultiplicationTable.exe
+C:\Temp\udemy\samples-csharp\MultiplicationTable\MultiplicationTable\bin\Debug\MultiplicationTable.pdb
+C:\Temp\udemy\samples-csharp\MultiplicationTable\MultiplicationTable\obj\Debug\MultiplicationTable.csprojResolveAssemblyReference.cache
+C:\Temp\udemy\samples-csharp\MultiplicationTable\MultiplicationTable\obj\Debug\MultiplicationTable.exe
+C:\Temp\udemy\samples-csharp\MultiplicationTable\MultiplicationTable\obj\Debug\MultiplicationTable.pdb
