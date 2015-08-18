@@ -1,0 +1,5 @@
+C:\Temp\udemy\samples-csharp\LuckySevens\LuckySevens\bin\Debug\LuckySevens.exe.config
+C:\Temp\udemy\samples-csharp\LuckySevens\LuckySevens\bin\Debug\LuckySevens.exe
+C:\Temp\udemy\samples-csharp\LuckySevens\LuckySevens\bin\Debug\LuckySevens.pdb
+C:\Temp\udemy\samples-csharp\LuckySevens\LuckySevens\obj\Debug\LuckySevens.exe
+C:\Temp\udemy\samples-csharp\LuckySevens\LuckySevens\obj\Debug\LuckySevens.pdb
