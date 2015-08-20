@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace HelloWorld.UI
 {
-    class Program
+    class Messenger
     {
-        static void Main(string[] args)
+        public void SayHello()
         {
-            Messenger myMessage = new Messenger();
-            myMessage.SayHello();
-
-            Console.ReadLine();
+            Console.WriteLine("Hello world!");
         }
     }
 }

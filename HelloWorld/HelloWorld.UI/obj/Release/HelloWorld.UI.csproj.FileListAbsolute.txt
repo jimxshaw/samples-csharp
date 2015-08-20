@@ -3,3 +3,4 @@ C:\Temp\udemy\samples-csharp\HelloWorld\HelloWorld.UI\bin\Release\HelloWorld.UI.
 C:\Temp\udemy\samples-csharp\HelloWorld\HelloWorld.UI\bin\Release\HelloWorld.UI.pdb
 C:\Temp\udemy\samples-csharp\HelloWorld\HelloWorld.UI\obj\Release\HelloWorld.UI.exe
 C:\Temp\udemy\samples-csharp\HelloWorld\HelloWorld.UI\obj\Release\HelloWorld.UI.pdb
+C:\Temp\udemy\samples-csharp\HelloWorld\HelloWorld.UI\obj\Release\HelloWorld.UI.csprojResolveAssemblyReference.cache
