@@ -1,0 +1,6 @@
+C:\Temp\udemy\samples-csharp\Constructors\Constructors\bin\Debug\Constructors.exe.config
+C:\Temp\udemy\samples-csharp\Constructors\Constructors\bin\Debug\Constructors.exe
+C:\Temp\udemy\samples-csharp\Constructors\Constructors\bin\Debug\Constructors.pdb
+C:\Temp\udemy\samples-csharp\Constructors\Constructors\obj\Debug\Constructors.csprojResolveAssemblyReference.cache
+C:\Temp\udemy\samples-csharp\Constructors\Constructors\obj\Debug\Constructors.exe
+C:\Temp\udemy\samples-csharp\Constructors\Constructors\obj\Debug\Constructors.pdb
