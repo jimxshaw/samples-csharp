@@ -26,8 +26,39 @@ namespace RockPaperScissors
             while (userChoice != "q")
             {
                 string computerChoice = GetComputerChoice();
-                Console.WriteLine("The computer picked {0}", ConvertChoiceToWord(computerChoice));
+                DetermineWinner(userChoice, computerChoice);
+                PrintScore();
+                Console.Clear();
                 userChoice = PromptUser();
+            }
+        }
+
+        private void PrintScore()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Wins: {0}", wins);
+            Console.WriteLine("Losses: {0}", losses);
+            Console.WriteLine("Ties: {0}", ties);
+            Console.WriteLine();
+            Console.WriteLine("Press enter to continue...");
+            Console.ReadLine();
+        }
+
+        private void DetermineWinner(string userChoice, string computerChoice)
+        {
+            if (userChoice == computerChoice)
+            {
+                ties++;
+                Console.WriteLine("It's a tie. You both picked {0}.", ConvertChoiceToWord(userChoice));
+            }
+            else if ((userChoice == "r" && computerChoice == "s") || (userChoice == "s" && computerChoice == "p") || (userChoice == "p" || computerChoice == "r"))
+            {
+                wins++;
+                Console.WriteLine("You win! Your {0} defeats computer's {1}!", ConvertChoiceToWord(userChoice), ConvertChoiceToWord(computerChoice));
+            }
+            else {
+                losses++;
+                Console.WriteLine("You lose! Computer's {0} defeats your {1}!", ConvertChoiceToWord(computerChoice), ConvertChoiceToWord(userChoice));
             }
         }
 
