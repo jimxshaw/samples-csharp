@@ -1,0 +1,6 @@
+C:\Temp\udemy\samples-csharp\Hangman\Hangman\bin\Debug\Hangman.exe.config
+C:\Temp\udemy\samples-csharp\Hangman\Hangman\bin\Debug\Hangman.exe
+C:\Temp\udemy\samples-csharp\Hangman\Hangman\bin\Debug\Hangman.pdb
+C:\Temp\udemy\samples-csharp\Hangman\Hangman\obj\Debug\Hangman.csprojResolveAssemblyReference.cache
+C:\Temp\udemy\samples-csharp\Hangman\Hangman\obj\Debug\Hangman.exe
+C:\Temp\udemy\samples-csharp\Hangman\Hangman\obj\Debug\Hangman.pdb
