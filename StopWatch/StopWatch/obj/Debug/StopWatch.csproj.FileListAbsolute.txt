@@ -1,0 +1,6 @@
+C:\Temp\udemy\samples-csharp\StopWatch\StopWatch\bin\Debug\StopWatch.exe.config
+C:\Temp\udemy\samples-csharp\StopWatch\StopWatch\bin\Debug\StopWatch.exe
+C:\Temp\udemy\samples-csharp\StopWatch\StopWatch\bin\Debug\StopWatch.pdb
+C:\Temp\udemy\samples-csharp\StopWatch\StopWatch\obj\Debug\StopWatch.csprojResolveAssemblyReference.cache
+C:\Temp\udemy\samples-csharp\StopWatch\StopWatch\obj\Debug\StopWatch.exe
+C:\Temp\udemy\samples-csharp\StopWatch\StopWatch\obj\Debug\StopWatch.pdb
