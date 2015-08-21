@@ -1,0 +1,6 @@
+C:\Temp\udemy\samples-csharp\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.exe.config
+C:\Temp\udemy\samples-csharp\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.exe
+C:\Temp\udemy\samples-csharp\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.pdb
+C:\Temp\udemy\samples-csharp\SimpleCalculator\SimpleCalculator\obj\Debug\SimpleCalculator.csprojResolveAssemblyReference.cache
+C:\Temp\udemy\samples-csharp\SimpleCalculator\SimpleCalculator\obj\Debug\SimpleCalculator.exe
+C:\Temp\udemy\samples-csharp\SimpleCalculator\SimpleCalculator\obj\Debug\SimpleCalculator.pdb
