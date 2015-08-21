@@ -20,8 +20,49 @@ namespace RockPaperScissors
 
         public void Play()
         {
-            string userChoise;
-            userChoise = PromptUser();
+            string userChoice;
+            userChoice = PromptUser();
+
+            while (userChoice != "q")
+            {
+                string computerChoice = GetComputerChoice();
+                Console.WriteLine("The computer picked {0}", ConvertChoiceToWord(computerChoice));
+                userChoice = PromptUser();
+            }
+        }
+
+        private string ConvertChoiceToWord(string choice)
+        {
+            if (choice == "r")
+            {
+                return "rock";
+            }
+            else if (choice == "p")
+            {
+                return "paper";
+            }
+            else
+            {
+                return "scissors";
+            }
+        }
+
+        private string GetComputerChoice()
+        {
+            int choice = rng.Next(1, 4);
+
+            if (choice == 1)
+            {
+                return "r";
+            }
+            else if (choice == 2)
+            {
+                return "p";
+            }
+            else
+            {
+                return "s";
+            }
         }
 
         private string PromptUser()
