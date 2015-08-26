@@ -1,0 +1,6 @@
+C:\Temp\udemy\samples-csharp\LoggingInterface\LoggingInterface\bin\Debug\LoggingInterface.exe.config
+C:\Temp\udemy\samples-csharp\LoggingInterface\LoggingInterface\bin\Debug\LoggingInterface.exe
+C:\Temp\udemy\samples-csharp\LoggingInterface\LoggingInterface\bin\Debug\LoggingInterface.pdb
+C:\Temp\udemy\samples-csharp\LoggingInterface\LoggingInterface\obj\Debug\LoggingInterface.csprojResolveAssemblyReference.cache
+C:\Temp\udemy\samples-csharp\LoggingInterface\LoggingInterface\obj\Debug\LoggingInterface.exe
+C:\Temp\udemy\samples-csharp\LoggingInterface\LoggingInterface\obj\Debug\LoggingInterface.pdb
