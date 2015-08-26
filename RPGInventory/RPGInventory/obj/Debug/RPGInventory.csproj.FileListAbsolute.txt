@@ -1,0 +1,6 @@
+C:\Temp\udemy\samples-csharp\RPGInventory\RPGInventory\bin\Debug\RPGInventory.exe.config
+C:\Temp\udemy\samples-csharp\RPGInventory\RPGInventory\bin\Debug\RPGInventory.exe
+C:\Temp\udemy\samples-csharp\RPGInventory\RPGInventory\bin\Debug\RPGInventory.pdb
+C:\Temp\udemy\samples-csharp\RPGInventory\RPGInventory\obj\Debug\RPGInventory.csprojResolveAssemblyReference.cache
+C:\Temp\udemy\samples-csharp\RPGInventory\RPGInventory\obj\Debug\RPGInventory.exe
+C:\Temp\udemy\samples-csharp\RPGInventory\RPGInventory\obj\Debug\RPGInventory.pdb
