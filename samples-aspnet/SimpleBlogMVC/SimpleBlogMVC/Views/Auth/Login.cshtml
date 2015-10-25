@@ -1,5 +1,37 @@
-﻿@{
+﻿@model SimpleBlogMVC.ViewModels.AuthLogin
+
+@{
     ViewBag.Title = "Login";
 }
 
-<p>This is the login view</p>
+@*<p>
+    The value of test in our model is: @Model.Test
+</p>*@
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(x => x.Username)
+        @Html.EditorFor(x => x.Username)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Password)
+        @Html.EditorFor(x => x.Password)
+    </div>
+
+    <div>
+        <input type="submit" value="Login"/>
+    </div>
+}
+
+@*
+    The below code is no longer needed if the view is 
+    strongly typed. To force strong typing, make sure the @model
+    statement is added and Razor html helpers is used.
+
+<form method="POST">
+    <input type="text" name="Username" />
+    <input type="password" name="Password" />
+    <input type="submit" value="Login" />
+</form>*@
