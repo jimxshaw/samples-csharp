@@ -10,7 +10,8 @@ namespace SimpleBlogMVC.Controllers
     {
         public ActionResult Login()
         {
-            return Content("Login!");
+            return View();
+            //return Content("Login");
         }
     }
 }

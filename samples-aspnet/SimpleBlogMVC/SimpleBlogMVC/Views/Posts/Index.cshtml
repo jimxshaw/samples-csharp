@@ -1,0 +1,40 @@
+﻿@*
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+    </head>
+    <body>
+
+        Since a shared layout view is used _ViewStart.cshtml,
+        redundant HTML can be deleted.
+*@
+
+
+@{
+    // The ViewBag allows for sharing of data between views or
+    // between controllers and views.
+    // In the below example, the routes executes prior to the
+    // _Layout.cshtml so the ViewBag value will be passed to
+    // the _Layout.
+
+    ViewBag.Title = "Posts";
+}
+
+@section Scripts
+{
+    <script>
+        alert("How are you?")
+    </script>
+}
+
+<h1>Posts Index</h1>
+<p>
+    Click <a href="@Url.RouteUrl("Login")">HERE</a> to login
+</p>
+<p>
+    Click @Html.RouteLink("HERE", "Login") to login!
+</p>
+
