@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
+using SimpleBlogMVC.App_Start;
 
 namespace SimpleBlogMVC
 {
@@ -13,6 +11,9 @@ namespace SimpleBlogMVC
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            // Utilizing the class from BundleConfig.cs.
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }
