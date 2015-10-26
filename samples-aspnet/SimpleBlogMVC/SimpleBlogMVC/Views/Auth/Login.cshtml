@@ -10,6 +10,10 @@
 
 @using (Html.BeginForm())
 {
+    // Helper method to display specific messages if
+    // validation checks for the below fields fail.
+    @Html.ValidationSummary()
+
     <div>
         @Html.LabelFor(x => x.Username)
         @Html.EditorFor(x => x.Username)

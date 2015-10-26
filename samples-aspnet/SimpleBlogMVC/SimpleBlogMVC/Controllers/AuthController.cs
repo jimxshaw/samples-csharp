@@ -16,14 +16,28 @@ namespace SimpleBlogMVC.Controllers
             {
                 // Test = "This is the test value set in my controller!"
             });
-            //return Content("Login");
+            // return Content("Login");
         }
 
         [HttpPost]
         public ActionResult Login(AuthLogin form)
         {
             // form.Test = "This is the value set in my post action";
-            return View(form);
+
+            // Even though we put [Required] on the Auth ViewModel properties,
+            // we put the below code to perform some action during validation.
+            if (!ModelState.IsValid)
+            {
+                return View(form);
+            }
+
+            if (form.Username != "hello")
+            {
+                ModelState.AddModelError("Username", "Username or password isn't valid");
+                return View(form);
+            }
+
+            return Content("The Form is valid");
             // return Content("Hey " + form.Username + ", how are you?");
         }
     }
