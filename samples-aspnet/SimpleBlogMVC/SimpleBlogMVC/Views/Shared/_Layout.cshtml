@@ -12,7 +12,28 @@
         <h1>
             <a href="@Url.RouteUrl("Home")">Simple Blog</a>
         </h1>
-        <a href="@Url.RouteUrl("Login")">Login</a>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            // Authenticaed users will see a logout link.
+            <p>Welcome back, @User.Identity.Name</p>
+            <a href="@Url.RouteUrl("Logout")">Logout</a>
+
+            // Authenticated admins will see the admin area link.
+            if (User.IsInRole("admin"))
+            {
+                // The inner if statement does not need an additional @ symbol because the first if
+                // already has an @. Razor knows the second if is C#. In fact, if the @ symbol is
+                // placed in front of the second if, it'll be counted as incorrect syntax by intellisense.
+                <a href="@Url.Action("Index", "Posts", new {area = "admin"})">View posts in admin</a>
+            }
+        }
+        else
+        {
+            // Non-authenticated users will be prompted to login again.
+            <a href="@Url.RouteUrl("Login")">Login</a>
+        }
+
     </header>
 
     <!-- INSERT VIEW HERE -->

@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using SimpleBlogMVC.ViewModels;
 
 namespace SimpleBlogMVC.Controllers
 {
     public class AuthController : Controller
     {
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToRoute("Home");
+        }
+
         // Get action is by default
         public ActionResult Login()
         {
@@ -20,7 +28,7 @@ namespace SimpleBlogMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(AuthLogin form)
+        public ActionResult Login(AuthLogin form, string returnUrl)
         {
             // form.Test = "This is the value set in my post action";
 
@@ -31,13 +39,21 @@ namespace SimpleBlogMVC.Controllers
                 return View(form);
             }
 
-            if (form.Username != "hello")
-            {
-                ModelState.AddModelError("Username", "Username or password isn't valid");
-                return View(form);
-            }
+            //if (form.Username != "hello")
+            //{
+            //    ModelState.AddModelError("Username", "Username or password isn't valid");
+            //    return View(form);
+            //}
 
-            return Content("The Form is valid");
+            FormsAuthentication.SetAuthCookie(form.Username, true);
+
+            if (!string.IsNullOrWhiteSpace(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToRoute("Home");
+
+            // return Content("The Form is valid");
             // return Content("Hey " + form.Username + ", how are you?");
         }
     }
