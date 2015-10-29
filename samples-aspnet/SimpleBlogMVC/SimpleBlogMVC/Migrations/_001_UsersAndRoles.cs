@@ -1,4 +1,5 @@
-﻿using FluentMigrator;
+﻿using System.Data;
+using FluentMigrator;
 
 namespace SimpleBlogMVC.Migrations
 {
@@ -13,8 +14,17 @@ namespace SimpleBlogMVC.Migrations
             Create.Table("users")
                 .WithColumn("id").AsInt32().Identity().PrimaryKey()
                 .WithColumn("username").AsString(128)
-                .WithColumn("email").AsString(256)
+                .WithColumn("email").AsCustom("VARCHAR(256)")
                 .WithColumn("password_hash").AsString(128);
+
+            Create.Table("roles")
+                .WithColumn("id").AsInt32().Identity().PrimaryKey()
+                .WithColumn("name").AsString(128);
+
+            // Pivot table that connects users and roles.
+            Create.Table("role_users")
+                .WithColumn("user_id").AsInt32().ForeignKey("users", "id").OnDelete(Rule.Cascade)
+                .WithColumn("role_id").AsInt32().ForeignKey("roles", "id").OnDelete(Rule.Cascade);
         }
 
         // Down method is invoked when you roll back your changes to the database.
@@ -22,7 +32,11 @@ namespace SimpleBlogMVC.Migrations
         // fails. 
         public override void Down()
         {
+            // Pivot table MUST be deleted first so it's placed here on top.
+            Delete.Table("roles_users");
+            Delete.Table("roles");
             Delete.Table("users");
+            
         }
     }
 }

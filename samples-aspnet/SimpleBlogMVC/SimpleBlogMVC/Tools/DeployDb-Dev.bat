@@ -1,0 +1,1 @@
+..\..\packages\fluentmigrator.1.6.0\tools\Migrate.exe --db=mysql --target=..\..\..\simpleblogmvc\bin\simpleblogmvc.dll --configPath=..\..\..\simpleblogmvc\Web.config -c=MainDb
