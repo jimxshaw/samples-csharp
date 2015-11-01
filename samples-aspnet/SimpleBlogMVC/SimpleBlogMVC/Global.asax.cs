@@ -14,6 +14,18 @@ namespace SimpleBlogMVC
 
             // Utilizing the class from BundleConfig.cs.
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Database.Configure();
+        }
+
+        protected void Application_BeginRequest()
+        {
+            Database.OpenSession();
+        }
+
+        protected void Application_EndRequest()
+        {
+            Database.CloseSession();
         }
     }
 }
