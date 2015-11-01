@@ -1,4 +1,5 @@
-﻿using NHibernate.Mapping.ByCode.Conformist;
+﻿using NHibernate.Mapping.ByCode;
+using NHibernate.Mapping.ByCode.Conformist;
 
 namespace SimpleBlogMVC.Models
 {
@@ -16,6 +17,26 @@ namespace SimpleBlogMVC.Models
 
     public class UserMap : ClassMapping<User>
     {
-        
+        public UserMap()
+        {
+            // Tell NHibernate which table this data originates.
+            Table("users");
+
+            // Specifies which property is the primary key and then
+            // states that the key is auto-generated.
+            Id(x => x.Id, x => x.Generator(Generators.Identity));
+
+            // Specifies that the username and email cannot be null.
+            Property(x => x.Username, x => x.NotNullable(true));
+            Property(x => x.Email, x => x.NotNullable(true));
+
+            // Lambda expressions with more than one method has
+            // to be surrounded by curly braces.
+            Property(x => x.PasswordHash, x =>
+            {
+                x.Column("password_hash");
+                x.NotNullable(true);
+            });
+        }
     }
 }
