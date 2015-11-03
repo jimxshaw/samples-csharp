@@ -17,7 +17,7 @@ namespace SimpleBlogMVC
 
         public static ISession Session
         {
-            get { return (ISession) HttpContext.Current.Items[SessionKey]; }
+            get { return (ISession)HttpContext.Current.Items[SessionKey]; }
         }
 
         // Configure() will be invoked at application startup.
