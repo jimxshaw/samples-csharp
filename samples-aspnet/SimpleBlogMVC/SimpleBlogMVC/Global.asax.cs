@@ -15,6 +15,8 @@ namespace SimpleBlogMVC
             // Utilizing the class from BundleConfig.cs.
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+
             Database.Configure();
         }
 
