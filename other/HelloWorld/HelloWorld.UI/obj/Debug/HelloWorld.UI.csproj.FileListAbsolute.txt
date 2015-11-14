@@ -5,3 +5,9 @@ C:\Temp\udemy\samples-csharp\HelloWorld\HelloWorld.UI\bin\Debug\HelloWorld.UI.pd
 C:\Temp\udemy\samples-csharp\HelloWorld\HelloWorld.UI\obj\Debug\HelloWorld.UI.csprojResolveAssemblyReference.cache
 C:\Temp\udemy\samples-csharp\HelloWorld\HelloWorld.UI\obj\Debug\HelloWorld.UI.exe
 C:\Temp\udemy\samples-csharp\HelloWorld\HelloWorld.UI\obj\Debug\HelloWorld.UI.pdb
+C:\Users\Apprentice\Desktop\Other Projects\samples-aspnet-mvc\other\HelloWorld\HelloWorld.UI\bin\Debug\HelloWorld.UI.exe.config
+C:\Users\Apprentice\Desktop\Other Projects\samples-aspnet-mvc\other\HelloWorld\HelloWorld.UI\obj\Debug\HelloWorld.UI.exe
+C:\Users\Apprentice\Desktop\Other Projects\samples-aspnet-mvc\other\HelloWorld\HelloWorld.UI\obj\Debug\HelloWorld.UI.pdb
+C:\Users\Apprentice\Desktop\Other Projects\samples-aspnet-mvc\other\HelloWorld\HelloWorld.UI\bin\Debug\HelloWorld.UI.exe
+C:\Users\Apprentice\Desktop\Other Projects\samples-aspnet-mvc\other\HelloWorld\HelloWorld.UI\bin\Debug\HelloWorld.UI.pdb
+C:\Users\Apprentice\Desktop\Other Projects\samples-aspnet-mvc\other\HelloWorld\HelloWorld.UI\obj\Debug\HelloWorld.UI.csprojResolveAssemblyReference.cache
