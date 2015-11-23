@@ -29,5 +29,7 @@ namespace PeopleEntity.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<PeopleEntity.Models.Person> People { get; set; }
     }
 }
