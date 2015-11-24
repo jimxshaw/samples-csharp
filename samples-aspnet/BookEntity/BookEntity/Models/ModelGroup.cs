@@ -20,7 +20,7 @@ namespace BookEntity.Models
             public string ISBN { get; set; }
 
             // This is to maintain the many reviews associated with a book entity
-            public virtual ICollection<Review> Review { get; set; } 
+            public virtual ICollection<Review> Reviews { get; set; } 
         }
 
         [Table("Reviews")] // Table name
