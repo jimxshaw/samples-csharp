@@ -1,0 +1,14 @@
+Public:
+Accessible from everywhere.
+
+Private:
+Accessible only from the class.
+
+Protected:
+Accessible only from the class and its derived classes.
+
+Internal:
+Accessible only from the same assembly.
+
+Protected Internal:
+Accessibe only from the same assembly or any derived classes.
