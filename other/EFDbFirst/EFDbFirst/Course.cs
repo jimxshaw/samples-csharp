@@ -25,7 +25,7 @@ namespace EFDbFirst
         public int AuthorID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Level { get; set; }
+        public EFDbFirst.Level Level { get; set; }
         public short FullPrice { get; set; }
     
         public virtual Author Author { get; set; }

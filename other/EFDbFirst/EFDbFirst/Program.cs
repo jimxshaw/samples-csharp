@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 
 namespace EFDbFirst
 {
+    public enum Level : byte
+    {
+        Beginner = 1,
+        Intermediate = 2,
+        Advanced = 3
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
-            var dbContext = new PlutoDbContext();
-            var courses = dbContext.GetCourses();
+            var course = new Course();
+            course.Level = Level.Intermediate; // 2
 
-            foreach (var c in courses)
-            {
-                Console.WriteLine(c.Title);
-            }
-
-
+            Console.WriteLine(course.Level);
+            
             Console.ReadLine();
         }
     }
