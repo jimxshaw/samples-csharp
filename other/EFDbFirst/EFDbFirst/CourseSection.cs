@@ -18,6 +18,6 @@ namespace EFDbFirst
         public int CourseID { get; set; }
         public string Title { get; set; }
     
-        public virtual Course Cours { get; set; }
+        public virtual Course Course { get; set; }
     }
 }
