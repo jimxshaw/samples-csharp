@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Author.cs" />
-    <Compile Include="Category.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="Migrations\201511282106408_InitialModel.cs" />
     <Compile Include="Migrations\201511282106408_InitialModel.Designer.cs">
@@ -80,6 +79,14 @@
     <Compile Include="Migrations\201511290315398_DeletedDatePublishedFromCoursesTable.cs" />
     <Compile Include="Migrations\201511290315398_DeletedDatePublishedFromCoursesTable.Designer.cs">
       <DependentUpon>201511290315398_DeletedDatePublishedFromCoursesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511290319340_DeletedCategoryColumnFromCoursesTable.cs" />
+    <Compile Include="Migrations\201511290319340_DeletedCategoryColumnFromCoursesTable.Designer.cs">
+      <DependentUpon>201511290319340_DeletedCategoryColumnFromCoursesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511290321217_DeletedCategoriesTable.cs" />
+    <Compile Include="Migrations\201511290321217_DeletedCategoriesTable.Designer.cs">
+      <DependentUpon>201511290321217_DeletedCategoriesTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PlutoContext.cs" />
@@ -109,6 +116,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511290315398_DeletedDatePublishedFromCoursesTable.resx">
       <DependentUpon>201511290315398_DeletedDatePublishedFromCoursesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511290319340_DeletedCategoryColumnFromCoursesTable.resx">
+      <DependentUpon>201511290319340_DeletedCategoryColumnFromCoursesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511290321217_DeletedCategoriesTable.resx">
+      <DependentUpon>201511290321217_DeletedCategoriesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
