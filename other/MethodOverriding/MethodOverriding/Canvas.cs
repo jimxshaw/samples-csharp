@@ -12,18 +12,19 @@ namespace MethodOverriding
         {
             foreach (var shape in shapes)
             {
-                switch (shape.Type)
-                {
-                    case ShapeType.Circle:
-                        Console.WriteLine("Draw a circle");
-                        break;
-                    case ShapeType.Square:
-                        Console.WriteLine("Draw a square");
-                        break;
-                    case ShapeType.Hexagon:
-                        Console.WriteLine("Draw a hexagon");
-                        break;
-                }
+                //switch (shape.Type)
+                //{
+                //    case ShapeType.Circle:
+                //        //Console.WriteLine("Draw a circle");
+                //        break;
+                //    case ShapeType.Square:
+                //        //Console.WriteLine("Draw a square");
+                //        break;
+                //    case ShapeType.Hexagon:
+                //        //Console.WriteLine("Draw a hexagon");
+                //        break;
+                //}
+                shape.Draw();
             }
         }
     }

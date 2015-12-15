@@ -1,9 +1,10 @@
 ﻿namespace MethodOverriding
 {
-    public enum ShapeType
-    {
-        Circle,
-        Square,
-        Hexagon
-    }
+    // Enum not needed when using derived classes
+    //public enum ShapeType
+    //{
+    //    Circle,
+    //    Square,
+    //    Hexagon
+    //}
 }
