@@ -10,8 +10,39 @@ using Grades;
 namespace Grades.Tests.Types
 {
     [TestClass]
-    public class ReferenceTypeTests
+    public class TypeTests
     {
+        [TestMethod]
+        public void ValueTypesPassByValue()
+        {
+            int x = 46;
+
+            IncrementNumber(x);
+
+            Assert.AreEqual(46, x);
+        }
+
+        private void IncrementNumber(int number)
+        {
+            number += 1;
+        }
+
+        [TestMethod]
+        public void ReferenceTypesPassByValue()
+        {
+            var book1 = new GradeBook();
+            var book2 = book1;
+
+            GiveBookAName(book2);
+            Assert.AreNotEqual("A Grade Book", book1.Name);
+        }
+
+        private void GiveBookAName(GradeBook book)
+        {
+            book = new GradeBook();
+            book.Name = "A Grade Book";
+        }
+
         [TestMethod]
         public void StringComparisons()
         {
