@@ -13,6 +13,40 @@ namespace Grades.Tests.Types
     public class TypeTests
     {
         [TestMethod]
+        public void UsingArrays()
+        {
+            string[] grades;
+            grades = new string[3];
+
+            AddGrades(grades);
+
+            Assert.AreEqual("forty five", grades[1]);
+        }
+
+        private void AddGrades(string[] grades)
+        {
+            grades[1] = "forty five";
+        }
+
+        [TestMethod]
+        public void UppercaseString()
+        {
+            string name = "jim";
+            name = name.ToUpper();
+
+            Assert.AreEqual("JIM", name);
+        }
+
+        [TestMethod]
+        public void AddDaysToDateTime()
+        {
+            var date = new DateTime(2015, 12, 25);
+            date = date.AddDays(1);
+
+            Assert.AreEqual(26, date.Day);
+        }
+
+        [TestMethod]
         public void ValueTypesPassByValue()
         {
             int x = 46;
