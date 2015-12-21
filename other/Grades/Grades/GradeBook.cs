@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,10 @@ namespace Grades
         private List<float> grades;
         private string _name;
 
-        public NameChangedDelegate NameChanged;
+        // The difference between a delegate and an event is
+        // the inclusion of the event key word. Events are
+        // based on delegates.
+        public event NameChangedDelegate NameChanged;
 
         public string Name
         {
@@ -21,14 +25,29 @@ namespace Grades
             }
             set
             {
-                if (!String.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value))
                 {
-                    if (_name != value)
-                    {
-                        NameChanged(_name, value);
-                    }
-                    _name = value;
+                    throw new ArgumentException("Name cannot be null or empty");
                 }
+
+                if (_name != value && NameChanged != null)
+                {
+                    var args = new NameChangedEventArgs();
+                    args.EvistingName = _name;
+                    args.NewName = value;
+
+                    NameChanged(this, args);
+                }
+                _name = value;
+
+            }
+        }
+
+        public void WriteGrades(TextWriter destination)
+        {
+            for (int i = grades.Count; i > 0; i--)
+            {
+                destination.WriteLine(grades[i - 1]);
             }
         }
 
