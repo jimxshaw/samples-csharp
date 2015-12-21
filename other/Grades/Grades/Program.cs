@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,28 +19,20 @@ namespace Grades
             //book.Name = "Jim's Grade Book";
             //book.Name = "Grade Book";
 
-            try
-            {
-                Console.WriteLine("Please enter a name");
-                book.Name = Console.ReadLine();
+            GetBookName(book);
 
-            }
-            catch(ArgumentException ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Something's wrong");
-            }
-            
+            AddGrades(book);
 
-            book.AddGrade(92);
-            book.AddGrade(67.3f);
-            book.AddGrade(58);
-            book.WriteGrades(Console.Out);
+            SaveGrades(book);
 
+            WriteResults(book);
+
+            Console.ReadLine();
+
+        }
+
+        private static void WriteResults(GradeBook book)
+        {
             var stats = book.ComputeStatistics();
 
             WriteResult("Average", stats.AverageGrade);
@@ -47,9 +40,36 @@ namespace Grades
             WriteResult("Lowest", stats.LowestGrade);
             WriteResult("Grade", stats.LetterGrade);
             WriteResult("Summary", stats.Description);
+        }
 
-            Console.ReadLine();
+        private static void SaveGrades(GradeBook book)
+        {
+            using (StreamWriter outputFile = File.CreateText("grades.txt"))
+            {
+                book.WriteGrades(outputFile);
+            }
+        }
 
+        private static void AddGrades(GradeBook book)
+        {
+            book.AddGrade(92);
+            book.AddGrade(67.3f);
+            book.AddGrade(58);
+        }
+
+        private static void GetBookName(GradeBook book)
+        {
+            try
+            {
+                Console.WriteLine("Please enter a name");
+                book.Name = Console.ReadLine();
+
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
         }
 
         //static void OnNameChanged(object sender, NameChangedEventArgs args)
