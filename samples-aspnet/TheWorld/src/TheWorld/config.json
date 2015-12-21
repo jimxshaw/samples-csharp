@@ -3,6 +3,6 @@
     "SiteEmailAddress": "test321@testemail.org"
   },
   "Data": {
-    "WorldContextConnection": "Server=SQLEXPRESS;User=sa;Password=sqlserver;Database=TheWorld;Trusted_Connection=true;MultipleActiveResultSets=true;"
+    "WorldContextConnection": "Server=OWNER-PC\\SQLEXPRESS;User=sa;Password=sqlserver;Database=TheWorld;Trusted_Connection=true;MultipleActiveResultSets=true;"
   }
 }

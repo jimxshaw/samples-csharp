@@ -41,6 +41,11 @@ namespace TheWorld
                 .AddSqlServer()
                 .AddDbContext<WorldContext>();
 
+            // Add transient always guarantees a new instance of this class.
+            // The class gets passed in, gets used and then destroyed. It's not
+            // hanging around for re-use.
+            services.AddTransient<WorldContextSeedData>();
+
             // By creating the scoped service, it allows the AppController to get an
             // instance of the mail service through DebugMailService (which implements
             // the IMailService interface).
@@ -48,7 +53,7 @@ namespace TheWorld
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, WorldContextSeedData seeder)
         {
             app.UseStaticFiles();
 
@@ -60,6 +65,8 @@ namespace TheWorld
                     defaults: new { controller = "App", action = "Index" }
                 );
             });
+
+            seeder.EnsureSeedData();
         }
 
         // Entry point for the application.
