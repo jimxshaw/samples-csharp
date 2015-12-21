@@ -1,5 +1,8 @@
 {
   "AppSettings": {
-    "SiteEmailAddress":  "test321@testemail.org"
+    "SiteEmailAddress": "test321@testemail.org"
+  },
+  "Data": {
+    "WorldContextConnection": "Server=SQLEXPRESS;User=sa;Password=sqlserver;Database=TheWorld;Trusted_Connection=true;MultipleActiveResultSets=true;"
   }
 }
