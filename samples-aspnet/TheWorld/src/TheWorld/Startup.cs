@@ -46,6 +46,8 @@ namespace TheWorld
             // hanging around for re-use.
             services.AddTransient<WorldContextSeedData>();
 
+            services.AddScoped<IWorldRepository, WorldRepository>();
+
             // By creating the scoped service, it allows the AppController to get an
             // instance of the mail service through DebugMailService (which implements
             // the IMailService interface).
