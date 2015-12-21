@@ -9,7 +9,7 @@ namespace Grades
 {
     public class GradeBook
     {
-        private List<float> grades;
+        protected List<float> grades;
         private string _name;
 
         // The difference between a delegate and an event is
@@ -64,6 +64,8 @@ namespace Grades
 
         public GradeStatistics ComputeStatistics()
         {
+            Console.WriteLine("GradeBook::ComputeStatistics");
+
             GradeStatistics stats = new GradeStatistics();
 
             float sum = 0;

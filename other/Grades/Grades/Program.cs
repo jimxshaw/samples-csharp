@@ -11,7 +11,7 @@ namespace Grades
     {
         static void Main(string[] args)
         {
-            var book = new GradeBook();
+            var book = new ThrowAwayGradeBook();
 
             // book.NameChanged += new NameChangedDelegate(OnNameChanged);
             //book.NameChanged += OnNameChanged;
@@ -19,16 +19,12 @@ namespace Grades
             //book.Name = "Jim's Grade Book";
             //book.Name = "Grade Book";
 
-            GetBookName(book);
-
+            //GetBookName(book);
             AddGrades(book);
-
             SaveGrades(book);
-
             WriteResults(book);
 
             Console.ReadLine();
-
         }
 
         private static void WriteResults(GradeBook book)
