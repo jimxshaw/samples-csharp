@@ -20,6 +20,7 @@ namespace Grades
             //book.Name = "Grade Book";
 
             //GetBookName(book);
+
             AddGrades(book);
             SaveGrades(book);
             WriteResults(book);
@@ -35,6 +36,11 @@ namespace Grades
         private static void WriteResults(IGradeTracker book)
         {
             var stats = book.ComputeStatistics();
+
+            foreach (var grade in book)
+            {
+                Console.WriteLine(grade);
+            }
 
             WriteResult("Average", stats.AverageGrade);
             WriteResult("Highest", stats.HighestGrade);

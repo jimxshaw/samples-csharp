@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -47,6 +48,10 @@ namespace Grades
             return stats;
         }
 
+        public override IEnumerator GetEnumerator()
+        {
+            return grades.GetEnumerator();
+        }
 
     }
 }
