@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Grades
 {
-    public abstract class GradeTracker
+    public abstract class GradeTracker : IGradeTracker
     {
         protected string _name;
 
