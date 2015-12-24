@@ -11,6 +11,7 @@ namespace GenericLists
     {
         static void Main(string[] args)
         {
+            // Part 1:
             var presidents = new List<string>(12) {
                 "George Washington",
                 "Thomas Jefferson",
@@ -39,13 +40,33 @@ namespace GenericLists
             var copy = new ReadOnlyCollection<string>(presidents);
 
 
-            BadCode(copy);
+            //BadCode(copy);
 
 
             foreach (var president in presidents)
             {
                 Console.WriteLine(president);
             }
+
+            Console.WriteLine();
+
+
+
+
+
+
+            // Part 2:
+            var lst = new NonBlankStringList();
+            lst.Add("Item added at index 0");
+            lst[0] = "   ";
+            lst.Add("Item added at index 1");
+            lst.Insert(2, "Item inserted at index 2");
+
+            foreach (string item in lst)
+            {
+                Console.WriteLine(item);
+            }
+
 
             Console.ReadLine();
         }
