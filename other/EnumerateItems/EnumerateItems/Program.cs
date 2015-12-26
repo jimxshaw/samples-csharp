@@ -11,7 +11,22 @@ namespace EnumerateItems
     {
         static void Main(string[] args)
         {
-            string[] daysOfWeek =
+            //string[] daysOfWeek =
+            //{
+            //    "Monday",
+            //    "Tuesday",
+            //    "Wednesday",
+            //    "Thursday",
+            //    "Friday",
+            //    "Saturday",
+            //    "Sunday"
+            //};
+
+            //DisplayItems(daysOfWeek);
+            //Console.WriteLine();
+            //DisplayItems("String collection test!");
+
+            var days = new List<string>()
             {
                 "Monday",
                 "Tuesday",
@@ -22,9 +37,15 @@ namespace EnumerateItems
                 "Sunday"
             };
 
-            DisplayItems(daysOfWeek);
-            Console.WriteLine();
-            DisplayItems("String collection test!");
+            foreach (var day in days)
+            {
+                // Enumerators cannot modify the collection
+                // while enumerating the collection.
+
+                //days[1] = "2nd day";
+                Console.WriteLine(day);
+
+            }
 
             Console.ReadLine();
         }
@@ -41,6 +62,14 @@ namespace EnumerateItems
                     moreItems = enumerator.MoveNext();
                 }
             }
+
+            /*
+                This DisplayItems method is essentially this:
+                foreach (T item in collection) 
+                {
+                    Console.WriteLine(item);
+                }
+            */
         }
     }
 
