@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
 using TheWorld.Models;
+using TheWorld.Services;
 using TheWorld.ViewModels;
 
 namespace TheWorld.Controllers.Api
@@ -16,11 +17,15 @@ namespace TheWorld.Controllers.Api
     {
         private IWorldRepository _repository;
         private ILogger<Stop> _logger;
+        private CoordinateService _coordinateService;
 
-        public StopController(IWorldRepository repository, ILogger<Stop> logger)
+        public StopController(IWorldRepository repository,
+            ILogger<Stop> logger,
+            CoordinateService coordinateService)
         {
             _repository = repository;
             _logger = logger;
+            _coordinateService = coordinateService;
         }
 
         [HttpGet("")]
@@ -56,7 +61,16 @@ namespace TheWorld.Controllers.Api
                     var newStop = Mapper.Map<Stop>(vm);
 
                     // Looking up Geocoordinates
+                    var coordinateResult = _coordinateService.Lookup(newStop.Name);
 
+                    if (coordinateResult.Success)
+                    {
+                        Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        Json(coordinateResult.Message);
+                    }
+
+                    newStop.Latitude = coordinateResult.Latitude;
+                    newStop.Longitude = coordinateResult.Longitude;
 
                     // Save to the database
                     _repository.AddStop(tripName, newStop);

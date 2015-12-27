@@ -51,6 +51,8 @@ namespace TheWorld
                 .AddSqlServer()
                 .AddDbContext<WorldContext>();
 
+            services.AddScoped<CoordinateService>();
+
             // Add transient always guarantees a new instance of this class.
             // The class gets passed in, gets used and then destroyed. It's not
             // hanging around for re-use.
