@@ -18,6 +18,6 @@ namespace TheWorld.ViewModels
         // Same as creating a constructor and specifying it.
         public DateTime Created { get; set; } = DateTime.UtcNow;
 
-
+        public IEnumerable<StopViewModel> Stops { get; set; } 
     }
 }

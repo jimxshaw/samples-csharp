@@ -60,5 +60,12 @@ namespace TheWorld.Models
             // The logic tests that something did get saved.
             return _context.SaveChanges() > 0;
         }
+
+        public Trip GetTripByName(string tripName)
+        {
+            return _context.Trips.Include(t => t.Stops)
+                .Where(t => t.Name == tripName)
+                .FirstOrDefault();
+        }
     }
 }

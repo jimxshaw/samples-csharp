@@ -40,7 +40,8 @@ namespace TheWorld
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-                .AddJsonOptions(opt => {
+                .AddJsonOptions(opt =>
+                {
                     opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 });
 
@@ -75,6 +76,8 @@ namespace TheWorld
             {
                 // I want to go from Trip to VM and do the reverse as well.
                 config.CreateMap<Trip, TripViewModel>().ReverseMap();
+
+                config.CreateMap<Stop, StopViewModel>().ReverseMap();
             });
 
             app.UseMvc(config =>
