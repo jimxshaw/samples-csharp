@@ -67,5 +67,12 @@ namespace TheWorld.Models
                 .Where(t => t.Name == tripName)
                 .FirstOrDefault();
         }
+
+        public void AddStop(string tripName, Stop newStop)
+        {
+            var theTrip = GetTripByName(tripName);
+            newStop.Order = theTrip.Stops.Max(s => s.Order) + 1;
+            _context.Stops.Add(newStop);
+        }
     }
 }
