@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 
 namespace TheWorld.Services
 {
@@ -16,7 +18,7 @@ namespace TheWorld.Services
             _logger = logger;
         }
 
-        public CoordinateServiceResult Lookup(string location)
+        public async Task<CoordinateServiceResult> Lookup(string location)
         {
             var result = new CoordinateServiceResult()
             {
@@ -29,6 +31,28 @@ namespace TheWorld.Services
             var encodedName = WebUtility.UrlEncode(location);
             var url =
                 $"https://maps.googleapis.com/maps/api/geocode/json?address={encodedName}&key={googleKey}";
+
+            var client = new HttpClient();
+
+            // Using await means the method itself must include the
+            // async keyword in the signature. 
+            var json = await client.GetStringAsync(url);
+
+            var results = JObject.Parse(json);
+            var resources = results["results"][0]["geometry"];
+
+            if (!resources.HasValues)
+            {
+                result.Message = $"Could not find '{location}' as a location";
+            }
+            else
+            {
+                var coordinates = resources["location"];
+                result.Latitude = (double)coordinates["lat"];
+                result.Longitude = (double)coordinates["lng"];
+                result.Success = true;
+                result.Message = "Success";
+            }
 
             return result;
         }
