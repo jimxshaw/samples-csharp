@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 using TheWorld.Models;
 using TheWorld.ViewModels;
 
@@ -14,10 +15,13 @@ namespace TheWorld.Controllers.Api
     public class TripController : Controller
     {
         private IWorldRepository _repository;
+        private ILogger<TripController> _logger;
 
-        public TripController(IWorldRepository repository)
+        public TripController(IWorldRepository repository, ILogger<TripController> logger)
         {
             _repository = repository;
+            _logger = logger;
+
         }
 
         // By having an empty route within the parenthesis,
@@ -40,6 +44,7 @@ namespace TheWorld.Controllers.Api
                     var newTrip = Mapper.Map<Trip>(vm);
 
                     // Save to the database
+                    _logger.LogInformation("Attempting to save a new trip");
 
                     Response.StatusCode = (int)HttpStatusCode.Created;
                     return Json(Mapper.Map<TripViewModel>(newTrip));
@@ -47,6 +52,7 @@ namespace TheWorld.Controllers.Api
             }
             catch (Exception ex)
             {
+                _logger.LogError("Failed to save new trip", ex);
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return Json(new { Message = ex.Message });
             }
