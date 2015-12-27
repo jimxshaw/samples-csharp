@@ -47,5 +47,18 @@ namespace TheWorld.Models
                 return null;
             }
         }
+
+        public void AddTrip(Trip newTrip)
+        {
+            _context.Add(newTrip);
+        }
+
+        public bool SaveAll()
+        {
+            // SaveChanges() return the number of objects
+            // in the database that were changed.
+            // The logic tests that something did get saved.
+            return _context.SaveChanges() > 0;
+        }
     }
 }
