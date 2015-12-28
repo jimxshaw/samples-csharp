@@ -30,7 +30,7 @@ namespace TheWorld.Services
             var bingKey = Startup.Configuration["AppSettings:BingKey"];
             var encodedName = WebUtility.UrlEncode(location);
             var url =
-                $"http://dev.virtualearth.net/REST/version/restApi/resourcePath?{encodedName}&key={bingKey}";
+                $"http://dev.virtualearth.net/REST/v1/Locations?q={encodedName}&key={bingKey}";
 
             var client = new HttpClient();
 
@@ -39,7 +39,7 @@ namespace TheWorld.Services
             var json = await client.GetStringAsync(url);
 
             var results = JObject.Parse(json);
-            var resources = results["results"][0]["geometry"];
+            var resources = results["resourceSets"][0]["resources"];
 
             if (!resources.HasValues)
             {
@@ -47,11 +47,20 @@ namespace TheWorld.Services
             }
             else
             {
-                var coordinates = resources["location"];
-                result.Latitude = (double)coordinates["lat"];
-                result.Longitude = (double)coordinates["lng"];
-                result.Success = true;
-                result.Message = "Success";
+                var confidence = (string)resources[0]["confidence"];
+
+                if (confidence != "High")
+                {
+                    result.Message = $"Could not find a confident match for '{location}' as a location";
+                }
+                else
+                {
+                    var coordinates = resources[0]["geocodePoints"][0]["coordinates"];
+                    result.Latitude = (double)coordinates[0];
+                    result.Longitude = (double)coordinates[1];
+                    result.Success = true;
+                    result.Message = "Success";
+                }
             }
 
             return result;
