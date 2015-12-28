@@ -1,7 +1,8 @@
 {
   "AppSettings": {
     "SiteEmailAddress": "test321@testemail.org",
-    "GoogleKey": "DONOTHARDCODEANYKEYS"
+    "GoogleKey": "DONOTHARDCODEANYKEYS",
+    "BingKey": "DONOTHARDCODEANYKEYS"
   },
   "Data": {
     "WorldContextConnection": "Server=OWNER-PC\\SQLEXPRESS;User=sa;Password=sqlserver;Database=TheWorld;Trusted_Connection=true;MultipleActiveResultSets=true;"

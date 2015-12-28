@@ -27,10 +27,10 @@ namespace TheWorld.Services
             };
 
             // Lookup coordinates
-            var googleKey = Startup.Configuration["AppSettings:GoogleKey"];
+            var bingKey = Startup.Configuration["AppSettings:BingKey"];
             var encodedName = WebUtility.UrlEncode(location);
             var url =
-                $"https://maps.googleapis.com/maps/api/geocode/json?address={encodedName}&key={googleKey}";
+                $"http://dev.virtualearth.net/REST/version/restApi/resourcePath?{encodedName}&key={bingKey}";
 
             var client = new HttpClient();
 
