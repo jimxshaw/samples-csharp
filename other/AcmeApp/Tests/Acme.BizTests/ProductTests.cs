@@ -82,5 +82,46 @@ namespace Acme.Biz.Tests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void ConvertMetersToInchesTest()
+        {
+            //Arrange
+            var expected = 78.74; //number of inches in 2 meters.
+
+            //Act
+            var actual = 2*Product.InchesPerMeter;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void MinimumPriceTest_Default()
+        {
+            //Arrange
+            var currentProduct = new Product();
+            var expected = .95m;
+
+            //Act
+            var actual = currentProduct.MinimumPrice;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void MinimumPriceTest_Bulk()
+        {
+            //Arrange
+            var currentProduct = new Product(1, "Bulk tools", "");
+            var expected = 7.75m;
+
+            //Act
+            var actual = currentProduct.MinimumPrice;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

@@ -13,6 +13,15 @@ namespace Acme.Biz
     /// </summary>
     public class Product
     {
+        // Constants are by definition static and must be
+        // initialized when they're declared.
+        public const double InchesPerMeter = 39.37;
+
+        // Readonly fields are like "run-time" constants.
+        // They can be static. If so then they can only be
+        // initialized at declaration or in a static constructor. 
+        public readonly decimal MinimumPrice;
+
         private int _productId;
         private string _productName;
         private string _description;
@@ -44,6 +53,7 @@ namespace Acme.Biz
         {
             Console.WriteLine("Product instance created!");
             //ProductVendor = new Vendor();
+            MinimumPrice = .95m;
         }
 
         public Product(int productId,
@@ -54,7 +64,10 @@ namespace Acme.Biz
             ProductName = productName;
             Description = description;
 
-            Console.WriteLine("Product instance has a name: " + ProductName);
+            if (ProductName.StartsWith("Bulk"))
+            {
+                MinimumPrice = 7.75m;
+            }
         }
 
         
