@@ -63,5 +63,21 @@ namespace Acme.Biz.Tests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void Product_Null()
+        {
+            //Arrange
+            Product currentProduct = null;
+            var companyName = currentProduct?.ProductVendor?.CompanyName; //If null then null; if not then dot.
+
+            string expected = null;
+
+            //Act
+            var actual = companyName;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

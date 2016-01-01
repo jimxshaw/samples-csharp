@@ -13,6 +13,15 @@ namespace Acme.Biz
     /// </summary>
     public class Product
     {
+        private int _productId;
+        private string _productName;
+        private string _description;
+        private Vendor _productVendor;
+
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public string Description { get; set; }
+
         public Product()
         {
             Console.WriteLine("Product instance created!");
@@ -30,28 +39,21 @@ namespace Acme.Biz
             Console.WriteLine("Product instance has a name: " + ProductName);
         }
 
-        private int productId;
-        private string productName;
-        private string description;
-        private Vendor productVendor;
-
-        public int ProductId { get; set; }
-        public string ProductName { get; set; }
-        public string Description { get; set; }
-
         public Vendor ProductVendor
         {
             get
             {
-                if (productVendor == null)
+                if (_productVendor == null)
                 {
                     // Objects can be initialized in the property
-                    // getter. This is called lazy loading.
-                    productVendor = new Vendor();
+                    // getter. This is called lazy loading, where
+                    // related objects are instantiated when they
+                    // are needed but not before.
+                    _productVendor = new Vendor();
                 }
-                return productVendor;
+                return _productVendor;
             }
-            set { productVendor = value; }
+            set { _productVendor = value; }
         }
 
         public string SayHello()
