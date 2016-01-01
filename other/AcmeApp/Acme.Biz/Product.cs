@@ -17,10 +17,28 @@ namespace Acme.Biz
         private string _productName;
         private string _description;
         private Vendor _productVendor;
+        private DateTime? _availabilityDate;
 
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string Description { get; set; }
+        public DateTime? AvailabilityDate { get; set; }
+        public Vendor ProductVendor
+        {
+            get
+            {
+                if (_productVendor == null)
+                {
+                    // Objects can be initialized in the property
+                    // getter. This is called lazy loading, where
+                    // related objects are instantiated when they
+                    // are needed but not before.
+                    _productVendor = new Vendor();
+                }
+                return _productVendor;
+            }
+            set { _productVendor = value; }
+        }
 
         public Product()
         {
@@ -39,22 +57,7 @@ namespace Acme.Biz
             Console.WriteLine("Product instance has a name: " + ProductName);
         }
 
-        public Vendor ProductVendor
-        {
-            get
-            {
-                if (_productVendor == null)
-                {
-                    // Objects can be initialized in the property
-                    // getter. This is called lazy loading, where
-                    // related objects are instantiated when they
-                    // are needed but not before.
-                    _productVendor = new Vendor();
-                }
-                return _productVendor;
-            }
-            set { _productVendor = value; }
-        }
+        
 
         public string SayHello()
         {
@@ -66,9 +69,11 @@ namespace Acme.Biz
             var result = LogAction("Saying Hello"); // using static Acme.Common.LoggingService; 
 
             return "Hello " +
-                ProductName +
-                " (" + ProductId + "): " +
-                Description;
+                   ProductName +
+                   " (" + ProductId + "): " +
+                   Description +
+                   " Available on: " +
+                   AvailabilityDate?.ToShortDateString();
         }
 
     }

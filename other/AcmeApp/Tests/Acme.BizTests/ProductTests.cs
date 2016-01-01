@@ -21,7 +21,8 @@ namespace Acme.Biz.Tests
             currentProduct.Description = "A sturdy tool";
             currentProduct.ProductVendor.CompanyName = "XYZ Corporation";
 
-            var expected = "Hello Hammer (1): A sturdy tool";
+            var expected = "Hello Hammer (1): A sturdy tool" +
+                           " Available on: ";
 
             //Act
             var actual = currentProduct.SayHello();
@@ -36,7 +37,8 @@ namespace Acme.Biz.Tests
             //Arrange
             var currentProduct = new Product(1, "Hammer", "A sturdy tool");
 
-            var expected = "Hello Hammer (1): A sturdy tool";
+            var expected = "Hello Hammer (1): A sturdy tool" +
+                           " Available on: ";
 
             //Act
             var actual = currentProduct.SayHello();
@@ -55,7 +57,8 @@ namespace Acme.Biz.Tests
                 Description = "A sturdy tool"
             };
 
-            var expected = "Hello Hammer (1): A sturdy tool";
+            var expected = "Hello Hammer (1): A sturdy tool" +
+                           " Available on: ";
 
             //Act
             var actual = currentProduct.SayHello();
