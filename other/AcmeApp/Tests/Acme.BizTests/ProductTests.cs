@@ -19,6 +19,7 @@ namespace Acme.Biz.Tests
             currentProduct.ProductId = 1;
             currentProduct.ProductName = "Hammer";
             currentProduct.Description = "A sturdy tool";
+            currentProduct.ProductVendor.CompanyName = "XYZ Corporation";
 
             var expected = "Hello Hammer (1): A sturdy tool";
 
@@ -34,7 +35,26 @@ namespace Acme.Biz.Tests
         {
             //Arrange
             var currentProduct = new Product(1, "Hammer", "A sturdy tool");
-            
+
+            var expected = "Hello Hammer (1): A sturdy tool";
+
+            //Act
+            var actual = currentProduct.SayHello();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void SayHello_ObjectInitializer()
+        {
+            var currentProduct = new Product
+            {
+                ProductId = 1,
+                ProductName = "Hammer",
+                Description = "A sturdy tool"
+            };
+
             var expected = "Hello Hammer (1): A sturdy tool";
 
             //Act
