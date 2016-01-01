@@ -58,10 +58,33 @@ namespace FunctionalCSharp
             // it without altering the original values. 
 
             var range2 = new DateRange(range.Start, DateTime.MaxValue);
+            Console.WriteLine();
 
             testDates.ForEach(d =>
             {
-                var myDates = $"{d:yyyy-MM-dd} - {(range.DateIsInRange(d))}";
+                var myDates = $"{d:yyyy-MM-dd} - {(range2.DateIsInRange(d))}";
+                Console.WriteLine(myDates);
+            });
+
+            //range.Slide(28);
+            //Console.WriteLine();
+
+            //testDates.ForEach(d =>
+            //{
+            //    var myDates = $"{d:yyyy-MM-dd} - {(range.DateIsInRange(d))}";
+            //    Console.WriteLine(myDates);
+            //});
+
+            // PART 3:
+            // DateRange is immutable from outside the class but with a method like Slide(),
+            // it's still mutable within the class. Private readonly fields would need to be added.
+
+            var range3 = range.Slide(28);
+            Console.WriteLine();
+
+            testDates.ForEach(d =>
+            {
+                var myDates = $"{d:yyyy-MM-dd} - {(range3.DateIsInRange(d))}";
                 Console.WriteLine(myDates);
             });
 
