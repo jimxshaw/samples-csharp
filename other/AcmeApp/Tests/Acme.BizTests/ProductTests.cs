@@ -3,6 +3,7 @@ using Acme.Biz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -90,7 +91,7 @@ namespace Acme.Biz.Tests
             var expected = 78.74; //number of inches in 2 meters.
 
             //Act
-            var actual = 2*Product.InchesPerMeter;
+            var actual = 2 * Product.InchesPerMeter;
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -122,6 +123,146 @@ namespace Acme.Biz.Tests
 
             //Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void ProductName_Format()
+        {
+            //Arrange
+            var currentProduct = new Product();
+            currentProduct.ProductName = " Hedgeclipper ";
+
+            var expected = "Hedgeclipper";
+
+            //Act
+            var actual = currentProduct.ProductName;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod()]
+        public void ProductName_TooShort()
+        {
+            //Arrange
+            var currentProduct = new Product();
+            currentProduct.ProductName = "ax";
+
+            string expected = null;
+            string expectedMessage = "Product Name must be at least 3 characters";
+
+            //Act
+            var actual = currentProduct.ProductName;
+            var actualMessage = currentProduct.ValidationMessage;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedMessage, actualMessage);
+        }
+
+        [TestMethod()]
+        public void ProductName_TooLong()
+        {
+            //Arrange
+            var currentProduct = new Product();
+            currentProduct.ProductName = "Cruel Colossus Blade of the Whale";
+
+            string expected = null;
+            string expectedMessage = "Product Name cannot be more than 20 characters";
+
+            //Act
+            var actual = currentProduct.ProductName;
+            var actualMessage = currentProduct.ValidationMessage;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedMessage, actualMessage);
+        }
+
+        [TestMethod()]
+        public void ProductName_JustRight()
+        {
+            //Arrange
+            var currentProduct = new Product();
+            currentProduct.ProductName = "Scissors";
+
+            string expected = "Scissors";
+            string expectedMessage = null;
+
+            //Act
+            var actual = currentProduct.ProductName;
+            var actualMessage = currentProduct.ValidationMessage;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedMessage, actualMessage);
+        }
+
+        [TestMethod()]
+        public void Category_DefaultValue()
+        {
+            //Arrange
+            var currentProduct = new Product();
+
+            string expected = "Tools";
+
+
+            //Act
+            var actual = currentProduct.Category;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void Category_NewValue()
+        {
+            //Arrange
+            var currentProduct = new Product();
+            currentProduct.Category = "Garden";
+
+            string expected = "Garden";
+
+
+            //Act
+            var actual = currentProduct.Category;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void Sequence_DefaultValue()
+        {
+            //Arrange
+            var currentProduct = new Product();
+
+            int expected = 1;
+
+
+            //Act
+            var actual = currentProduct.SequenceNumber;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void ProductCode_DefaultValue()
+        {
+            //Arrange
+            var currentProduct = new Product();
+            currentProduct.Category = "Smithing";
+            currentProduct.SequenceNumber = 3;
+
+            var expected = "Smithing-3";
+            //Act
+            var actual = currentProduct.ProductCode;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+
         }
     }
 }
