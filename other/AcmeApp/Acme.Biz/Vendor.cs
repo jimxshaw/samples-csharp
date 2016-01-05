@@ -24,26 +24,29 @@ namespace Acme.Biz
         /// <returns></returns>
         public OperationResult PlaceOrder(Product product, int quantity)
         {
-            // Guard clauses make sure passed in values are within constraints.
-            if (product == null) throw new ArgumentNullException(nameof(product));
-            if (quantity <= 0) throw new ArgumentOutOfRangeException(nameof(product));
+            //// Guard clauses make sure passed in values are within constraints.
+            //if (product == null) throw new ArgumentNullException(nameof(product));
+            //if (quantity <= 0) throw new ArgumentOutOfRangeException(nameof(product));
 
-            var success = false;
+            //var success = false;
 
-            var orderText = "Order from ACME, Inc" + "\n" +
-                            "Product: " + product.ProductCode + "\n" +
-                            "Quantity: " + quantity;
+            //var orderText = "Order from ACME, Inc" + "\n" +
+            //                "Product: " + product.ProductCode + "\n" +
+            //                "Quantity: " + quantity;
 
-            var emailService = new EmailService();
-            var confirmation = emailService.SendMessage("New Order", orderText, Email);
+            //var emailService = new EmailService();
+            //var confirmation = emailService.SendMessage("New Order", orderText, Email);
 
-            if (confirmation.StartsWith("Message sent: "))
-            {
-                success = true;
-            }
+            //if (confirmation.StartsWith("Message sent: "))
+            //{
+            //    success = true;
+            //}
 
-            var operationResult = new OperationResult(success, orderText);
-            return operationResult;
+            //var operationResult = new OperationResult(success, orderText);
+            //return operationResult;
+
+            //// Example of method chaining
+            return PlaceOrder(product, quantity, null, null);
         }
 
         /// <summary>
@@ -56,32 +59,34 @@ namespace Acme.Biz
         public OperationResult PlaceOrder(Product product, int quantity,
                                             DateTimeOffset? deliverBy)
         {
-            // Guard clauses make sure passed in values are within constraints.
-            if (product == null) throw new ArgumentNullException(nameof(product));
-            if (quantity <= 0) throw new ArgumentOutOfRangeException(nameof(product));
-            if (deliverBy <= DateTimeOffset.Now) throw new ArgumentOutOfRangeException(nameof(deliverBy));
+            //// Guard clauses make sure passed in values are within constraints.
+            //if (product == null) throw new ArgumentNullException(nameof(product));
+            //if (quantity <= 0) throw new ArgumentOutOfRangeException(nameof(product));
+            //if (deliverBy <= DateTimeOffset.Now) throw new ArgumentOutOfRangeException(nameof(deliverBy));
 
-            var success = false;
+            //var success = false;
 
-            var orderText = "Order from ACME, Inc" + "\n" +
-                            "Product: " + product.ProductCode + "\n" +
-                            "Quantity: " + quantity;
+            //var orderText = "Order from ACME, Inc" + "\n" +
+            //                "Product: " + product.ProductCode + "\n" +
+            //                "Quantity: " + quantity;
 
-            if (deliverBy.HasValue)
-            {
-                orderText += "\n" + "Deliver By: " + deliverBy.Value.ToString("d");
-            }
+            //if (deliverBy.HasValue)
+            //{
+            //    orderText += "\n" + "Deliver By: " + deliverBy.Value.ToString("d");
+            //}
 
-            var emailService = new EmailService();
-            var confirmation = emailService.SendMessage("New Order", orderText, Email);
+            //var emailService = new EmailService();
+            //var confirmation = emailService.SendMessage("New Order", orderText, Email);
 
-            if (confirmation.StartsWith("Message sent: "))
-            {
-                success = true;
-            }
+            //if (confirmation.StartsWith("Message sent: "))
+            //{
+            //    success = true;
+            //}
 
-            var operationResult = new OperationResult(success, orderText);
-            return operationResult;
+            //var operationResult = new OperationResult(success, orderText);
+            //return operationResult;
+
+            return PlaceOrder(product, quantity, deliverBy, null);
         }
 
         /// <summary>
