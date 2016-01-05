@@ -98,5 +98,24 @@ namespace Acme.Biz.Tests
 
             // Assert
         }
+
+        [TestMethod()]
+        public void PlaceOrder_3Parameters()
+        {
+            // Arrange
+            var vender = new Vendor();
+            var product = new Product(1, "Hammer", "");
+            var expected = new OperationResult(true,
+                "Order from ACME, Inc\nProduct: Tools-1\nQuantity: 1" +
+                "\nDeliver By: 12/31/2020");
+
+            // Act
+            var actual = vender.PlaceOrder(product, 1,
+                new DateTimeOffset(2020, 12, 31, 0, 0, 0, new TimeSpan(-7, 0, 0)));
+
+            // Assert
+            Assert.AreEqual(expected.Success, actual.Success);
+            Assert.AreEqual(expected.Message, actual.Message);
+        }
     }
 }
