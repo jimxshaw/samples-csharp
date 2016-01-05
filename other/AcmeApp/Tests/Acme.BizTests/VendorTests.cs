@@ -122,12 +122,14 @@ namespace Acme.Biz.Tests
         public void PlaceOrderTest_WithAddress()
         {
             //Arrange
-            var vender = new Vendor();
+            var vendor = new Vendor();
             var product = new Product(1, "Hammer", "");
             var expected = new OperationResult(true, "Test with Address");
 
             //Act
-            var actual = vender.PlaceOrder(product, 12, true, false);
+            var actual = vendor.PlaceOrder(product, 12,
+                                            Vendor.IncludeAddress.Yes,
+                                            Vendor.SendCopy.No);
 
             //Assert
             Assert.AreEqual(expected.Success, actual.Success);
