@@ -60,7 +60,7 @@ namespace Acme.Biz
         /// <param name="deliverBy">Requested delivery date.</param>
         /// <returns></returns>
         public OperationResult PlaceOrder(Product product, int quantity,
-                                            DateTimeOffset? deliverBy)
+                                            DateTimeOffset? deliverBy = null)
         {
             //// Guard clauses make sure passed in values are within constraints.
             //if (product == null) throw new ArgumentNullException(nameof(product));
@@ -101,8 +101,8 @@ namespace Acme.Biz
         /// <param name="instructions">Delivery instructions</param>
         /// <returns></returns>
         public OperationResult PlaceOrder(Product product, int quantity,
-                                            DateTimeOffset? deliverBy,
-                                            string instructions)
+                                            DateTimeOffset? deliverBy = null,
+                                            string instructions = "standard delivery")
         {
             // Guard clauses make sure passed in values are within constraints.
             if (product == null) throw new ArgumentNullException(nameof(product));
