@@ -119,5 +119,9 @@ namespace Acme.Biz
                    AvailabilityDate?.ToShortDateString();
         }
 
+        public override string ToString()
+        {
+            return ProductName + "(" + productId + ")";
+        }
     }
 }
