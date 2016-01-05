@@ -121,19 +121,36 @@ namespace Acme.Biz.Tests
         [TestMethod()]
         public void PlaceOrderTest_WithAddress()
         {
-            //Arrange
+            // Arrange
             var vendor = new Vendor();
             var product = new Product(1, "Hammer", "");
             var expected = new OperationResult(true, "Test with Address");
 
-            //Act
+            // Act
             var actual = vendor.PlaceOrder(product, 12,
                                             Vendor.IncludeAddress.Yes,
                                             Vendor.SendCopy.No);
 
-            //Assert
+            // Assert
             Assert.AreEqual(expected.Success, actual.Success);
             Assert.AreEqual(expected.Message, actual.Message);
+        }
+
+        [TestMethod()]
+        public void ToStringTest()
+        {
+            // Arrange
+            var vendor = new Vendor();
+            vendor.VendorId = 1;
+            vendor.CompanyName = "XYZ Corp";
+
+            var expected = "Vendor: XYZ Corp";
+
+            // Act
+            var actual = vendor.ToString();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }
