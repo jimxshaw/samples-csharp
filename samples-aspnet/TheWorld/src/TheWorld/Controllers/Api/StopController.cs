@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
 using TheWorld.Models;
@@ -12,6 +13,7 @@ using TheWorld.ViewModels;
 
 namespace TheWorld.Controllers.Api
 {
+    [Authorize]
     [Route("api/trips/{tripName}/stops")]
     public class StopController : Controller
     {
@@ -33,7 +35,9 @@ namespace TheWorld.Controllers.Api
         {
             try
             {
-                var results = _repository.GetTripByName(tripName);
+                // If identity is implemented then GetTripByName needs to take in the user's name.
+                // Otherwise, you could accidentally get a trip but from a different user.
+                var results = _repository.GetTripByName(tripName, User.Identity.Name);
 
                 if (results == null)
                 {
@@ -73,7 +77,7 @@ namespace TheWorld.Controllers.Api
                     newStop.Longitude = coordinateResult.Longitude;
 
                     // Save to the database
-                    _repository.AddStop(tripName, newStop);
+                    _repository.AddStop(tripName, User.Identity.Name, newStop);
 
                     if (_repository.SaveAll())
                     {

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNet.Authentication.Cookies;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
@@ -66,6 +68,27 @@ namespace TheWorld
                 // will redirect to a particular location those who
                 // are not authenticated and we asked them to be authenticated.
                 config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+
+                // Prevents unauthorized access when issuing API requests.
+                // If the below works correct, the HTTP status should return 401 Unauthorized
+                // as opposed to prevously, 200 OK.
+                config.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents()
+                {
+                    OnRedirectToLogin = ctx =>
+                    {
+                        if (ctx.Request.Path.StartsWithSegments("/api") &&
+                                ctx.Response.StatusCode == (int)HttpStatusCode.OK)
+                        {
+                            ctx.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        }
+                        else
+                        {
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                        }
+
+                        return Task.FromResult(0);
+                    }
+                };
             })
                 .AddEntityFrameworkStores<WorldContext>();
 

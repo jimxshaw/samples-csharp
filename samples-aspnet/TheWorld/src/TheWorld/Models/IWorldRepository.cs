@@ -6,9 +6,11 @@ namespace TheWorld.Models
     {
         IEnumerable<Trip> GetAllTrips();
         IEnumerable<Trip> GetAllTripsWithStops();
+        IEnumerable<Trip> GetUserTripsWithStops(string name);
         void AddTrip(Trip newTrip);
         bool SaveAll();
-        Trip GetTripByName(string tripName);
-        void AddStop(string tripName, Stop newStop);
+        Trip GetTripByName(string tripName, string username);
+        void AddStop(string tripName, string username, Stop newStop);
+
     }
 }
