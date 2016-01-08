@@ -7,6 +7,7 @@ using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TheWorld.Services;
@@ -40,7 +41,15 @@ namespace TheWorld
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
+            services.AddMvc(config =>
+            {
+                // It's unsafe to login with a username and password through HTTP because
+                // others can intercept the credentials. The following filter option
+                // redirects you to HTTPS. This will work for the entire site.
+#if !DEBUG
+                //config.Filters.Add(new RequireHttpsAttribute());
+#endif
+            })
                 .AddJsonOptions(opt =>
                 {
                     opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
