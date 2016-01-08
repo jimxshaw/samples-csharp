@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TheWorld.Services;
@@ -45,6 +46,20 @@ namespace TheWorld
                     opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 });
 
+            // AddIdentity takes an options object that allows us to configure the
+            // rules we want. The EF with WorldContext simply tells where to store
+            // the identity items.
+            services.AddIdentity<WorldUser, IdentityRole>(config =>
+            {
+                config.User.RequireUniqueEmail = true;
+                config.Password.RequiredLength = 8;
+                // We're using cookies. This cookie LoginPath method
+                // will redirect to a particular location those who
+                // are not authenticated and we asked them to be authenticated.
+                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+            })
+                .AddEntityFrameworkStores<WorldContext>();
+
             services.AddLogging();
 
             services.AddEntityFramework()
@@ -72,6 +87,11 @@ namespace TheWorld
             loggerFactory.AddDebug(LogLevel.Warning);
 
             app.UseStaticFiles();
+
+            // The order sequence of these runtime method MATTER. 
+            // First, the app checks for static files. Next, it checks for
+            // identity and MVC.
+            app.UseIdentity();
 
             // This allows for all the configuration among types.
             Mapper.Initialize(config =>
