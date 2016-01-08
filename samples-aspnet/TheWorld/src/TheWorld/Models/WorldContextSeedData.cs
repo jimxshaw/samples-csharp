@@ -1,19 +1,36 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace TheWorld.Models
 {
     public class WorldContextSeedData
     {
         private WorldContext _context;
+        private UserManager<WorldUser> _userManager;
 
-        public WorldContextSeedData(WorldContext context)
+        public WorldContextSeedData(WorldContext context, UserManager<WorldUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
-        public void EnsureSeedData()
+
+        public async Task EnsureSeedDataAsync()
         {
+            if (await _userManager.FindByEmailAsync("han.solo@theworld.com") == null)
+            {
+                // Add the user
+                var newUser = new WorldUser()
+                {
+                    UserName = "hansolo",
+                    Email = "han.solo@theworld.com"
+                };
+
+                await _userManager.CreateAsync(newUser, "P@ssw0rd!");
+            }
+
             if (!_context.Trips.Any())
             {
                 // Add new data
@@ -21,7 +38,7 @@ namespace TheWorld.Models
                 {
                     Name = "US Trip",
                     Created = DateTime.Now,
-                    UserName = "",
+                    UserName = "hansolo",
                     Stops = new List<Stop>()
                     {
                         new Stop() { Name = "Little Rock, AR", Arrival = new DateTime(2015, 9, 12), Latitude = 34.7361, Longitude = 92.3311, Order = 0 },
@@ -37,7 +54,7 @@ namespace TheWorld.Models
                 {
                     Name = "World Trip",
                     Created = DateTime.Now,
-                    UserName = "",
+                    UserName = "hansolo",
                     Stops = new List<Stop>()
                     {
                         new Stop() { Name = "London, England", Arrival = new DateTime(2015, 12, 1), Latitude = 51.5072, Longitude = 0.1275, Order = 0 },

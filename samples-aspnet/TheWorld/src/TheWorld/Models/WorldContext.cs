@@ -1,9 +1,13 @@
 using System;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Storage;
 
 namespace TheWorld.Models
 {
-    public class WorldContext : DbContext
+    // To store our own entities, we have to change DbContext into
+    // an IdentityDbContext. 
+    public class WorldContext : IdentityDbContext<WorldUser>
     {
         public WorldContext()
         {
