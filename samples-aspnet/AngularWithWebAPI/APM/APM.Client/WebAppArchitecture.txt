@@ -1,0 +1,65 @@
+﻿Web Application Architecture - Overview
+
+Starting with the browser, a user navigates to a page of your application
+and the request is routed to a server. The server holds all the HTML and
+JavaScript files for the Angular client application. The server responds 
+by serving up the HTML file and any other resources that the index.html 
+file defines, such as HTML, CSS and JavaScript files. The Angular app 
+then executes within the browser. Since the Angular app runs in the browser, 
+on the client, it doesn't have access to corporate resources such as a database. 
+The Angular app needs to obtain everything it requires from a remote web 
+service. The app communicates with the web service with a meaningful set 
+of URLs. So when the app needs data, user authentication or other 
+server-side processing, it submits a request. The request is routed to a 
+server processed by the ASP.NET Web API service running on the server. 
+If the request is for data, the web api retrieves the data, potentially from 
+a database, and returns it to the app, which then displays or processes the 
+data. The data is often provided in JSON format.
+
+Angular Application - Overview
+An Angular application is comprised of one or more modules. The app usually 
+has one HTML page, called index.html by convention. Index has the links to 
+the CSS files that define the styles and script tags containing the JavaScript 
+files required by the app. The ng-app directive, specifying the name of the main 
+module, is placed in the index page. The HTML required for the other views are 
+located in HTML template files. In most Angular apps, templates are defined as 
+part of the routing and are displayed using the ng-view directive. In this 
+sample app, however, the index pulls in template views by using the ng-include 
+directive. A template file often has an associated controller that provides the 
+data and logic for the view. The controller manages the data model for the view 
+and contains the methods required by the view, such as processing button clicks.
+
+ASP.NET Web API Service - Overview
+A request comes in and is routed to the appropriate code based on the request URL 
+and action verb (GET, POST, PUT, DELETE etc). The URL is normally of the form 
+api/{controller}/{id}. For example, api/values/5. The routes are configured in a 
+file within the web api project called WebAPI.config. The routing looks for a 
+controller, which is a class that inherits from the ApiController and is named 
+with a defined controller name. For example, ValuesController : ApiController. 
+Alternatively, the routes could be defined using attributes defined on the controller 
+class. The routing uses the action verb from the request and any parameters to locate 
+the appropriate method in the controller. For example a GET request with a product 
+id on a URL will route to public string Get(int id) {...}. The action method then 
+returns a value, which is included in the response returned from the web api service. 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                

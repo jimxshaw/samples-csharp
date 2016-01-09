@@ -1,11 +1,16 @@
 (function () {
     "use strict";
 
+    // We register the controller with the main angular module.
     angular
         .module("productManagement")
         .controller("ProductEditCtrl",
                      ProductEditCtrl);
 
+    // We define the controller function, taking advantage of the 
+    // controller as syntax so we don't need to pass in $scope into
+    // the controller. The models and methods are defined directly on
+    // the controller itself with this keyword.
     function ProductEditCtrl(productResource) {
         var vm = this;
         vm.product = {};
