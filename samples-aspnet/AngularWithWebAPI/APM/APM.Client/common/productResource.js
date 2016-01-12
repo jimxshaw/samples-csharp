@@ -21,4 +21,4 @@
     function productResource($resource, appSettings) {
         return $resource(appSettings.serverPath + "/api/products/:id");
     }
-});
+}());
