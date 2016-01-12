@@ -7,7 +7,12 @@ using System.Web.Http;
 
 namespace APM.WebAPI.Controllers
 {
-    [Authorize]
+    // ValuesController inherits from ApiController so it's accessable
+    // as part of our web api. With the routing as currently defined in 
+    // WebApiConfig.cs, a client application can use api/values to access 
+    // the methods in this controller. The methods maps to the action verbs.
+
+    //[Authorize]
     public class ValuesController : ApiController
     {
         // GET api/values

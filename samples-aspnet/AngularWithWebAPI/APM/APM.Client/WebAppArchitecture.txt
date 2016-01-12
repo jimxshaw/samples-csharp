@@ -17,6 +17,7 @@ a database, and returns it to the app, which then displays or processes the
 data. The data is often provided in JSON format.
 
 Angular Application - Overview
+
 An Angular application is comprised of one or more modules. The app usually 
 has one HTML page, called index.html by convention. Index has the links to 
 the CSS files that define the styles and script tags containing the JavaScript 
@@ -30,12 +31,13 @@ data and logic for the view. The controller manages the data model for the view
 and contains the methods required by the view, such as processing button clicks.
 
 ASP.NET Web API Service - Overview
+
 A request comes in and is routed to the appropriate code based on the request URL 
 and action verb (GET, POST, PUT, DELETE etc). The URL is normally of the form 
 api/{controller}/{id}. For example, api/values/5. The routes are configured in a 
-file within the web api project called WebAPI.config. The routing looks for a 
-controller, which is a class that inherits from the ApiController and is named 
-with a defined controller name. For example, ValuesController : ApiController. 
+file within the web api project called WebApiConfig.cs. The routing looks for a 
+controller, which is a class that inherits from the ApiController and is named with a 
+defined controller name. For example, public class ValuesController : ApiController. 
 Alternatively, the routes could be defined using attributes defined on the controller 
 class. The routing uses the action verb from the request and any parameters to locate 
 the appropriate method in the controller. For example a GET request with a product 
