@@ -6,11 +6,9 @@
     angular
         .module("common.services")
         .factory("productResource",
-                    [
-                        "$resource",
-                        "appSettings",
-                        productResource
-                    ]);
+                    ["$resource",
+                     "appSettings",
+                     productResource]);
 
     // The $resource is injected in as a parameter to this function.
     // We also need the appSettings constant so we can access the defined
