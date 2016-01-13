@@ -21,6 +21,13 @@ namespace APM.WebAPI
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            // Angular frontend objects use camel case. ASP.NET Web API backend objects use 
+            // pascal case. To resolve this, a serialization formatter have to be used.
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = 
+                new CamelCasePropertyNamesContractResolver();
+
+            config.EnableCors();
+
             // Here's the default route. 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
@@ -30,8 +37,8 @@ namespace APM.WebAPI
 
             // When using Chrome, the following enforces the return 
             // format to be JSON as opposed to the default of XML.
-            config.Formatters.JsonFormatter.SupportedMediaTypes
-                .Add(new MediaTypeHeaderValue("text/html"));
+            //config.Formatters.JsonFormatter.SupportedMediaTypes
+            //    .Add(new MediaTypeHeaderValue("text/html"));
         }
     }
 }
