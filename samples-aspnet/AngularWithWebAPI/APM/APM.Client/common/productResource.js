@@ -14,9 +14,11 @@
     // We also need the appSettings constant so we can access the defined
     // server path. The function calls the $resource function, passing in 
     // the URL to request the products. The URL is the server path plus 
-    // "/api/products/". The :id here denotes an optional parameter. 
+    // "/api/products/". An optional :id parameter can be added after the 
+    // products/. We're adding :search to specify the search parameter from 
+    // the productListCtrl. 
     // The function finally returns the $resource object. 
     function productResource($resource, appSettings) {
-        return $resource(appSettings.serverPath + "/api/products/:id");
+        return $resource(appSettings.serverPath + "/api/products/:search");
     }
 }());

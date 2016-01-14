@@ -21,6 +21,14 @@
         // the search string.  
         vm.searchCriteria = "GDN";
 
+        // The first object in the .query method is very important. If a 
+        // parameter is passed, in this example it's search, in the $resource 
+        // method and that parameter is not defined in the $resource path, the 
+        // parameter will automatically be added to the URL as a query string. 
+        // If a parameter is in both the $resource method and the $resource path 
+        // then the parameter is added as an extension to the URL. For example, 
+        // search is both below and in the productResource.js $resource path so 
+        // the URL will be extended to /api/products/GDN.
         productResource.query({ search: vm.searchCriteria }, function (data) {
             vm.products = data;
         });

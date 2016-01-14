@@ -28,11 +28,13 @@ namespace APM.WebAPI
 
             config.EnableCors();
 
-            // Here's the default route. 
+            // Here's the default route with {id} but can be changed. In our case, 
+            // we change it to {search} to take in the search parameter. With search, 
+            // the code will route to an action method with a search parameter. 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{search}",
+                defaults: new { search = RouteParameter.Optional }
             );
 
             // When using Chrome, the following enforces the return 

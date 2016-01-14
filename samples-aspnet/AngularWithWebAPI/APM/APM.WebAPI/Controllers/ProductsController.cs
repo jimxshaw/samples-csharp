@@ -30,7 +30,10 @@ namespace APM.WebAPI.Controllers
             return "value";
         }
 
-        // GET that takes in a query string from the client as a paramater:
+        // GET that takes in a query string or URL path from the 
+        // client as a paramater. The below action mether parameter name 
+        // must match the path parameter name in WebApiConfig.cs. For 
+        // example, Get method's search matches {search} in the route path.  
         public IEnumerable<Product> Get(string search)
         {
             var productsRepository = new ProductRepository();
