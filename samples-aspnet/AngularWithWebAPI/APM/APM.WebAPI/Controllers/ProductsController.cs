@@ -30,6 +30,15 @@ namespace APM.WebAPI.Controllers
             return "value";
         }
 
+        // GET that takes in a query string from the client as a paramater:
+        public IEnumerable<Product> Get(string search)
+        {
+            var productsRepository = new ProductRepository();
+            var products = productsRepository.Retrieve();
+
+            return products.Where(p => p.ProductCode.Contains(search));
+        }
+
         // POST: api/Products
         public void Post([FromBody]string value)
         {

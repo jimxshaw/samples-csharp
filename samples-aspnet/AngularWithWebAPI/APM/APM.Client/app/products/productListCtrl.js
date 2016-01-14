@@ -15,7 +15,13 @@
     function ProductListCtrl(productResource) {
         var vm = this;
 
-        productResource.query(function(data) {
+        // By specifying GDN here, we'll filter the list of products 
+        // with a product code of GDN. We can later bind the search 
+        // criteria to a text box on the UI to allow user input of 
+        // the search string.  
+        vm.searchCriteria = "GDN";
+
+        productResource.query({ search: vm.searchCriteria }, function (data) {
             vm.products = data;
         });
 
