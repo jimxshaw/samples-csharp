@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.OData;
 using APM.WebAPI.Models;
 
 namespace APM.WebAPI.Controllers
@@ -18,10 +19,23 @@ namespace APM.WebAPI.Controllers
     public class ProductsController : ApiController
     {
         // GET: api/Products
-        public IEnumerable<Product> Get()
+        // To use OData, first add the EnableQuery() attribute allows the use of OData syntax.
+        // Second, change the return type from IEnumerable to IQueryable to enable the 
+        // functionality to evaluate queries. Third, incorporate the .AsQueryable() method to 
+        // ensure we're returning the IQueryable type.
+        // OData works like this. EnableQuery attribute is an action filter that parses, validates 
+        // and applies the query. The filter converts the query options from the OData query into a 
+        // LINQ expression. When the IQueryable type returns, it processes the LINQ expression 
+        // returned using an appropriate LINQ provider. Performance depends on which LINQ provider 
+        // is used and on the characteristics of the data model or schema. This web api isn't using 
+        // ADO.NET or Entity Framework. Instead, the productRepository is returning a set of 
+        // product objects. So the LINQ provider is LINQ-to-Objects. For Entity Framework, it'll be 
+        // LINQ-to-Entities.    
+        [EnableQuery()]
+        public IQueryable<Product> Get()
         {
             var productRepository = new ProductRepository();
-            return productRepository.Retrieve();
+            return productRepository.Retrieve().AsQueryable();
         }
 
         // GET: api/Products/5
