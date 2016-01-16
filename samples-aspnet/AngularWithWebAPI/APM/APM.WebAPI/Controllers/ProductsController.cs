@@ -39,31 +39,54 @@ namespace APM.WebAPI.Controllers
         }
 
         // GET: api/Products/5
-        public string Get(int id)
+        public Product Get(int id)
         {
-            return "value";
+            Product product;
+            var productRepository = new ProductRepository();
+
+            if (id > 0)
+            {
+                var products = productRepository.Retrieve();
+                product = products.FirstOrDefault(p => p.ProductId == id);
+            }
+            else
+            {
+                product = productRepository.Create();
+            }
+
+            return product;
         }
 
         // GET that takes in a query string or URL path from the 
         // client as a paramater. The below action mether parameter name 
         // must match the path parameter name in WebApiConfig.cs. For 
-        // example, Get method's search matches {search} in the route path.  
-        public IEnumerable<Product> Get(string search)
-        {
-            var productsRepository = new ProductRepository();
-            var products = productsRepository.Retrieve();
+        // example, Get method's search matches {search} in the route path.
+        // The below overloaded Get method isn't needed because OData querying 
+        // is enabled for the parameterless Get method above.  
+        //public IEnumerable<Product> Get(string search)
+        //{
+        //    var productsRepository = new ProductRepository();
+        //    var products = productsRepository.Retrieve();
 
-            return products.Where(p => p.ProductCode.Contains(search));
-        }
+        //    return products.Where(p => p.ProductCode.Contains(search));
+        //}
 
         // POST: api/Products
-        public void Post([FromBody]string value)
+        // The FromBody attribute defines to the web api that the parameter 
+        // value should come from the body of the request. Otherwise, the 
+        // parameter is assumed to be defined on the URL, as we saw with 
+        // the GET methods.   
+        public void Post([FromBody]Product product)
         {
+            var productRepository = new ProductRepository();
+            var newProduct = productRepository.Save(product);
         }
 
         // PUT: api/Products/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Product product)
         {
+            var productRepository = new ProductRepository();
+            var updatedProduct = productRepository.Save(id, product);
         }
 
         // DELETE: api/Products/5
