@@ -22,7 +22,17 @@
     //    return $resource(appSettings.serverPath + "/api/products/:search");
     //}
 
+    // The second parameter is a null because we don't want to set a default 
+    // value for the id. Third parameter is an object with the update action 
+    // to send the PUT request. We have to customize $resource in this case 
+    // because $resource by itself does not have an update action, so we have 
+    // to write that ourselves. 
     function productResource($resource, appSettings) {
-        return $resource(appSettings.serverPath + "/api/products/:id");
+        return $resource(appSettings.serverPath + "/api/products/:id", null,
+                {
+                    'update': {
+                        method: 'PUT'
+                    }
+                });
     }
 }());
