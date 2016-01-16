@@ -1,4 +1,4 @@
-﻿(function() {
+﻿(function () {
     "use strict";
 
     // First, angular looks up the registered common.services module.
@@ -18,7 +18,11 @@
     // products/. We're adding :search to specify the search parameter from 
     // the productListCtrl. 
     // The function finally returns the $resource object. 
+    //function productResource($resource, appSettings) {
+    //    return $resource(appSettings.serverPath + "/api/products/:search");
+    //}
+
     function productResource($resource, appSettings) {
-        return $resource(appSettings.serverPath + "/api/products/:search");
+        return $resource(appSettings.serverPath + "/api/products/:id");
     }
 }());
