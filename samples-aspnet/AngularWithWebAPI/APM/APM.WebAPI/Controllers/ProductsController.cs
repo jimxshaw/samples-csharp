@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.Description;
 using System.Web.OData;
 using APM.WebAPI.Models;
 
@@ -43,35 +44,52 @@ namespace APM.WebAPI.Controllers
         // are used as well. Also, changing the return from IQueryable<Product> to IHttpActionResult 
         // has no effect on OData querying, which will still work fine. 
         [EnableQuery()]
+        [ResponseType(typeof(Product))] // Provides asp.net web api documentation when the app is run.
         public IHttpActionResult Get()
         {
-            var productRepository = new ProductRepository();
-            return Ok(productRepository.Retrieve().AsQueryable());
+            try
+            {
+                var productRepository = new ProductRepository();
+                return Ok(productRepository.Retrieve().AsQueryable());
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         // GET: api/Products/5
         public IHttpActionResult Get(int id)
         {
-            Product product;
-            var productRepository = new ProductRepository();
-
-            if (id > 0)
+            try
             {
-                var products = productRepository.Retrieve();
-                product = products.FirstOrDefault(p => p.ProductId == id);
+                Product product;
+                var productRepository = new ProductRepository();
 
-                // The NotFound() helper method is used when no product is found.
-                if (product == null)
+                if (id > 0)
                 {
-                    return NotFound();
+                    var products = productRepository.Retrieve();
+                    product = products.FirstOrDefault(p => p.ProductId == id);
+
+                    // The NotFound() helper method is used when no product is found.
+                    if (product == null)
+                    {
+                        return NotFound();
+                    }
                 }
+                else
+                {
+                    product = productRepository.Create();
+                }
+
+                return Ok(product);
             }
-            else
+            catch (Exception ex)
             {
-                product = productRepository.Create();
+                return InternalServerError(ex);
             }
 
-            return Ok(product);
+
         }
 
         // GET that takes in a query string or URL path from the 
@@ -96,52 +114,66 @@ namespace APM.WebAPI.Controllers
         // like the above methods, for validation purposes. 
         public IHttpActionResult Post([FromBody]Product product)
         {
-            if (product == null)
+            try
             {
-                // The BadRequest() helper method is used to setup the action result.
-                return BadRequest("Product cannot be null");
-            }
+                if (product == null)
+                {
+                    // The BadRequest() helper method is used to setup the action result.
+                    return BadRequest("Product cannot be null");
+                }
 
-            var productRepository = new ProductRepository();
-            var newProduct = productRepository.Save(product);
-            if (newProduct == null)
+                var productRepository = new ProductRepository();
+                var newProduct = productRepository.Save(product);
+                if (newProduct == null)
+                {
+                    // The product repository could return a null product if the save wasn't 
+                    // successful. 
+                    return Conflict();
+                }
+
+                // If the new product was saved successfully, we send a created response. 
+                // The created response is generic. In this case, we're creating a product. 
+                // The first argument defines the location of the created resource. It's the
+                // URL that defines the link back to the new resource. The second argument is 
+                // the content of the response body and includes the new product. This is 
+                // required because the new product can have new values defined by the service. 
+                // In this case, the services assigned a new product id. So we're sending the data 
+                // for the newly created product back in the response.  
+                return Created<Product>(Request.RequestUri + newProduct.ProductId.ToString(),
+                    newProduct);
+            }
+            catch (Exception ex)
             {
-                // The product repository could return a null product if the save wasn't 
-                // successful. 
-                return Conflict();
+                return InternalServerError(ex);
             }
-
-            // If the new product was saved successfully, we send a created response. 
-            // The created response is generic. In this case, we're creating a product. 
-            // The first argument defines the location of the created resource. It's the
-            // URL that defines the link back to the new resource. The second argument is 
-            // the content of the response body and includes the new product. This is 
-            // required because the new product can have new values defined by the service. 
-            // In this case, the services assigned a new product id. So we're sending the data 
-            // for the newly created product back in the response.  
-            return Created<Product>(Request.RequestUri + newProduct.ProductId.ToString(),
-                newProduct);
         }
 
         // PUT: api/Products/5
         public IHttpActionResult Put(int id, [FromBody]Product product)
         {
-            if (product == null)
+            try
             {
-                return BadRequest("Product cannot be null");
-            }
+                if (product == null)
+                {
+                    return BadRequest("Product cannot be null");
+                }
 
-            var productRepository = new ProductRepository();
-            var updatedProduct = productRepository.Save(id, product);
-            if (updatedProduct == null)
+                var productRepository = new ProductRepository();
+                var updatedProduct = productRepository.Save(id, product);
+                if (updatedProduct == null)
+                {
+                    // The product repository could return null here too but we use the NotFound() 
+                    // helper method instead because we assume the save wasn't successful because 
+                    // the particular product was not found.
+                    return NotFound();
+                }
+
+                return Ok();
+            }
+            catch (Exception ex)
             {
-                // The product repository could return null here too but we use the NotFound() 
-                // helper method instead because we assume the save wasn't successful because 
-                // the particular product was not found.
-                return NotFound();
+                return InternalServerError(ex);
             }
-
-            return Ok();
         }
 
         // DELETE: api/Products/5
