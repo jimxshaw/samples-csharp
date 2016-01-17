@@ -26,7 +26,7 @@
         // model. A copy is made so we can implement a cancel operation.
         // Since we're not linking any pages in this project, change the 
         // hard coded id to reach the desired product. 
-        productResource.get({ id: 77 },
+        productResource.get({ id: 4 },
             function (data) {
                 vm.product = data;
                 vm.originalProduct = angular.copy(data);
@@ -34,6 +34,11 @@
             function (response) {
                 // The message is bound to the view so users will see the message.
                 vm.message = response.statusText + "\r\n";
+                if (response.data.exceptionMessage) {
+                    // If an exception occurs, the exception message becomes the
+                    // view message that users see.
+                    vm.message += response.data.exceptionMessage;
+                }
             });
 
         // We set a title page depending on if it's a new or existing product.
@@ -61,6 +66,9 @@
                     },
                     function (response) {
                         vm.message = response.statusText + "\r\n";
+                        if (response.data.exceptionMessage) {
+                            vm.message += response.data.exceptionMessage;
+                        }
                     });
             }
             else {
@@ -85,6 +93,9 @@
                 },
                 function (response) {
                     vm.message = statusText = "\r\n";
+                    if (response.data.exceptionMessage) {
+                        vm.message += response.data.exceptionMessage;
+                    }
                 });
             }
         };
