@@ -111,7 +111,8 @@ namespace APM.WebAPI.Controllers
         // value should come from the body of the request. Otherwise, the 
         // parameter is assumed to be defined on the URL, as we saw with 
         // the GET methods. The return type is changed from void to IHttpActionResult, 
-        // like the above methods, for validation purposes. 
+        // like the above methods, for validation purposes.
+        [ResponseType(typeof(Product))]
         public IHttpActionResult Post([FromBody]Product product)
         {
             try
@@ -120,6 +121,12 @@ namespace APM.WebAPI.Controllers
                 {
                     // The BadRequest() helper method is used to setup the action result.
                     return BadRequest("Product cannot be null");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    // This is to test server-side model validation.
+                    return BadRequest(ModelState);
                 }
 
                 var productRepository = new ProductRepository();
@@ -156,6 +163,11 @@ namespace APM.WebAPI.Controllers
                 if (product == null)
                 {
                     return BadRequest("Product cannot be null");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
                 }
 
                 var productRepository = new ProductRepository();

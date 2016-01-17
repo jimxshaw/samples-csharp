@@ -66,6 +66,16 @@
                     },
                     function (response) {
                         vm.message = response.statusText + "\r\n";
+                        if (response.data.modelState) {
+                            // The model state is a set of key-value pairs that define the
+                            // validation issues. The key is the name of the property. The 
+                            // value is the validation message; This code walks through 
+                            // the key-value pairs and append the validation messages to 
+                            // our message property. 
+                            for (var key in response.data.modelState) {
+                                vm.message += response.data.modelState[key] + "\r\n";
+                            }
+                        }
                         if (response.data.exceptionMessage) {
                             vm.message += response.data.exceptionMessage;
                         }
