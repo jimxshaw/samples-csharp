@@ -31,15 +31,26 @@ namespace APM.WebAPI.Controllers
         // ADO.NET or Entity Framework. Instead, the productRepository is returning a set of 
         // product objects. So the LINQ provider is LINQ-to-Objects. For Entity Framework, it'll be 
         // LINQ-to-Entities.    
+        //[EnableQuery()]
+        //public IQueryable<Product> Get()
+        //{
+        //    var productRepository = new ProductRepository();
+        //    return productRepository.Retrieve().AsQueryable();
+        //}
+
+        // In order to capture valid or invalid HTTP requests, we have to refactor our methods to 
+        // return a specific HTTP response action result. Helper methods such as Ok() or NotFound() 
+        // are used as well. Also, changing the return from IQueryable<Product> to IHttpActionResult 
+        // has no effect on OData querying, which will still work fine. 
         [EnableQuery()]
-        public IQueryable<Product> Get()
+        public IHttpActionResult Get()
         {
             var productRepository = new ProductRepository();
-            return productRepository.Retrieve().AsQueryable();
+            return Ok(productRepository.Retrieve().AsQueryable());
         }
 
         // GET: api/Products/5
-        public Product Get(int id)
+        public IHttpActionResult Get(int id)
         {
             Product product;
             var productRepository = new ProductRepository();
@@ -48,13 +59,19 @@ namespace APM.WebAPI.Controllers
             {
                 var products = productRepository.Retrieve();
                 product = products.FirstOrDefault(p => p.ProductId == id);
+
+                // The NotFound() helper method is used when no product is found.
+                if (product == null)
+                {
+                    return NotFound();
+                }
             }
             else
             {
                 product = productRepository.Create();
             }
 
-            return product;
+            return Ok(product);
         }
 
         // GET that takes in a query string or URL path from the 
@@ -75,18 +92,56 @@ namespace APM.WebAPI.Controllers
         // The FromBody attribute defines to the web api that the parameter 
         // value should come from the body of the request. Otherwise, the 
         // parameter is assumed to be defined on the URL, as we saw with 
-        // the GET methods.   
-        public void Post([FromBody]Product product)
+        // the GET methods. The return type is changed from void to IHttpActionResult, 
+        // like the above methods, for validation purposes. 
+        public IHttpActionResult Post([FromBody]Product product)
         {
+            if (product == null)
+            {
+                // The BadRequest() helper method is used to setup the action result.
+                return BadRequest("Product cannot be null");
+            }
+
             var productRepository = new ProductRepository();
             var newProduct = productRepository.Save(product);
+            if (newProduct == null)
+            {
+                // The product repository could return a null product if the save wasn't 
+                // successful. 
+                return Conflict();
+            }
+
+            // If the new product was saved successfully, we send a created response. 
+            // The created response is generic. In this case, we're creating a product. 
+            // The first argument defines the location of the created resource. It's the
+            // URL that defines the link back to the new resource. The second argument is 
+            // the content of the response body and includes the new product. This is 
+            // required because the new product can have new values defined by the service. 
+            // In this case, the services assigned a new product id. So we're sending the data 
+            // for the newly created product back in the response.  
+            return Created<Product>(Request.RequestUri + newProduct.ProductId.ToString(),
+                newProduct);
         }
 
         // PUT: api/Products/5
-        public void Put(int id, [FromBody]Product product)
+        public IHttpActionResult Put(int id, [FromBody]Product product)
         {
+            if (product == null)
+            {
+                return BadRequest("Product cannot be null");
+            }
+
             var productRepository = new ProductRepository();
             var updatedProduct = productRepository.Save(id, product);
+            if (updatedProduct == null)
+            {
+                // The product repository could return null here too but we use the NotFound() 
+                // helper method instead because we assume the save wasn't successful because 
+                // the particular product was not found.
+                return NotFound();
+            }
+
+            return Ok();
         }
 
         // DELETE: api/Products/5
