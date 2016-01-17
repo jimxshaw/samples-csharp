@@ -17,14 +17,23 @@
         vm.product = {};
         vm.message = '';
 
+        // The $resoruce methods have the following general structure.
+        // HTTP GET "class" actions: Resource.action([parameters], [success], [error]);
+        // Non-GET instance actions: instance.$actio([parameters], [success], [error]);
+        // The success and error callback functions are optional.
+
         // When the product is retrieved, it's assigned to the data 
         // model. A copy is made so we can implement a cancel operation.
         // Since we're not linking any pages in this project, change the 
         // hard coded id to reach the desired product. 
-        productResource.get({ id: 0 },
+        productResource.get({ id: 77 },
             function (data) {
                 vm.product = data;
                 vm.originalProduct = angular.copy(data);
+            },
+            function (response) {
+                // The message is bound to the view so users will see the message.
+                vm.message = response.statusText + "\r\n";
             });
 
         // We set a title page depending on if it's a new or existing product.
@@ -49,6 +58,9 @@
                 vm.product.$update({ id: vm.product.productId },
                     function (data) {
                         vm.message = "Save Complete";
+                    },
+                    function (response) {
+                        vm.message = response.statusText + "\r\n";
                     });
             }
             else {
@@ -70,6 +82,9 @@
                     vm.originalProduct = angular.copy(data);
 
                     vm.message = "Save Complete";
+                },
+                function (response) {
+                    vm.message = statusText = "\r\n";
                 });
             }
         };
