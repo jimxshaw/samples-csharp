@@ -28,7 +28,40 @@
             confirmPassword: ''
         };
 
-        vm.registerUser = function () { };
+        // We need to pass 3 fields to the register account api: email, 
+        // password and confirm password. Since we didn't create a confirm 
+        // password box, we simply assign password to confirmPassword for 
+        // convenience in this case. We then called the registerUser method 
+        // from our userAccount service. The first argument is the userData, 
+        // which contains the properties required by the register method. The 
+        // second argument is a callback function when successful. The callback 
+        // sets a success message, clears the confirmPassword property since we 
+        // don't need it anymore and automatically logs in the user after registration.
+        // The third parameter is a function used for error and exceptions handling.
+        vm.registerUser = function () {
+            vm.userData.confirmPassword = vm.userData.password;
+
+            userAccount.registerUser(vm.userData,
+                function (data) {
+                    vm.confirmPassword = "";
+                    vm.message = "Registration successful";
+                    vm.login();
+                },
+                function (response) {
+                    vm.isLoggedIn = false;
+                    vm.message = response.statusText + "\r\n";
+                    if (response.data.exceptionMessage) {
+                        vm.message += response.data.exceptionMessage;
+                    }
+                    // Validation errors
+                    if (response.data.modelState) {
+                        for (var key in response.data.modelState) {
+                            vm.message += response.data.modelState[key] + "\r\n";
+                        }
+
+                    }
+                });
+        };
 
         vm.login = function () { };
     }
