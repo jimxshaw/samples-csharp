@@ -41,7 +41,7 @@
         vm.registerUser = function () {
             vm.userData.confirmPassword = vm.userData.password;
 
-            userAccount.registerUser(vm.userData,
+            userAccount.registration.registerUser(vm.userData,
                 function (data) {
                     vm.confirmPassword = "";
                     vm.message = "Registration successful";
@@ -63,7 +63,9 @@
                 });
         };
 
-        vm.login = function () { };
+        vm.login = function() {
+            
+        };
     }
 
 })();
