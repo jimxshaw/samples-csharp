@@ -33,6 +33,11 @@ namespace APM.WebAPI.Providers
 
             ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
 
+            // We need the token service to add the below header when the provider issues the token. This code adds a 
+            // response header and specifies a URL. This is the same port where our client application is running. It's 
+            // the same port we granted access to in the angular product controller. 
+            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "http://localhost:56077" });
+
             if (user == null)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");

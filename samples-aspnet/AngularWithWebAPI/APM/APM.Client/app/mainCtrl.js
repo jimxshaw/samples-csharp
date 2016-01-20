@@ -14,7 +14,7 @@
     function MainCtrl(userAccount) {
         var vm = this;
         vm.isLoggedIn = false;
-        vm.message = '';
+        vm.message = "";
         // This userData object defines the data that'll be submitted 
         // to the web api as part of the registration process. How do 
         // we know what fields to include? According to the web api 
@@ -22,10 +22,10 @@
         // are mandatory. We added the userName because it's part of the 
         // login feature. 
         vm.userData = {
-            userName: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
+            userName: "",
+            email: "",
+            password: "",
+            confirmPassword: ""
         };
 
         // We need to pass 3 fields to the register account api: email, 
@@ -63,8 +63,35 @@
                 });
         };
 
-        vm.login = function() {
-            
+        // The grant type defines how the authentication that'll be performed. We're 
+        // defining a type of password, meaning we'll pass in a username and password. 
+        // We then bind the username to the email. 
+        vm.login = function () {
+            vm.userData.grant_type = "password";
+            vm.userData.userName = vm.userData.email;
+
+            // We call the user account service's loginUser method of its login property. 
+            // The first function is the success function that'll be executed after logging
+            // in. We store the access token retrieved from the response body. The second function 
+            // will execute when an error is returned. 
+            userAccount.login.loginUser(vm.userData,
+                function (data) {
+                    vm.isLoggedIn = true;
+                    vm.message = "";
+                    vm.password = "";
+                    vm.token = data.access_token;
+                },
+                function (response) {
+                    vm.password = "";
+                    vm.isLoggedIn = false;
+                    vm.message = response.statusText + "\r\n";
+                    if (response.data.exceptionMessage) {
+                        vm.message += response.data.exceptionMessage;
+                    }
+                    if (response.data.error) {
+                        vm.message += response.data.error;
+                    }
+                });
         };
     }
 
