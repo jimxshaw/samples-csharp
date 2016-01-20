@@ -35,6 +35,8 @@ namespace APM.WebAPI
             PublicClientId = "self";
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
+                // This code is the magic behind user authorization for our web api. Our angular app will send a request to 
+                // this /Token api. This is the URL that our app will use to get bearer tokens.  
                 TokenEndpointPath = new PathString("/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
