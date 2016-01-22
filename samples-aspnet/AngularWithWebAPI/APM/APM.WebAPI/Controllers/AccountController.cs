@@ -19,6 +19,10 @@ using APM.WebAPI.Results;
 
 namespace APM.WebAPI.Controllers
 {
+    // The Authorize attribute states none of the following methods within the AccountController 
+    // class can be accessed unless the user is logged in. How then could we called the register 
+    // method to register a new user? The AllowAnonymous attribute allows anyone to access the 
+    // method of which it resides, such as register. 
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController

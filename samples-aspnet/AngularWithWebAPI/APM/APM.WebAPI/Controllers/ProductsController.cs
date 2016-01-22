@@ -59,6 +59,9 @@ namespace APM.WebAPI.Controllers
         }
 
         // GET: api/Products/5
+        // Once the Authorize attribute is set, our angular application won't be able to access this 
+        // method unless the user has been authenticated. 
+        [Authorize()]
         public IHttpActionResult Get(int id)
         {
             try
