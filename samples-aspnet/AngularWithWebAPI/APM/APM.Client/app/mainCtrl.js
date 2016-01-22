@@ -4,16 +4,23 @@
 
     // We get the key angular module and register our controller with 
     // that module. This controller will use a service to handle the 
-    // user account functions, such as the regustration function. We 
-    // call this service userAccount. 
+    // user account functions, such as the registration function. We 
+    // call this service userAccount. We need the currentUser service 
+    // too so that any angular code that injects this service can 
+    // get or set the user profile information. 
     angular
         .module("productManagement")
-        .controller("MainCtrl", ["userAccount", MainCtrl]);
+        .controller("MainCtrl", ["userAccount", "currentUser", MainCtrl]);
 
     // We inject the userAccount service as a dependency. 
-    function MainCtrl(userAccount) {
+    function MainCtrl(userAccount, currentUser) {
         var vm = this;
-        vm.isLoggedIn = false;
+        // We need to get rid of the hard coded isLoggedIn property to access the user 
+        // profile from our currentUser service.
+        //vm.isLoggedIn = false;
+        vm.isLoggedIn = function () {
+            return currentUser.getProfile().isLoggedIn;
+        };
         vm.message = "";
         // This userData object defines the data that'll be submitted 
         // to the web api as part of the registration process. How do 
@@ -76,14 +83,18 @@
             // will execute when an error is returned. 
             userAccount.login.loginUser(vm.userData,
                 function (data) {
-                    vm.isLoggedIn = true;
+                    //vm.isLoggedIn = true;
                     vm.message = "";
                     vm.password = "";
-                    vm.token = data.access_token;
+                    // Upon successful login, we'll set the username and access token using our 
+                    // currentUser service. So the main controller no longer needs to store the 
+                    // access token. 
+                    //vm.token = data.access_token;
+                    currentUser.setProfile(vm.userData.userName, data.access_token);
                 },
                 function (response) {
                     vm.password = "";
-                    vm.isLoggedIn = false;
+                    //vm.isLoggedIn = false;
                     vm.message = response.statusText + "\r\n";
                     if (response.data.exceptionMessage) {
                         vm.message += response.data.exceptionMessage;
