@@ -1,0 +1,76 @@
+﻿Key touch points between an angular frontend application and a 
+backend service:
+
+Retrieving Data
+For the backend we built the web api service and implemented a GET method.
+In that GET method we retrieved a set of products. For the frontend we used 
+the built-in $resource service to submit a GET request. That GET request 
+would be routed to the GET method in the web api and return a set of products 
+for our angular app. It didn't work initially in Chrome because we were missing 
+a CORS header so we implemented Cross-Origin-Resource-Sharing. Second issue was 
+that the model in the web api used PascalCase but the angular code used camelCase 
+so the binding weren't capitalized. With this miss match, we couldn't see the list 
+of products on the angular page. We fixed it by configuring the data serialization 
+formatting. 
+
+Filtering, Shaping, Querying Data
+In our first implementation, we passed parameters from the angular app to the web 
+api using query strings or by extending the URL. This allowed us to filter the list 
+of products by passing a search string to the web api. Then we used the power of OData 
+queries. It was very easy to add OData query suppor to our web api GET method. We could 
+then send OData queries to that GET method from our angular app. This allowed use to 
+define much more complex queries.
+
+Saving Data
+For the backend we implemented two methods in the web api. We defined a POST method to 
+save new items and a PUT method to replace existing items. For the frontend, we again 
+used the built-in angular $resource service. We used the built-in Save method of 
+$resource to send a POST request and created a custom Update method to send a PUT 
+request. 
+
+Error Handling
+Something was missing though. We weren't handling error conditions so we changed our 
+web api methods to return ActionResult. This allowed us to provide more detailed 
+information in the response. Then we looked at exception handling. Since web api is 
+just C# code, it supports try-catch blocks, so we put them around our web api code. 
+If any exceptions occurred, the try-catch block returned an appropriate response. 
+We also added validation. We already had client-side validation in place using the 
+powerful angular validation features. For server-side validation we set attributes 
+on the model properties and checked the ModelState in the PUT and POST methods. 
+That provided basic error handling for our app. 
+
+User Authentication
+The asp.net web api template generated an extensive amount of code for us. It created 
+an AccountController class that provides features such as user registration and logout. 
+It generated an authorization server that provides token-based authentication and returns 
+an access token we can use for user authorization. The web api template even provided a 
+membership database for us on the server. For the frontend we added code to call the 
+AccountController Register method to register a new user. We also called the authorization 
+server Token service to login a registered user. On successful login, the Token service 
+provides an access token in the response. 
+
+User Authorization
+We protected our web api methods using the Authorize attribute and saw how to access those 
+protected methods from the angular code by passing the access token received from the login 
+process into the Request Header.   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
