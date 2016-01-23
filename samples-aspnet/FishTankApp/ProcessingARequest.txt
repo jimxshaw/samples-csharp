@@ -1,0 +1,25 @@
+How a request is processed
+Startup.cs has a method called Configure that takes in IApplicationBuilder. The IApplicationBuilder object is 
+injected by the dependency injector. The Configure method configures the HTTP request pipeline of asp.net. 
+The pipeline determines how the application should respond to HTTP requests. When your app receives a request 
+from the browser, the request goes through the pipeline and back. When there's nothing in the pipeline, nothing 
+happens. So things have to be plugged into the pipeline. The individual parts that make up the pipeline are 
+called middleware. For example, MVC can be plugged in as middleware and Authentication can be plugged in front 
+of MVC. Even the ability to serve static files containing JavaScript or CSS has to be configured as middleware. 
+
+Data about the request travels through the pipeline and gets read and manipulated by the middleware. Eventually 
+the result is the response. Also, the functionality of the web server is accessible by the middleware because 
+asp.net 5 makes web servers available in the form of feature interfaces. An example is the IHTTPSendFile feature 
+that the static file middleware uses. It requests the interface from the HTTPContext object, which travels 
+through the pipeline and through all middleware with the available data and features. 
+
+How does your application know about web server features? 
+
+It turns out that the pipeline is not where the request hits first. First, the request arrives at the web server. 
+IIS will be used as an example. IIS invokes dnx, which will load to clr and then looks for an entry point, the 
+Main() method in Startup.cs, and executes it. The Main() method configures the pipeline by using the Startup 
+class, next the request is pushed through the pipeline, then it hits the middleware and finally returns a response. 
+
+Using the pipeline, you only plug in what you need. This is much more efficient than the old System.Web approach. 
+By getting rid of System.Web, ASP.NET 5 is not tied to IIS anymore but can be hosted by many web servers. Some 
+supported examples are IIS, IIS Express, WebListener and Kestrel.         
