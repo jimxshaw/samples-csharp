@@ -7,6 +7,7 @@ using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace FishTankApp
 {
@@ -23,13 +24,22 @@ namespace FishTankApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app,
+            ILoggerFactory loggerFactory)
         {
+
+            // This middleware makes sure our app is correctly invoked by IIS.
             app.UseIISPlatformHandler();
+
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("Hello World!\n");
+                await next();
+            });
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                await context.Response.WriteAsync("Hello World again!");
             });
         }
 
