@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FishTankApp.Services;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
@@ -15,6 +16,10 @@ namespace FishTankApp
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // Whenever some type asks for ISensorDataService object, supply an instance of SensorDataService.
+            // AddSingleton means every time ISensorDataService is requested, the same instance of SensorDataService 
+            // is given.   
+            services.AddSingleton<ISensorDataService, SensorDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
