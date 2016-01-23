@@ -1,0 +1,7 @@
+About global.json
+Within global.json, we see projects with src and test. These are instructions 
+for the new .NET execution environment dnx, which is responsible for executing 
+our application. In section instructs dnx to look for projects in the listed 
+folders src and test. No solution file is used for dnx, the solution file is 
+for visual studio only. Instead, it relies on the global.json configuration 
+file. The sdk states that the app will work for a specific version of dnx. 
