@@ -21,9 +21,18 @@ namespace FishTankApp.Controllers
         // to the ActionResult abstract base class. 
         public IActionResult Index()
         {
-            ViewBag.Title = "Fish tank dashboard";
+            ViewBag.Title = "Fish tank dashboard app";
 
             return View(_viewModelService.GetDashboardViewModel());
+        }
+
+        public IActionResult Feed(int foodAmount)
+        {
+            var model = _viewModelService.GetDashboardViewModel();
+
+            model.LastFed = $"{DateTime.Now.Hour}:{DateTime.Now.Minute}. Amount: {foodAmount}";
+
+            return View("Index", model);
         }
     }
 }
