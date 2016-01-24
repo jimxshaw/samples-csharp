@@ -26,6 +26,8 @@ namespace FishTankApp
         {
             services.AddMvc();
 
+            services.AddSingleton<IViewModelService, ViewModelService>();
+
             // Whenever some type asks for ISensorDataService object, supply an instance of SensorDataService.
             // AddSingleton means every time ISensorDataService is requested, the same instance of SensorDataService 
             // is given.   
