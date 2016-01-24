@@ -49,14 +49,16 @@ namespace FishTankApp
             app.UseIISPlatformHandler();
 
             // Add the MVC middleware service above first. Then use said middleware in this method.
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action}/{id}",
-                    defaults: new { controller = "Home", action = "Index" }
-                );
-            });
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller}/{action}/{id}",
+            //        defaults: new { controller = "Home", action = "Index" }
+            //    );
+            //});
+
+            app.UseMvcWithDefaultRoute();
 
             // Always remember to add the static files middleware or the images from JavaScript or CSS 
             // won't be served.

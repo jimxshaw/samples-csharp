@@ -1,0 +1,11 @@
+﻿@*
+    The razor syntax here will be automatically added to every view that's generated.
+    @addTagHelpers takes two arguments. First is the specific tag helpers you want to load.
+    A * means to add all tag helpers. Second is the assembly name where the tag helpers come
+    from. All built-in tag helpers come from Microsoft.AspNet.Mvc.TagHelpers. If you don't 
+    want tag helpers everywhere. You can put the below directive directly in a view. 
+*@
+
+@{
+    @addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+}
