@@ -13,6 +13,13 @@ namespace FishTankApp
 {
     public class Startup
     {
+        private IHostingEnvironment _hostingEnvironment;
+
+        public Startup(IHostingEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -29,6 +36,12 @@ namespace FishTankApp
         public void Configure(IApplicationBuilder app,
             ILoggerFactory loggerFactory)
         {
+            // The hosting environment can be found in a project's properties -> DEBUG or in launchSettings.json.
+            if (_hostingEnvironment.IsDevelopment())
+            {
+                // The exception page is only shown if the app is in development mode.
+                app.UseDeveloperExceptionPage();
+            }
 
             // This middleware makes sure our app is correctly invoked by IIS.
             app.UseIISPlatformHandler();
