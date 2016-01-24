@@ -17,6 +17,8 @@ namespace FishTankApp
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
             // Whenever some type asks for ISensorDataService object, supply an instance of SensorDataService.
             // AddSingleton means every time ISensorDataService is requested, the same instance of SensorDataService 
             // is given.   
@@ -31,16 +33,22 @@ namespace FishTankApp
             // This middleware makes sure our app is correctly invoked by IIS.
             app.UseIISPlatformHandler();
 
-            app.Use(async (context, next) =>
+            // Add the MVC middleware service above first. Then use said middleware in this method.
+            app.UseMvc(routes =>
             {
-                await context.Response.WriteAsync("Hello World!\n");
-                await next();
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action}/{id}",
+                    defaults: new { controller = "Home", action = "Index" }
+                );
             });
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World again!");
-            });
+            // Always remember to add the static files middleware or the images from JavaScript or CSS 
+            // won't be served.
+            app.UseStaticFiles();
+
+            // Whenever HTTP status codes like 404 arise, the below middleware will display them on the page.
+            app.UseStatusCodePages();
         }
 
         // Entry point for the application.
