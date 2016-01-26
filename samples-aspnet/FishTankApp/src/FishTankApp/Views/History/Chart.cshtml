@@ -12,3 +12,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    /*
+        This jquery script will only be executed when the page is fully loaded and all elements are there.
+        The .getJSON method is shorthand for the ajax method with pre-defined settings. It will generate a 
+        GET request to the server. The first parameter is the URL where the JSON is. Since that URL is in 
+        our model, we'll use razor syntax to retrieve it. The second parameter is a function that executes 
+        when the data comes back and that data is the parameter. Morris renders the chart in this function.
+        It'll be a line chart using the data retrieved from the history data controller. 
+    */
+    $(function () {
+        $.getJSON("@Model.DataUrl", function (data) {
+            Morris.Line({
+                element: "chart",
+                data: data,
+                xkey: "TimeStamp",
+                ykeys: ["Value"],
+                labels: ["Value"],
+                resize: true,
+                dateFormat: function (d) {
+                    var date = new Date(d);
+                    return date.getHours() + ":" + date.getMinutes();
+                }
+            });
+        });
+    });
+</script>
