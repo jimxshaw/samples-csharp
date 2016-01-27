@@ -26,7 +26,7 @@
                     <form asp-controller="Home" asp-action="Feed" method="POST">
                         <div class="col-xs-3">
                             <input asp-for="FoodAmount" class="form-control input-lg"
-                                   type="number" />
+                                   type="number"/>
                         </div>
                         <div class="col-xs-3">
                             <span class="center">
@@ -41,4 +41,10 @@
             </div>
         </div>
     </div>
+    @*
+        A view component is rendered using the Component.Invoke() that takes in the 
+        ViewComponent name, which in this case is Alert of AlertViewComponent.cs. 
+        Like Controllers, the ViewComponent portion of the name is ignored.     
+    *@
+    @Component.Invoke("Alert")
 </div>
