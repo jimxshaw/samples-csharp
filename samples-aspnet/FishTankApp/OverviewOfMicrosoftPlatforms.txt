@@ -1,0 +1,62 @@
+Traditional .NET Framework
+
+--------------------------
+|        Windows         |
+--------------------------
+|     .NET Framework     |
+--------------------------
+|   CLR      |    FCL    |
+--------------------------
+|       Your App         | <= NuGet
+--------------------------
+| Bootstrapper |    IL   |
+--------------------------
+
+NuGet
+- Quickly introduce new libraries or frameworks.
+- Install or update easily in Visual Studio.
+- Rigid distribution of full .NET Framework.
+- Distribute libraries that would normally be 
+	in .NET Framework via NuGet.
+- Update libraries out of band.
+
+.NET Core
+- One .NET for all platforms.
+- Reduce overall footprint.
+- Run across operating systems.
+- Lightweight.
+- Restored per project as NuGet package.
+- No machine-wide installation neeed.
+- Small deployent footprint. 
+- Open source. 
+
+---------------------------
+|       .NET Core         |
+---------------------------
+|   CoreCLR |   CoreFX    |
+---------------------------
+|         NuGet           |
+---------------------------
+
+Framework Choices:
+--------------------------------------------------
+|     .NET Framework     |       .NET Core       |
+--------------------------------------------------
+	   Machine-wide				Per app
+	   Existig code				New Code
+	   Many types				Limited types
+	   Windows only				Cross-platform 
+
+.NET Execution Environment (DNX)
+- DotNet CLI:
+	dotnet run
+	dotnet restore
+	dotnet compile
+	dotnet publish
+- Executes the app.
+- Hosts the CLR.
+- Entry point.
+- Cross-platform.
+- One version for each framework. 
+- Multiple versions can exist machine-wide or
+	deploy with the app.

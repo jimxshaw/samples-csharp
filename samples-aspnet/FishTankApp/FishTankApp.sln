@@ -15,6 +15,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FishTankApp", "src\FishTank
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "README", "README", "{18AEEB28-362B-4CA0-894A-4EAAD2135D06}"
 	ProjectSection(SolutionItems) = preProject
+		OverviewOfMicrosoftPlatforms.txt = OverviewOfMicrosoftPlatforms.txt
 		ProcessingARequest.txt = ProcessingARequest.txt
 	EndProjectSection
 EndProject
