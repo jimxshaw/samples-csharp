@@ -83,10 +83,20 @@ namespace Acme.Biz
 
         public Product()
         {
-            Console.WriteLine("Product instance created!");
+            //Console.WriteLine("Product instance created!");
             //ProductVendor = new Vendor();
-            MinimumPrice = .95m;
-            Category = "Tools";
+            //MinimumPrice = .95m;
+            //Category = "Tools";
+
+            string[] colorOptions =
+            {
+                "Red",
+                "Espresso",
+                "Red",
+                "Navy"
+            };
+
+            Console.WriteLine(colorOptions);
         }
 
         public Product(int productId,
