@@ -1,4 +1,5 @@
-﻿using FailTracker.Web.Domain;
+﻿using System.Data.Entity;
+using FailTracker.Web.Domain;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FailTracker.Web.Data
@@ -9,5 +10,8 @@ namespace FailTracker.Web.Data
 			: base("DefaultConnection")
 		{
 		}
+
+		public DbSet<Issue> Issues { get; set; }
+		public DbSet<LogAction> Logs { get; set; }
 	}
 }
