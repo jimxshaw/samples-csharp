@@ -32,12 +32,24 @@ namespace Acme.Biz
         // The below method returns a generic type T. That type <T> is defined on 
         // the method itself as opposed to directly on the class is because no other 
         // class members are generic. Defining <T> only on the method that uses T 
-        // simplifies things.  
-        public T RetrieveValue<T>(string sql, T defaultValue)
+        // simplifies things. The where T : struct clause is a generic constraint. 
+        // In this case, RetrieveValue's T is limited to value types since all 
+        // structs are value types.
+        public T RetrieveValue<T>(string sql, T defaultValue) where T : struct
         {
             // Call the database to retrieve the value
             // If no value is returned, return the default value
             T value = defaultValue;
+
+            return value;
+        }
+
+        // Since the above method constrained T to only value types and strings 
+        // are reference types, the below overloaded method must be written to 
+        // account for strings. 
+        public string RetrieveValue(string sql, string defaultValue)
+        {
+            string value = defaultValue;
 
             return value;
         }

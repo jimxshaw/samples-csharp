@@ -33,10 +33,28 @@ namespace Acme.Biz.Tests
             var expected = "default value";
 
             // Act
-            var actual = repository.RetrieveValue<string>("Select...", "default value");
+            var actual = repository.RetrieveValue("Select...", "default value");
 
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        //// A generic constraint has been placed on RetrieveValue<T> where T : struct. 
+        //// Therefore, the below test is not allowed by definition because Vendor is 
+        //// a reference type. 
+        //[TestMethod()]
+        //public void RetrieveValueObjectTest()
+        //{
+        //    // Arrange
+        //    var repository = new VendorRepository();
+        //    var vendor = new Vendor();
+        //    var expected = vendor;
+
+        //    // Act
+        //    var actual = repository.RetrieveValue<Vendor>("Select...", vendor);
+
+        //    // Assert
+        //    Assert.AreEqual(expected, actual);
+        //}
     }
 }
