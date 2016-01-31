@@ -60,7 +60,8 @@ namespace Acme.Biz
         private string productName;
         public string ProductName
         {
-            get {
+            get
+            {
                 var formattedValue = productName?.Trim();
                 return formattedValue;
             }
@@ -86,7 +87,8 @@ namespace Acme.Biz
         private Vendor productVendor;
         public Vendor ProductVendor
         {
-            get {
+            get
+            {
                 if (productVendor == null)
                 {
                     productVendor = new Vendor();
@@ -105,8 +107,26 @@ namespace Acme.Biz
         /// </summary>
         /// <param name="markupPercent">Percent used to mark up the cost.</param>
         /// <returns></returns>
-        public decimal CalculateSuggestedPrice(decimal markupPercent) =>
-             this.Cost + (this.Cost * markupPercent / 100);
+        public OperationResultDecimal CalculateSuggestedPrice(decimal markupPercent)
+        {
+            var message = "";
+
+            if (markupPercent <= 0m)
+            {
+                message = "Invalid markup percentage";
+            }
+            else if (markupPercent < 10)
+            {
+                message = "Below recommended markup percentage";
+            }
+
+            var value = this.Cost + (this.Cost * markupPercent / 100);
+
+            var operationResultDecimal = new OperationResultDecimal(value, message);
+
+            return operationResultDecimal;
+
+        }
 
         public override string ToString()
         {
