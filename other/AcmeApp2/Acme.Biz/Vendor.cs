@@ -24,7 +24,7 @@ namespace Acme.Biz
         /// <param name="deliverBy">Requested delivery date.</param>
         /// <param name="instructions">Delivery instructions.</param>
         /// <returns></returns>
-        public OperationResult PlaceOrder(Product product, int quantity,
+        public OperationResult<bool> PlaceOrder(Product product, int quantity,
                                             DateTimeOffset? deliverBy = null,
                                             string instructions = "standard delivery")
         {
@@ -44,12 +44,12 @@ namespace Acme.Biz
                             "Quantity: " + quantity);
             if (deliverBy.HasValue)
             {
-                orderTextBuilder.Append( System.Environment.NewLine +
+                orderTextBuilder.Append(System.Environment.NewLine +
                             "Deliver By: " + deliverBy.Value.ToString("d"));
             }
             if (!String.IsNullOrWhiteSpace(instructions))
             {
-                orderTextBuilder.Append( System.Environment.NewLine +
+                orderTextBuilder.Append(System.Environment.NewLine +
                             "Instructions: " + instructions);
             }
             var orderText = orderTextBuilder.ToString();
@@ -61,7 +61,7 @@ namespace Acme.Biz
             {
                 success = true;
             }
-            var operationResult = new OperationResult(success, orderText);
+            var operationResult = new OperationResult<bool>(success, orderText);
             return operationResult;
         }
 
