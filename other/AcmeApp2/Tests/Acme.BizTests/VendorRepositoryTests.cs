@@ -39,6 +39,23 @@ namespace Acme.Biz.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod()]
+        public void RetrieveTest()
+        {
+            // Arrange
+            var repository = new VendorRepository();
+            var expected = new List<Vendor>();
+
+            expected.Add(new Vendor() { CompanyName = "IBM", Email = "news@ibm.com", VendorId = 12345 });
+            expected.Add(new Vendor() { CompanyName = "GE", Email = "investorservices@ge.com", VendorId = 54321 });
+
+            // Act
+            var actual = repository.Retrieve();
+
+            // Assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
         //// A generic constraint has been placed on RetrieveValue<T> where T : struct. 
         //// Therefore, the below test is not allowed by definition because Vendor is 
         //// a reference type. 

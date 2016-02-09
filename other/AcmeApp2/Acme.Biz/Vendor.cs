@@ -70,6 +70,40 @@ namespace Acme.Biz
             return $"Vendor: {this.CompanyName} ({this.VendorId})";
         }
 
+        /// <summary>
+        /// In order to compare objects, the Equals method has to be overridden.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            // If the argument object is null or is not of the appropriate type then 
+            // immediately return false. 
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            // Cast the object to the vendor type.
+            Vendor compareVendor = obj as Vendor;
+            // We selected to check every property to see if the two are equal.
+            if (compareVendor != null &&
+                VendorId == compareVendor.VendorId &&
+                CompanyName == compareVendor.CompanyName &&
+                Email == compareVendor.Email)
+            {
+                return true;
+            }
+
+            return base.Equals(obj);
+        }
+
+        // If the Equals method is overriden then the GetHashCode method 
+        // must also be overriden. 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
 
         /// <summary>
         /// Sends an email to welcome a new vendor.
