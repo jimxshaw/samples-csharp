@@ -57,8 +57,27 @@ namespace Acme.Biz
                 { "Lockheed Martin", new Vendor() { CompanyName = "Lockheed Martin", VendorId = 10, Email = "investorservices@lockheed.com"} }
             };
 
+            foreach (var element in vendors)
+            {
+                Console.WriteLine($"Key: {element.Key}, Value: {element.Value}");
+            }
+
+            //foreach (var companyName in vendors.Keys)
+            //{
+            //    Console.WriteLine(vendors[companyName]);
+            //}
+
+            //Console.WriteLine(vendors["JP Morgan"]);
+
+            //Vendor vendor;
+
+            //if (vendors.TryGetValue("Morgan", out vendor))
+            //{
+            //    Console.WriteLine(vendor);
+            //}
+
             return vendors;
-        } 
+        }
 
         // The below method returns a generic type T. That type <T> is defined on 
         // the method itself as opposed to directly on the class is because no other 
