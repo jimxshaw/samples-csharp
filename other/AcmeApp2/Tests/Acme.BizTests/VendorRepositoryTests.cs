@@ -56,6 +56,24 @@ namespace Acme.Biz.Tests
             CollectionAssert.AreEqual(expected, actual);
         }
 
+        [TestMethod()]
+        public void RetrieveWithKeysTest()
+        {
+            // Arrange
+            var repository = new VendorRepository();
+            var expected = new Dictionary<string, Vendor>()
+            {
+                { "JP Morgan", new Vendor() { CompanyName = "JP Morgan", VendorId = 8, Email = "publicrelations@jpmorgan.com"} },
+                { "Lockheed Martin", new Vendor() { CompanyName = "Lockheed Martin", VendorId = 10, Email = "investorservices@lockheed.com"} }
+            };
+
+            // Act
+            var actual = repository.RetrieveWithKeys();
+
+            // Assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
         //// A generic constraint has been placed on RetrieveValue<T> where T : struct. 
         //// Therefore, the below test is not allowed by definition because Vendor is 
         //// a reference type. 

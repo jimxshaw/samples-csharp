@@ -41,10 +41,24 @@ namespace Acme.Biz
                 vendors.Add(new Vendor() { CompanyName = "GE", Email = "investorservices@ge.com", VendorId = 54321 });
             }
 
-            Console.WriteLine(vendors);
+            foreach (var vendor in vendors)
+            {
+                Console.WriteLine(vendor);
+            }
 
             return vendors;
         }
+
+        public Dictionary<string, Vendor> RetrieveWithKeys()
+        {
+            var vendors = new Dictionary<string, Vendor>()
+            {
+                { "JP Morgan", new Vendor() { CompanyName = "JP Morgan", VendorId = 8, Email = "publicrelations@jpmorgan.com"} },
+                { "Lockheed Martin", new Vendor() { CompanyName = "Lockheed Martin", VendorId = 10, Email = "investorservices@lockheed.com"} }
+            };
+
+            return vendors;
+        } 
 
         // The below method returns a generic type T. That type <T> is defined on 
         // the method itself as opposed to directly on the class is because no other 
