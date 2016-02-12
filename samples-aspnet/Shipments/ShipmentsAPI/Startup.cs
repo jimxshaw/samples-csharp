@@ -13,7 +13,7 @@ using ShipmentsAPI;
 [assembly: OwinStartup(typeof(Startup))]
 namespace ShipmentsAPI
 {
-    public class Startup
+    public partial class Startup
     {
         // The IAppBuilder parameter is an interface, which will be used to compose the 
         // application for our Owin server. 
@@ -24,10 +24,13 @@ namespace ShipmentsAPI
 
             WebApiConfig.Register(config);
 
+            ConfigureAuthZero(app);
+
             // AllowAll is not recommended for production versions but since this is 
             // for development we'll allow all origins to call our api.  
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
     }
+
 }
