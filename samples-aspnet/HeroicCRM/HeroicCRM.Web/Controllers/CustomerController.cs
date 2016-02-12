@@ -28,7 +28,7 @@ namespace HeroicCRM.Web.Controllers
 				.OrderByDescending(x => x.CreateDate)
 				.Project().To<CustomerViewModel>();
 
-			return Json(customerModels.ToArray());
+			return BetterJson(customerModels.ToArray());
 		}
 
 		public JsonResult Add(AddCustomerForm form)
@@ -38,7 +38,7 @@ namespace HeroicCRM.Web.Controllers
 			_context.SaveChanges();
 
 			var model = Mapper.Map<CustomerViewModel>(customer);
-			return Json(model);
+			return BetterJson(model);
 		}
 
 		public JsonResult Update(EditCustomerForm form)
@@ -51,7 +51,7 @@ namespace HeroicCRM.Web.Controllers
 
 			var updatedCustomer = _context.Customers.Project().To<CustomerViewModel>().Single(x => x.Id == form.Id);
 
-			return Json(updatedCustomer);
+			return BetterJson(updatedCustomer);
 		}
 	}
 }

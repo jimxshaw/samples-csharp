@@ -17,14 +17,8 @@ namespace HeroicCRM.Web.Controllers
 
 		public ActionResult Index()
 		{
-			return View();
-		}
-
-		public JsonResult LoadProfile()
-		{
 			var model = Mapper.Map<ProfileForm>(_userManager.FindById(User.Identity.GetUserId()));
-
-			return Json(model);
+			return View(model);
 		}
 
 		public JsonResult Update(ProfileForm form)

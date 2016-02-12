@@ -3,24 +3,19 @@
 
 	window.app.controller('EditProfileController', EditProfileController);
 
-	EditProfileController.$inject = ['$http'];
-	function EditProfileController($http) {
+	EditProfileController.$inject = ['$http', 'editProfileConfig', 'model'];
+	function EditProfileController($http, editProfileConfig, model) {
 		var vm = this;
 
-		vm.profile = {};
+		vm.profile = model;
 		vm.save = save;
-
-		$http.post('/Profile/LoadProfile')
-			.success(function (profile) {
-				vm.profile = profile;
-			});
 
 		function save() {
 			vm.saving = true;
 			vm.errorMessage = null;
 			vm.success = false;
 
-			$http.post('/Profile/Update', vm.profile)
+			$http.post(editProfileConfig.saveUrl, vm.profile)
 				.success(function() {
 					vm.success = true;
 				})

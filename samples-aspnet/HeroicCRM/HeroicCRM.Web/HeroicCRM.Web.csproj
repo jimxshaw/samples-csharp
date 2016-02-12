@@ -19,7 +19,6 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -203,22 +202,25 @@
     <Content Include="js\app\authentication\LoginController.js" />
     <Content Include="js\app\customer\EditCustomerDirective.js" />
     <Content Include="js\app\customer\AddCustomerDirective.js" />
-    <Content Include="js\app\customer\templates\addCustomer.tmpl.html" />
-    <Content Include="js\app\customer\templates\customerDetails.tmpl.html" />
-    <Content Include="js\app\customer\templates\editCustomer.tmpl.html" />
+    <Content Include="js\app\customer\templates\addCustomer.tmpl.cshtml" />
+    <Content Include="js\app\customer\templates\customerDetails.tmpl.cshtml" />
+    <Content Include="js\app\customer\templates\editCustomer.tmpl.cshtml" />
     <Content Include="js\app\customer\CustomerDetailsDirective.js" />
     <Content Include="js\app\customer\customerSvc.js" />
     <Content Include="js\app\customer\CustomerListController.js" />
     <Content Include="js\app\opportunity\AddOpportunityDirective.js" />
-    <Content Include="js\app\opportunity\templates\addOpportunity.tmpl.html" />
+    <Content Include="js\app\opportunity\templates\addOpportunity.tmpl.cshtml" />
     <Content Include="js\app\profile\EditProfileController.js" />
     <Content Include="js\app\report\LostCustomersReportDirective.js" />
     <Content Include="js\app\report\NewCustomersReportDirective.js" />
     <Content Include="js\app\report\templates\lostCustomersReport.tmpl.html" />
     <Content Include="js\app\report\templates\newCustomersReport.tmpl.html" />
     <Content Include="js\app\risk\AddRiskDirective.js" />
-    <Content Include="js\app\risk\templates\addRisk.tmpl.html" />
+    <Content Include="js\app\risk\templates\addRisk.tmpl.cshtml" />
     <Content Include="js\app\utility\ArrayExtensions.js" />
+    <Content Include="js\app\utility\FormGroupValidationDirective.js" />
+    <Content Include="js\app\utility\InputValidationIconsDirective.js" />
+    <Content Include="js\app\utility\MvcGridDirective.js" />
     <Content Include="js\app\utility\ParseDateFilter.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -247,6 +249,7 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RiskController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Core\Customer.cs" />
     <Compile Include="Core\Opportunity.cs" />
     <Compile Include="Core\Risk.cs" />
@@ -255,6 +258,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AngularHelper.cs" />
+    <Compile Include="Helpers\AngularModelHelper.cs" />
+    <Compile Include="Helpers\AngularNgRepeatHelper.cs" />
+    <Compile Include="Helpers\GridTag.cs" />
+    <Compile Include="Helpers\JsonHtmlHelpers.cs" />
+    <Compile Include="Helpers\UIRatingTag.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\AspNetIdentityRegistry.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -289,6 +298,7 @@
     <Content Include="css\ui-grid.eot" />
     <Content Include="css\ui-grid.ttf" />
     <Content Include="css\ui-grid.woff" />
+    <Content Include="js\app\web.config" />
     <None Include="Views\Authentication\Login.cshtml" />
     <None Include="Views\Customer\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
