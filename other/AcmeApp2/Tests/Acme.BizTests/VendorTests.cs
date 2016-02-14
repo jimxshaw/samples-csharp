@@ -142,5 +142,24 @@ namespace Acme.Biz.Tests
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void SendEmailTest()
+        {
+            // Arrange
+            var vendorRepository = new VendorRepository();
+            var vendors = vendorRepository.Retrieve();
+            var expected = new List<string>()
+            {
+                "Message sent: Important message for: IBM",
+                "Message sent: Important message for: GE"
+            };
+
+            // Act
+            var actual = Vendor.SendEmail(vendors, "Test Message");
+
+            // Assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
     }
 }

@@ -31,6 +31,23 @@ namespace Acme.Biz
             return vendor;
         }
 
+        public Vendor[] RetrieveArray()
+        {
+            var vendors = new Vendor[2]
+            {
+                new Vendor()
+                {
+                    VendorId = 11, CompanyName = "Disney", Email = "publicrelations@disney.com"
+                },
+                new Vendor()
+                {
+                    VendorId = 39, CompanyName = "Google", Email = "google@gmail.com"
+                } 
+            };
+
+            return vendors;
+        }
+
         public List<Vendor> Retrieve()
         {
             if (vendors == null)
