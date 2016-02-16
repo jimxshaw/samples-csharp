@@ -74,6 +74,30 @@ namespace Acme.Biz.Tests
         }
 
         [TestMethod()]
+        public void RetrieveTestIterator()
+        {
+            // Arrange
+            var repository = new VendorRepository();
+            var expected = new List<Vendor>();
+
+            expected.Add(new Vendor() { CompanyName = "IBM", Email = "news@ibm.com", VendorId = 12345 });
+            expected.Add(new Vendor() { CompanyName = "GE", Email = "investorservices@ge.com", VendorId = 54321 });
+
+            // Act
+            var vendorIterator = repository.RetrieveWithIterator();
+
+            foreach (var item in vendorIterator)
+            {
+                Console.WriteLine(item);
+            }
+
+            var actual = vendorIterator.ToList();
+
+            // Assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
         public void RetrieveWithKeysTest()
         {
             // Arrange

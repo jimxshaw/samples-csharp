@@ -155,5 +155,25 @@ namespace Acme.Biz
 
             return success;
         }
+
+        public IEnumerable<Vendor> RetrieveWithIterator()
+        {
+            // Get the data from a repository.
+            Retrieve();
+
+            // Yield returns each element in the collection one-at-a-time.
+            foreach (var vendor in vendors)
+            {
+                Console.WriteLine($"Vendor Id: {vendor.VendorId}");
+
+                // When the yield statement executes, the current location in this 
+                // code is remembered. The single vendor is returned to the calling 
+                // code and processing continues from there. Executing is re-started 
+                // from this location the next time the interator method is called. 
+                // The iterator is consuming from the calling code using a foreach 
+                // statement or with a LINQ expression. 
+                yield return vendor;
+            }
+        } 
     }
 }
