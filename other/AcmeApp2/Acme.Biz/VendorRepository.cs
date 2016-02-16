@@ -42,7 +42,7 @@ namespace Acme.Biz
                 new Vendor()
                 {
                     VendorId = 39, CompanyName = "Google", Email = "google@gmail.com"
-                } 
+                }
             };
 
             return vendors;
@@ -92,6 +92,27 @@ namespace Acme.Biz
             //{
             //    Console.WriteLine(vendor);
             //}
+
+            return vendors;
+        }
+
+        // Instead of having multiple method returning different types of collections, 
+        // we could simple write one method that returns ICollection<T>. Arrays, Lists 
+        // and Dictionaries all implement ICollection<T>.
+        public ICollection<Vendor> RetrieveCollection()
+        {
+            if (vendors == null)
+            {
+                vendors = new List<Vendor>();
+
+                vendors.Add(new Vendor() { CompanyName = "IBM", Email = "news@ibm.com", VendorId = 12345 });
+                vendors.Add(new Vendor() { CompanyName = "GE", Email = "investorservices@ge.com", VendorId = 54321 });
+            }
+
+            foreach (var vendor in vendors)
+            {
+                Console.WriteLine(vendor);
+            }
 
             return vendors;
         }
