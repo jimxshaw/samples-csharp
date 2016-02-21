@@ -35,14 +35,27 @@ namespace Acme.Biz.Tests
             // Actual
             var vendors = repository.RetrieveAll();
 
-            var vendorQuery = from v in vendors
-                              where v.Email.Contains(".net")
-                              orderby v.CompanyName
-                              select v;
+            //var vendorQuery = from v in vendors
+            //                  where v.Email.Contains(".net")
+            //                  orderby v.CompanyName
+            //                  select v;
+
+            // LINQ methods such as Where takes in a delegate as the argument. The delegate 
+            // must be in the form of Func<Vendor, bool>, where Vendor is the parameter and 
+            // bool is the return type. To test this, we wrote a private method called 
+            // FilterCompanies and inserted into LINQ's Where method.  
+            var vendorQuery = vendors.Where(FilterCompanies)
+                            .OrderBy(OrderCompaniesByName);
 
             // Assert
             CollectionAssert.AreEqual(expected, vendorQuery.ToList());
         }
+
+        // Since this method's body consists of 1 line, the return statement, we can use 
+        // C# 6's lambda fat arrow syntax.  
+        private bool FilterCompanies(Vendor v) => v.Email.Contains(".net");
+
+        private string OrderCompaniesByName(Vendor v) => v.CompanyName;
 
         [TestMethod()]
         public void RetrieveValueIntTest()
