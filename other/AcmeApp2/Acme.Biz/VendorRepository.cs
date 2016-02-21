@@ -31,6 +31,39 @@ namespace Acme.Biz
             return vendor;
         }
 
+        public IEnumerable<Vendor> RetrieveAll()
+        {
+            var vendors = new List<Vendor>()
+            {
+                new Vendor()
+                {
+                    VendorId = 11, CompanyName = "Disney", Email = "publicrelations@disney.com"
+                },
+                new Vendor()
+                {
+                    VendorId = 37, CompanyName = "Google", Email = "google@gmail.com"
+                },
+                new Vendor()
+                {
+                    VendorId = 82, CompanyName = "Uber", Email = "uber@uber.net"
+                },
+                new Vendor()
+                {
+                    VendorId = 99, CompanyName = "Facebook", Email = "facebook@fb.com"
+                },
+                new Vendor()
+                {
+                    VendorId = 10, CompanyName = "Amazon", Email = "amazon@amazon.net"
+                },
+                new Vendor()
+                {
+                    VendorId = 69, CompanyName = "ESPN", Email = "espn@espn.net"
+                }
+            };
+
+            return vendors;
+        }
+
         public Vendor[] RetrieveArray()
         {
             var vendors = new Vendor[2]

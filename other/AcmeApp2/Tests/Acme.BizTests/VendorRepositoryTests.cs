@@ -12,6 +12,39 @@ namespace Acme.Biz.Tests
     public class VendorRepositoryTests
     {
         [TestMethod()]
+        public void RetrieveAllTest()
+        {
+            // Arrange
+            var repository = new VendorRepository();
+            var expected = new List<Vendor>()
+            {
+                new Vendor()
+                {
+                    VendorId = 10, CompanyName = "Amazon", Email = "amazon@amazon.net"
+                },
+                new Vendor()
+                {
+                    VendorId = 69, CompanyName = "ESPN", Email = "espn@espn.net"
+                },
+                new Vendor()
+                {
+                    VendorId = 82, CompanyName = "Uber", Email = "uber@uber.net"
+                }
+            };
+
+            // Actual
+            var vendors = repository.RetrieveAll();
+
+            var vendorQuery = from v in vendors
+                              where v.Email.Contains(".net")
+                              orderby v.CompanyName
+                              select v;
+
+            // Assert
+            CollectionAssert.AreEqual(expected, vendorQuery.ToList());
+        }
+
+        [TestMethod()]
         public void RetrieveValueIntTest()
         {
             // Arrange
