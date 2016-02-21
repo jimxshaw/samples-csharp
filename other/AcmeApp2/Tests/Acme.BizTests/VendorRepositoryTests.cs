@@ -44,8 +44,12 @@ namespace Acme.Biz.Tests
             // must be in the form of Func<Vendor, bool>, where Vendor is the parameter and 
             // bool is the return type. To test this, we wrote a private method called 
             // FilterCompanies and inserted into LINQ's Where method.  
-            var vendorQuery = vendors.Where(FilterCompanies)
-                            .OrderBy(OrderCompaniesByName);
+            //var vendorQuery = vendors.Where(FilterCompanies)
+            //                .OrderBy(OrderCompaniesByName);
+
+            // Using lambda expressions within LINQ methods, instead of delegates, reduces clutter.
+            var vendorQuery = vendors.Where(v => v.Email.Contains(".net"))
+                            .OrderBy(v => v.CompanyName);
 
             // Assert
             CollectionAssert.AreEqual(expected, vendorQuery.ToList());
@@ -53,9 +57,9 @@ namespace Acme.Biz.Tests
 
         // Since this method's body consists of 1 line, the return statement, we can use 
         // C# 6's lambda fat arrow syntax.  
-        private bool FilterCompanies(Vendor v) => v.Email.Contains(".net");
+        //private bool FilterCompanies(Vendor v) => v.Email.Contains(".net");
 
-        private string OrderCompaniesByName(Vendor v) => v.CompanyName;
+        //private string OrderCompaniesByName(Vendor v) => v.CompanyName;
 
         [TestMethod()]
         public void RetrieveValueIntTest()
