@@ -40,5 +40,31 @@ namespace ACM.BL
                 return fullName;
             }
         }
+
+        public List<Customer> Retrieve()
+        {
+            return new List<Customer>();
+        }
+
+        public Customer Retrieve(int customerId)
+        {
+            return new Customer();
+        }
+
+        public bool Save()
+        {
+            return true;
+        }
+
+        public bool Validate()
+        {
+            var isValid = true;
+
+            if (string.IsNullOrWhiteSpace(LastName)) isValid = false;
+            if (string.IsNullOrWhiteSpace(EmailAddress)) isValid = false;
+
+            return isValid;
+        }
+
     }
 }

@@ -79,5 +79,39 @@ namespace ACM.BL.Tests
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void ValidateValid()
+        {
+            // Arrange
+            var customer = new Customer();
+            customer.LastName = "Took";
+            customer.EmailAddress = "peregrintook@theshire.me";
+
+            var expected = true;
+
+            // Act
+            var actual = customer.Validate();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ValidateMissingLastName()
+        {
+            // Arrange
+            var customer = new Customer();
+            //customer.LastName = "Took";
+            customer.EmailAddress = "peregrintook@theshire.me";
+
+            var expected = false;
+
+            // Act
+            var actual = customer.Validate();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
