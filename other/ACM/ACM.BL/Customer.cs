@@ -10,7 +10,7 @@ namespace ACM.BL
     {
         public Customer()
         {
-            
+
         }
 
         public Customer(int customerId)
@@ -49,16 +49,6 @@ namespace ACM.BL
                 }
                 return fullName;
             }
-        }
-
-        public List<Customer> Retrieve()
-        {
-            return new List<Customer>();
-        }
-
-        public Customer Retrieve(int customerId)
-        {
-            return new Customer();
         }
 
         public bool Save()
