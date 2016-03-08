@@ -15,7 +15,7 @@ List<Order> orders = new List<Order>()
 	new Order { Id = 768, Amount = 32.50m, CustomerName = "Claire", Status = "Delivered" },
 };
 
-void CheckOrdersForRefunds()
+void CheckOrdersForRefunds1()
 {
 	bool anyRefunded = false;
 	foreach (var order in orders)
@@ -33,7 +33,17 @@ void CheckOrdersForRefunds()
 		Console.WriteLine("No refunds");
 }
 
-void CheckOrdersAreDelivered()
+void CheckOrdersForRefunds2()
+{
+	bool anyRefunded = orders.Any(o => o.Status == "Refunded");
+
+	if (anyRefunded)
+		Console.WriteLine("There are refunded orders");
+	else
+		Console.WriteLine("No refunds");
+}
+
+void CheckOrdersAreDelivered1()
 {
 	bool allDelivered = true;
 	foreach (var order in orders)
@@ -51,23 +61,7 @@ void CheckOrdersAreDelivered()
 		Console.WriteLine("Not everything was delivered");
 }
 
-void Main()
-{
-	CheckOrdersForRefunds();
-	CheckOrdersAreDelivered();
-}
-
-void CheckOrdersForRefundsLinq()
-{
-	bool anyRefunded = orders.Any(o => o.Status == "Refunded");
-
-	if (anyRefunded)
-		Console.WriteLine("There are refunded orders");
-	else
-		Console.WriteLine("No refunds");
-}
-
-void CheckOrdersAreDeliveredLinq()
+void CheckOrdersAreDelivered2()
 {
 	bool allDelivered = orders.All(o => o.Status == "Delivered");
 
@@ -75,4 +69,10 @@ void CheckOrdersAreDeliveredLinq()
 		Console.WriteLine("Everything was delivered");
 	else
 		Console.WriteLine("Not everything was delivered");
+}
+
+void Main()
+{
+	//CheckOrdersForRefunds2();
+	CheckOrdersAreDelivered2();
 }
