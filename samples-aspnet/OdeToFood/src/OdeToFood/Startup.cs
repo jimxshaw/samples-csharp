@@ -45,13 +45,32 @@ namespace OdeToFood
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
+                                IHostingEnvironment environment,
                                 IGreeter greeter)
         {
+            // Keep in mind that the order of which middlewares are installed matter. 
+
             // The IIS Platform middleware looks at every incoming request and see if there's any windows 
             // identity information associated with the request. 
             app.UseIISPlatformHandler();
 
+            if (environment.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
             app.UseRuntimeInfoPage("/info");
+
+            ////  The Static Files middleware find files on the file system and serve up those files.If it
+            ////  doesn't find a file, it will move on to the next piece of middleware.   
+            //  app.UseStaticFiles();
+
+            ////  What use default files middleware does is see if it's in a root directory and if it is 
+            ////  then it looks to see if there are any default files.If we want we could overwrite by telling
+            ////  it which files are the default files.For example, index.html is a default file by default.
+            //  app.UseDefaultFiles();
+
+            app.UseFileServer();
 
             // The Run middleware allows us to pass in another method that processes every other response. 
             // Run is called a terminal piece of middleware. Run will not be able to call another piece of 
