@@ -47,8 +47,16 @@ namespace OdeToFood
         public void Configure(IApplicationBuilder app,
                                 IGreeter greeter)
         {
+            // The IIS Platform middleware looks at every incoming request and see if there's any windows 
+            // identity information associated with the request. 
             app.UseIISPlatformHandler();
 
+            app.UseRuntimeInfoPage("/info");
+
+            // The Run middleware allows us to pass in another method that processes every other response. 
+            // Run is called a terminal piece of middleware. Run will not be able to call another piece of 
+            // middleware. All it does is receive a request and produces a piece of response. Any other 
+            // middleware called after Run will not run because Run is terminal. 
             app.Run(async (context) =>
             {
                 var greeting = greeter.GetGreeting();
