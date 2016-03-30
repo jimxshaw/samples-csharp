@@ -34,6 +34,8 @@ namespace OdeToFood
         {
             // All services have to be registered.
 
+            // By adding the MVC service here, we'll get access everything asp.net needs to do MVC work.
+            services.AddMvc();
             // Give a service provider and return a service that will be stored away for use. 
             services.AddSingleton(provider => Configuration);
             // Whenever something needs an implementation of IGreeter, please give it an instance of the 
@@ -70,7 +72,11 @@ namespace OdeToFood
             ////  it which files are the default files.For example, index.html is a default file by default.
             //  app.UseDefaultFiles();
 
-            app.UseFileServer();
+            //app.UseFileServer();
+
+            // The MVC middleware is usually placed after any other middleware that serves up static files. 
+            // 
+            app.UseMvcWithDefaultRoute();
 
             // The Run middleware allows us to pass in another method that processes every other response. 
             // Run is called a terminal piece of middleware. Run will not be able to call another piece of 
