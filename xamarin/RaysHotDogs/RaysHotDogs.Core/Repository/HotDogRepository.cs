@@ -118,6 +118,7 @@ namespace RaysHotDogs.Core.Repository
                                           from hotDog in hotDogGroup.HotDogs
                                           where hotDog.HotDogId == hotDogId
                                           select hotDog;
+
             return hotDogs.FirstOrDefault();
         }
 
