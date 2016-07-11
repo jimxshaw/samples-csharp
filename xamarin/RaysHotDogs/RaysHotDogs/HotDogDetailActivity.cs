@@ -22,15 +22,15 @@ namespace RaysHotDogs
         private Button mButtonOrder;
 
         private HotDog mSelectedHotDog;
-        private HotDogDataService mDataService;
+        private HotDogDataService mHotDogDataService;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.HotDogDetailView);
 
-            mDataService = new HotDogDataService();
-            mSelectedHotDog = mDataService.GetHotDogById(1);
+            mHotDogDataService = new HotDogDataService();
+            mSelectedHotDog = mHotDogDataService.GetHotDogById(1);
 
             FindViews();
             BindData();
