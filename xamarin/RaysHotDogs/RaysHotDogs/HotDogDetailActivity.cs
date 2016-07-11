@@ -1,13 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using RaysHotDogs.Core.Model;
 using RaysHotDogs.Core.Service;
@@ -41,6 +34,7 @@ namespace RaysHotDogs
 
             FindViews();
             BindData();
+            HandleEvents();
 
         }
 
@@ -65,6 +59,27 @@ namespace RaysHotDogs
 
             var imageBitmap = ImageHelper.GetImageBitmapFromUrl("http://gillcleerenpluralsight.blob.core.windows.net/files/" + mSelectedHotDog.ImagePath + ".jpg");
             mImageViewHotDog.SetImageBitmap(imageBitmap);
+        }
+
+        private void HandleEvents()
+        {
+            mButtonOrder.Click += OrderButtonClick;
+            mButtonCancel.Click += CancelButtonClick;
+        }
+
+        private void OrderButtonClick(object sender, EventArgs e)
+        {
+            var amount = Int32.Parse(mEditTextAmount.Text);
+
+            var dialog = new AlertDialog.Builder(this);
+            dialog.SetTitle("Confirmation");
+            dialog.SetMessage("Your hot dog has been added to your cart!");
+            dialog.Show();
+        }
+
+        private void CancelButtonClick(object sender, EventArgs e)
+        {
+            // TODO
         }
     }
 }
