@@ -76,6 +76,12 @@
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RaysHotDogs.Core\RaysHotDogs.Core.csproj">
+      <Project>{F4A2CAC7-3F8B-48F9-BD42-A10BF00514E1}</Project>
+      <Name>RaysHotDogs.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
      Other similar extension points exist, see Microsoft.Common.targets.
