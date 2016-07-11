@@ -16,13 +16,13 @@ namespace RaysHotDogs.Adapters
 {
     public class HotDogListAdapter : BaseAdapter<HotDog>
     {
-        List<HotDog> mItems;
+        List<HotDog> mHotDogs;
         Activity mContext;
 
         public HotDogListAdapter(Activity context, List<HotDog> items) : base()
         {
             mContext = context;
-            mItems = items;
+            mHotDogs = items;
         }
 
         public override long GetItemId(int position)
@@ -32,9 +32,9 @@ namespace RaysHotDogs.Adapters
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            HotDog item = mItems[position];
+            HotDog hotDog = mHotDogs[position];
 
-            var imageBitmap = ImageHelper.GetImageBitmapFromUrl("http://gillcleerenpluralsight.blob.core.windows.net/files/" + item.ImagePath + ".jpg");
+            var imageBitmap = ImageHelper.GetImageBitmapFromUrl("http://gillcleerenpluralsight.blob.core.windows.net/files/" + hotDog.ImagePath + ".jpg");
 
             // We're receiving the convertView parameter. List view rows that are not seen will be placed in limbo to be reused later.
             // When Android eventually calls upon a list view row, that row will be passed in to our convertView parameter, if not then 
@@ -42,11 +42,14 @@ namespace RaysHotDogs.Adapters
 
             if (convertView == null)
             {
-                convertView = mContext.LayoutInflater.Inflate(Android.Resource.Layout.ActivityListItem, null);
+                // Instead of inflating an Android resource layout, we'll be using our own custom row view layout.
+                convertView = mContext.LayoutInflater.Inflate(Resource.Layout.HotDogRowView, null);
             }
 
-            convertView.FindViewById<TextView>(Android.Resource.Id.Text1).Text = item.Name;
-            convertView.FindViewById<ImageView>(Android.Resource.Id.Icon).SetImageBitmap(imageBitmap);
+            convertView.FindViewById<TextView>(Resource.Id.text_view_hot_dog_name).Text = hotDog.Name;
+            convertView.FindViewById<ImageView>(Resource.Id.image_view_hot_dog).SetImageBitmap(imageBitmap);
+            convertView.FindViewById<TextView>(Resource.Id.text_view_short_description).Text = hotDog.ShortDescription;
+            convertView.FindViewById<TextView>(Resource.Id.text_view_price).Text = "$" + hotDog.Price;
 
             return convertView;
         }
@@ -55,7 +58,7 @@ namespace RaysHotDogs.Adapters
         {
             get
             {
-                return mItems.Count;
+                return mHotDogs.Count;
             }
         }
 
@@ -63,7 +66,7 @@ namespace RaysHotDogs.Adapters
         {
             get
             {
-                return mItems[position];
+                return mHotDogs[position];
             }
         }
     }
