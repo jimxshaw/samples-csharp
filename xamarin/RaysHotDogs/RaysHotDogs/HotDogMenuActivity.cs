@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using RaysHotDogs.Adapters;
 using RaysHotDogs.Core.Model;
 using RaysHotDogs.Core.Service;
 
@@ -34,6 +35,7 @@ namespace RaysHotDogs
 
             mAllHotDogs = mHotDogDataService.GetAllHotDogs();
 
+            mListViewHotDog.Adapter = new HotDogListAdapter(this, mAllHotDogs);
         }
     }
 }
