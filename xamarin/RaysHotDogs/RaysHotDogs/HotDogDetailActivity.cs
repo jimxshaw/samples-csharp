@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using RaysHotDogs.Core.Model;
 using RaysHotDogs.Core.Service;
+using RaysHotDogs.Utilities;
 
 namespace RaysHotDogs
 {
@@ -61,6 +62,9 @@ namespace RaysHotDogs
             mTextViewShortDescription.Text = mSelectedHotDog.ShortDescription;
             mTextViewDescription.Text = mSelectedHotDog.Description;
             mTextViewPrice.Text = "Price: " + mSelectedHotDog.Price;
+
+            var imageBitmap = ImageHelper.GetImageBitmapFromUrl("http://gillcleerenpluralsight.blob.core.windows.net/files/" + mSelectedHotDog.ImagePath + ".jpg");
+            mImageViewHotDog.SetImageBitmap(imageBitmap);
         }
     }
 }
