@@ -36,6 +36,9 @@ namespace RaysHotDogs
             mAllHotDogs = mHotDogDataService.GetAllHotDogs();
 
             mListViewHotDog.Adapter = new HotDogListAdapter(this, mAllHotDogs);
+
+            // Enable fast scrolling just in case the list grows long.
+            mListViewHotDog.FastScrollEnabled = true;
         }
     }
 }

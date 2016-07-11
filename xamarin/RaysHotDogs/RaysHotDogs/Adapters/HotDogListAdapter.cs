@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using RaysHotDogs.Core.Model;
+using RaysHotDogs.Utilities;
 
 namespace RaysHotDogs.Adapters
 {
@@ -31,7 +32,9 @@ namespace RaysHotDogs.Adapters
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            var item = mItems[position];
+            HotDog item = mItems[position];
+
+            var imageBitmap = ImageHelper.GetImageBitmapFromUrl("http://gillcleerenpluralsight.blob.core.windows.net/files/" + item.ImagePath + ".jpg");
 
             // We're receiving the convertView parameter. List view rows that are not seen will be placed in limbo to be reused later.
             // When Android eventually calls upon a list view row, that row will be passed in to our convertView parameter, if not then 
@@ -39,10 +42,11 @@ namespace RaysHotDogs.Adapters
 
             if (convertView == null)
             {
-                convertView = mContext.LayoutInflater.Inflate(Android.Resource.Layout.SimpleExpandableListItem1, null);
+                convertView = mContext.LayoutInflater.Inflate(Android.Resource.Layout.ActivityListItem, null);
             }
 
             convertView.FindViewById<TextView>(Android.Resource.Id.Text1).Text = item.Name;
+            convertView.FindViewById<ImageView>(Android.Resource.Id.Icon).SetImageBitmap(imageBitmap);
 
             return convertView;
         }
