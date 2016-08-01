@@ -205,10 +205,21 @@
     <Compile Include="Migrations\201608012232151_InitialModel.Designer.cs">
       <DependentUpon>201608012232151_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608012308212_CreateMeetupTable.cs" />
+    <Compile Include="Migrations\201608012308212_CreateMeetupTable.Designer.cs">
+      <DependentUpon>201608012308212_CreateMeetupTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608012346495_OverrideConventionsForMeetupAndCategoryClasses.cs" />
+    <Compile Include="Migrations\201608012346495_OverrideConventionsForMeetupAndCategoryClasses.Designer.cs">
+      <DependentUpon>201608012346495_OverrideConventionsForMeetupAndCategoryClasses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Meetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -287,6 +298,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608012232151_InitialModel.resx">
       <DependentUpon>201608012232151_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608012308212_CreateMeetupTable.resx">
+      <DependentUpon>201608012308212_CreateMeetupTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608012346495_OverrideConventionsForMeetupAndCategoryClasses.resx">
+      <DependentUpon>201608012346495_OverrideConventionsForMeetupAndCategoryClasses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
