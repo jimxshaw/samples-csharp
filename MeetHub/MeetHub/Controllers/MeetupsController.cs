@@ -1,7 +1,6 @@
 ﻿using MeetHub.Models;
 using MeetHub.ViewModels;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -34,7 +33,7 @@ namespace MeetHub.Controllers
             var meetup = new Meetup
             {
                 GroupId = User.Identity.GetUserId(),
-                DateTime = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),
+                DateTime = viewModel.DateTime,
                 CategoryId = viewModel.Category,
                 Venue = viewModel.Venue,
                 Title = viewModel.Title,
