@@ -11,7 +11,7 @@ namespace MeetHub.ViewModels
         public string Time { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Category { get; set; }
+        public byte Category { get; set; }
         public IEnumerable<Category> Categories { get; set; }
     }
 }

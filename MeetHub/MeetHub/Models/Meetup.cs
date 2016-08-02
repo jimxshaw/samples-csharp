@@ -7,8 +7,13 @@ namespace MeetHub.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public ApplicationUser Group { get; set; }
+
+        // The GroupId is a string and not an int is because in the 
+        // ApplicationUser class, which is part of ASP.NET Identity, 
+        // the id property, a key, is defined as a string.
+        [Required]
+        public string GroupId { get; set; }
 
         public DateTime DateTime { get; set; }
 
@@ -16,8 +21,10 @@ namespace MeetHub.Models
         [StringLength(255)]
         public string Venue { get; set; }
 
-        [Required]
         public Category Category { get; set; }
+
+        [Required]
+        public byte CategoryId { get; set; }
 
         [Required]
         [StringLength(255)]

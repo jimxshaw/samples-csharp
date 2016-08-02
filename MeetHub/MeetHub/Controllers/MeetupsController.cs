@@ -31,14 +31,11 @@ namespace MeetHub.Controllers
         [HttpPost]
         public ActionResult Create(MeetupFormViewModel viewModel)
         {
-            var groupId = User.Identity.GetUserId();
-            var group = _context.Users.Single(u => u.Id == groupId);
-            var category = _context.Categories.Single(c => c.Id == viewModel.Category);
             var meetup = new Meetup
             {
-                Group = group,
+                GroupId = User.Identity.GetUserId(),
                 DateTime = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),
-                Category = category,
+                CategoryId = viewModel.Category,
                 Venue = viewModel.Venue,
                 Title = viewModel.Title,
                 Description = viewModel.Description
