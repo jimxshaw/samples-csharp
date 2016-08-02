@@ -7,7 +7,7 @@ namespace MeetHub.Controllers
 {
     public class MeetupsController : Controller
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public MeetupsController()
         {
