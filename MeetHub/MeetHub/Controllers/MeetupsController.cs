@@ -30,10 +30,19 @@ namespace MeetHub.Controllers
         [HttpPost]
         public ActionResult Create(MeetupFormViewModel viewModel)
         {
+            // If our view model is not valid, return the user back to the Create view with 
+            // validation messages showing.
+            if (!ModelState.IsValid)
+            {
+                // We have to re-initialize our Categories list or a null exception will be thrown.
+                viewModel.Categories = _context.Categories.ToList();
+                return View("Create", viewModel);
+            }
+
             var meetup = new Meetup
             {
                 GroupId = User.Identity.GetUserId(),
-                DateTime = viewModel.DateTime,
+                DateTime = viewModel.GetDateTime(),
                 CategoryId = viewModel.Category,
                 Venue = viewModel.Venue,
                 Title = viewModel.Title,
