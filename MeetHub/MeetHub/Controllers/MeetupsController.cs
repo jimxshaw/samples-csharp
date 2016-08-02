@@ -14,7 +14,6 @@ namespace MeetHub.Controllers
             _context = new ApplicationDbContext();
         }
 
-        // GET: Meetups
         public ActionResult Create()
         {
             var viewModel = new MeetupFormViewModel
