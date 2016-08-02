@@ -6,8 +6,8 @@
 }
 
 <h2>Add a Meetup</h2>
-
-<form>
+@using (Html.BeginForm("Create", "Meetups"))
+{
     <div class="form-group">
         @Html.LabelFor(m => m.Title)
         @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
@@ -31,9 +31,9 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Description)
-        @Html.TextAreaFor(m => m.Description, new {@class = "form-control"})
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
     <button type="submit" class="btn btn-default">Cancel</button>
 
-</form>
+}
