@@ -22,3 +22,41 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Bootstrap Overrides */
+.navbar-inverse {
+    background-color: #03A9F4;
+    border-color: #03A9F4;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #03A9F4;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #FFFFFF;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #FFFFFF;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #03A9F4;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
