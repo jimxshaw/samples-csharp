@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 90px;
     padding-bottom: 20px;
 }
 
@@ -124,3 +124,75 @@ h6,
         color: #FFFFFF;
     }
 }
+
+/* Page-level styles */
+
+.meetups {
+    list-style: none;
+}
+
+.meetups > li {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.meetups > li .date {
+    background: blue;
+    color: white;
+    text-align: center;
+    width: 60px;
+    -ms-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.meetups > li .date .year {
+    font-weight: bold;
+    font-size: 14px;
+    padding: 2px 6px;
+}
+
+.meetups > li .date .month {
+    text-transform: uppercase;
+    background: #F7F7F7;
+    color: #333333;
+    font-size: 14px;
+    padding: 3px 10px 0px 10px;
+}
+
+.meetups > li .date .day {
+    background: #F7F7F7;
+    color: #333333;
+    font-size: 14px;
+    padding: 0px 10px 3px 10px;
+}
+
+.meetups > li .details {
+    position: absolute;
+    top: 0;
+    left: 70px;
+}
+
+.meetups > li .details .title {
+    font-weight: bold;
+    display: block;
+}
+
+.meetups > li .details .category {
+    display: block;
+    font-size: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

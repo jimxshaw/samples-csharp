@@ -19,9 +19,8 @@ namespace MeetHub.Controllers
         {
             var upcomingMeetups = _context.Meetups
                 .Include(m => m.Group)
+                .Include(m => m.Category)
                 .Where(m => m.DateTime > DateTime.Now);
-
-
 
             return View(upcomingMeetups);
         }
