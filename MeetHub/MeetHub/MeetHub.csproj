@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201608022015322_AddForeignKeyPropertiesToMeetup.Designer.cs">
       <DependentUpon>201608022015322_AddForeignKeyPropertiesToMeetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608041951236_AddNamePropertyToApplicationUser.cs" />
+    <Compile Include="Migrations\201608041951236_AddNamePropertyToApplicationUser.Designer.cs">
+      <DependentUpon>201608041951236_AddNamePropertyToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -323,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608022015322_AddForeignKeyPropertiesToMeetup.resx">
       <DependentUpon>201608022015322_AddForeignKeyPropertiesToMeetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608041951236_AddNamePropertyToApplicationUser.resx">
+      <DependentUpon>201608041951236_AddNamePropertyToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
