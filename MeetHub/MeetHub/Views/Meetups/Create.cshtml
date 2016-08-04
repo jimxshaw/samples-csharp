@@ -8,6 +8,10 @@
 <h2>Add a Meetup</h2>
 @using (Html.BeginForm("Create", "Meetups"))
 {
+//     This one line is all it takes to prevent 
+//     Cross -site Request Forgery (CSRF) attacks.
+    @Html.AntiForgeryToken() 
+
     <div class="form-group">
         @Html.LabelFor(m => m.Title)
         @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
@@ -25,7 +29,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Category)
-        <!-- The third argument is blank because it represents the default dropdown item of "blank". -->
+@*        The third argument is blank because it represents the default dropdown item of "blank".*@
         @Html.DropDownListFor(m => m.Category, new SelectList(Model.Categories, "Id", "Name"), "", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Category)
     </div>
@@ -42,7 +46,7 @@
     <button type="reset" class="btn btn-default">Clear</button>
 
 }
-@section scripts 
+@section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -28,6 +28,7 @@ namespace MeetHub.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken] // This is to prevent Cross-site Request Forgery (CSRF) attacks.
         public ActionResult Create(MeetupFormViewModel viewModel)
         {
             // If our view model is not valid, return the user back to the Create view with 
