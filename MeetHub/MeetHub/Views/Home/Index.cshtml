@@ -23,8 +23,29 @@
                 <span class="title">@meetup.Title</span>
                 <span class="group">@meetup.Group.Name</span>
                 <span class="category">@meetup.Category.Name</span>
-                <button class="btn btn-default btn-sm pull-right">Attending ?</button>
+                <button data-meetup-id="@meetup.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Attending?</button>
             </div>
         </li>
     }
 </ul>
+
+@section scripts {
+    <script>
+        $(document)
+            .ready(function() {
+                $(".js-toggle-attendance")
+                    .click(function(event) {
+                        var button = $(event.target);
+                        $.post("/api/attendances", { "meetupId": button.attr("data-meetup-id") })
+                            .done(function() {
+                                button.removeClass("btn-default")
+                                    .addClass("btn-danger")
+                                    .text("Attending");
+                            })
+                            .fail(function() {
+                                alert("Something failed!");
+                            });
+                    });
+            });
+    </script>
+}

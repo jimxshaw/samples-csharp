@@ -1,10 +1,15 @@
-﻿using MeetHub.Models;
+﻿using MeetHub.DTOs;
+using MeetHub.Models;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
 
 namespace MeetHub.Controllers
 {
+    // A Data Transfer Object (DTO) is an architectural pattern used to send data across processes.
+    // For example, we have a piece of code running on the client and another piece of code running 
+    // on the server. We'd like to communicate between those two processes so we use a DTO.
+
     // Add the authorize tag as this entire class will only allowed to be 
     // accessed up signed in users. 
     [Authorize]
@@ -23,7 +28,7 @@ namespace MeetHub.Controllers
         // We must literally specify that our parameter will come from the request body 
         // by using a FromBody attribute.   
         [HttpPost]
-        public IHttpActionResult Attend([FromBody] int meetupId)
+        public IHttpActionResult Attend(AttendanceDataTransferObject dto)
         {
             // The user id is not a parameter to this method due to 
             // security reasons. The user id will instead be retrieved from 
@@ -33,14 +38,14 @@ namespace MeetHub.Controllers
             // we ignore it. We wouldn't want to add a duplicate attendance object.
             string userIdString = User.Identity.GetUserId();
 
-            if (_context.Attendances.Any(a => a.AttendeeId == userIdString && a.MeetupId == meetupId))
+            if (_context.Attendances.Any(a => a.AttendeeId == userIdString && a.MeetupId == dto.MeetupId))
             {
                 return BadRequest("The attendance object already exists.");
             }
 
             var attendance = new Attendance()
             {
-                MeetupId = meetupId,
+                MeetupId = dto.MeetupId,
                 AttendeeId = userIdString
             };
 
