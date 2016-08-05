@@ -137,7 +137,7 @@ h6,
 }
 
 .meetups > li .date {
-    background: blue;
+    background: #0288D1;
     color: white;
     text-align: center;
     width: 60px;
@@ -179,7 +179,7 @@ h6,
 
 .meetups > li .details .category {
     display: block;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 
