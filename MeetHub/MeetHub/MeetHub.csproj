@@ -226,8 +226,13 @@
     <Compile Include="Migrations\201608041951236_AddNamePropertyToApplicationUser.Designer.cs">
       <DependentUpon>201608041951236_AddNamePropertyToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608051907413_AddAttendance.cs" />
+    <Compile Include="Migrations\201608051907413_AddAttendance.Designer.cs">
+      <DependentUpon>201608051907413_AddAttendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -338,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608041951236_AddNamePropertyToApplicationUser.resx">
       <DependentUpon>201608041951236_AddNamePropertyToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608051907413_AddAttendance.resx">
+      <DependentUpon>201608051907413_AddAttendance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
