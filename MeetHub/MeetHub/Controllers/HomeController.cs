@@ -23,7 +23,7 @@ namespace MeetHub.Controllers
                 .Include(m => m.Category)
                 .Where(m => m.DateTime > DateTime.Now);
 
-            var viewModel = new HomeViewModel
+            var viewModel = new MeetupsViewModel
             {
                 UpcomingMeetups = upcomingMeetups,
                 ShowActions = User.Identity.IsAuthenticated

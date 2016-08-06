@@ -1,4 +1,4 @@
-﻿@model MeetHub.ViewModels.HomeViewModel
+﻿@model MeetHub.ViewModels.MeetupsViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -25,14 +25,14 @@
                     @meetup.Group.Name
                     @if (Model.ShowActions)
                     {
-                        <button data-followee-id="@meetup.GroupId" class="btn btn-link btn-sm js-toggle-following">Follow?</button>
+                        <button data-followee-id="@meetup.GroupId" class="btn btn-link btn-sm js-toggle-following">Follow</button>
                     }
                 </span>
                 <span class="category">
                     @meetup.Category.Name
                     @if (Model.ShowActions)
                     {
-                        <button data-meetup-id="@meetup.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Attending?</button>
+                        <button data-meetup-id="@meetup.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Attend</button>
                     }
                 </span>
             </div>

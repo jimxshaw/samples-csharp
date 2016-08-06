@@ -1,6 +1,7 @@
 ﻿using MeetHub.Models;
 using MeetHub.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -23,9 +24,17 @@ namespace MeetHub.Controllers
             var meetups = _context.Attendances
                 .Where(a => a.AttendeeId == userId)
                 .Select(a => a.Meetup)
+                .Include(c => c.Category)
+                .Include(g => g.Group)
                 .ToList();
 
-            return View(meetups);
+            var viewModel = new MeetupsViewModel()
+            {
+                UpcomingMeetups = meetups,
+                ShowActions = User.Identity.IsAuthenticated
+            };
+
+            return View(viewModel);
         }
 
         [Authorize]

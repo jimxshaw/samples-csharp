@@ -1,7 +1,42 @@
-﻿@model IEnumerable<MeetHub.Models.Meetup>
+﻿@model MeetHub.ViewModels.MeetupsViewModel
 @{
     ViewBag.Title = "Attending";
 }
 
 <h2>Attending</h2>
 
+<ul class="meetups">
+    @foreach (var meetup in Model.UpcomingMeetups)
+    {
+        <li>
+            <div class="date">
+                <div class="year">
+                    @meetup.DateTime.ToString("yyyy")
+                </div>
+                <div class="month">
+                    @meetup.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @meetup.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="title">@meetup.Title</span>
+                <span class="group">
+                    @meetup.Group.Name
+                    @if (Model.ShowActions)
+                    {
+                        <button data-followee-id="@meetup.GroupId" class="btn btn-link btn-sm js-toggle-following">Follow</button>
+                    }
+                </span>
+                <span class="category">
+                    @meetup.Category.Name
+                    @if (Model.ShowActions)
+                    {
+                        <button data-meetup-id="@meetup.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Attend</button>
+                    }
+                </span>
+            </div>
+        </li>
+    }
+</ul>
