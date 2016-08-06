@@ -21,9 +21,14 @@
             </div>
             <div class="details">
                 <span class="title">@meetup.Title</span>
-                <span class="group">@meetup.Group.Name</span>
-                <span class="category">@meetup.Category.Name</span>
-                <button data-meetup-id="@meetup.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Attending?</button>
+                <span class="group">
+                    @meetup.Group.Name
+                    <button data-followee-id="@meetup.GroupId" class="btn btn-link btn-sm js-toggle-following">Follow?</button>
+                </span>
+                <span class="category">
+                    @meetup.Category.Name
+                    <button data-meetup-id="@meetup.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Attending?</button>
+                </span>
             </div>
         </li>
     }
@@ -32,17 +37,29 @@
 @section scripts {
     <script>
         $(document)
-            .ready(function() {
+            .ready(function () {
                 $(".js-toggle-attendance")
-                    .click(function(event) {
+                    .click(function (event) {
                         var button = $(event.target);
-                        $.post("/api/attendances", { "meetupId": button.attr("data-meetup-id") })
-                            .done(function() {
+                        $.post("/api/attendances", { meetupId: button.attr("data-meetup-id") })
+                            .done(function () {
                                 button.removeClass("btn-default")
                                     .addClass("btn-danger")
                                     .text("Attending");
                             })
-                            .fail(function() {
+                            .fail(function () {
+                                alert("Something failed!");
+                            });
+                    });
+
+                $(".js-toggle-following")
+                    .click(function (event) {
+                        var button = $(event.target);
+                        $.post("/api/followings", { followeeId: button.attr("data-followee-id") })
+                            .done(function () {
+                                button.text("Following");
+                            })
+                            .fail(function () {
                                 alert("Something failed!");
                             });
                     });

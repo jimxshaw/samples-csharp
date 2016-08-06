@@ -149,7 +149,7 @@ h6,
 .meetups > li .date .year {
     font-weight: bold;
     font-size: 14px;
-    padding: 2px 6px;
+    padding: 6px 6px;
 }
 
 .meetups > li .date .month {
@@ -183,7 +183,9 @@ h6,
 }
 
 .meetups > li .details .category {
-    font-size: 13px;
+    display: block;
+    font-style: italic;
+    font-size: 16px;
 }
 
 
