@@ -1,11 +1,11 @@
-﻿@model IEnumerable<MeetHub.Models.Meetup>
+﻿@model MeetHub.ViewModels.HomeViewModel
 
 @{
     ViewBag.Title = "Home Page";
 }
 
 <ul class="meetups">
-    @foreach (var meetup in Model)
+    @foreach (var meetup in Model.UpcomingMeetups)
     {
         <li>
             <div class="date">
@@ -23,11 +23,17 @@
                 <span class="title">@meetup.Title</span>
                 <span class="group">
                     @meetup.Group.Name
-                    <button data-followee-id="@meetup.GroupId" class="btn btn-link btn-sm js-toggle-following">Follow?</button>
+                    @if (Model.ShowActions)
+                    {
+                        <button data-followee-id="@meetup.GroupId" class="btn btn-link btn-sm js-toggle-following">Follow?</button>
+                    }
                 </span>
                 <span class="category">
                     @meetup.Category.Name
-                    <button data-meetup-id="@meetup.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Attending?</button>
+                    @if (Model.ShowActions)
+                    {
+                        <button data-meetup-id="@meetup.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Attending?</button>
+                    }
                 </span>
             </div>
         </li>

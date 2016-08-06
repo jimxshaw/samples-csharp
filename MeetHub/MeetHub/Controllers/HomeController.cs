@@ -1,4 +1,5 @@
 ﻿using MeetHub.Models;
+using MeetHub.ViewModels;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -22,7 +23,13 @@ namespace MeetHub.Controllers
                 .Include(m => m.Category)
                 .Where(m => m.DateTime > DateTime.Now);
 
-            return View(upcomingMeetups);
+            var viewModel = new HomeViewModel
+            {
+                UpcomingMeetups = upcomingMeetups,
+                ShowActions = User.Identity.IsAuthenticated
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult About()

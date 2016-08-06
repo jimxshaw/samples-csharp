@@ -16,6 +16,19 @@ namespace MeetHub.Controllers
         }
 
         [Authorize]
+        public ActionResult Attending()
+        {
+            // This line has to be assigned to a variable as LINQ won't recognize it.
+            var userId = User.Identity.GetUserId();
+            var meetups = _context.Attendances
+                .Where(a => a.AttendeeId == userId)
+                .Select(a => a.Meetup)
+                .ToList();
+
+            return View(meetups);
+        }
+
+        [Authorize]
         public ActionResult Create()
         {
             var viewModel = new MeetupFormViewModel
