@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using MeetHub.Models;
+using System.Collections.Generic;
 
 namespace MeetHub.ViewModels
 {
@@ -7,5 +7,6 @@ namespace MeetHub.ViewModels
     {
         public IEnumerable<Meetup> UpcomingMeetups { get; set; }
         public bool ShowActions { get; set; }
+        public string Heading { get; set; }
     }
 }

@@ -31,10 +31,11 @@ namespace MeetHub.Controllers
             var viewModel = new MeetupsViewModel()
             {
                 UpcomingMeetups = meetups,
-                ShowActions = User.Identity.IsAuthenticated
+                ShowActions = User.Identity.IsAuthenticated,
+                Heading = "My Meetups"
             };
 
-            return View(viewModel);
+            return View("Meetups", viewModel);
         }
 
         [Authorize]
