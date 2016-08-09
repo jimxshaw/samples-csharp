@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Queries
 {
@@ -7,6 +8,13 @@ namespace Queries
     {
         static void Main(string[] args)
         {
+            var numbers = MyLinq.Random().Where(n => n > 0.5).Take(10);
+
+            foreach (var number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+
             var movies = new List<Movie>()
             {
                 new Movie()
@@ -61,11 +69,17 @@ namespace Queries
 
             // The Filter method is not part of LINQ but is our own custom implementation that behaves like
             // LINQ's Where method. It's implemented in our MyLinq class.
-            var query = movies.Filter(m => m.Year > 1995);
 
-            foreach (var movie in query)
+
+            var query = from movie in movies
+                        where movie.Year < 2005
+                        orderby movie.Rating
+                        select movie;
+
+            var enumerator = query.GetEnumerator();
+            while (enumerator.MoveNext())
             {
-                Console.WriteLine(movie.Title);
+                Console.WriteLine(enumerator.Current.Title + " " + enumerator.Current.Rating);
             }
         }
     }
