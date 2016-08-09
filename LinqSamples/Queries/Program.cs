@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Queries
 {
@@ -60,11 +59,13 @@ namespace Queries
                 }
             };
 
-            var query = movies.Where(m => m.Year > 1990 && m.Year < 2000).OrderBy(m => m.Year);
+            // The Filter method is not part of LINQ but is our own custom implementation that behaves like
+            // LINQ's Where method. It's implemented in our MyLinq class.
+            var query = movies.Filter(m => m.Year > 1995);
 
             foreach (var movie in query)
             {
-                Console.WriteLine($"{movie.Title} - {movie.Year} - {movie.Rating}");
+                Console.WriteLine(movie.Title);
             }
         }
     }
