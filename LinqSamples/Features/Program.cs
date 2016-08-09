@@ -8,7 +8,7 @@ namespace Features
     {
         static void Main(string[] args)
         {
-            IEnumerable<Employee> sales = new Employee[]
+            var sales = new Employee[]
             {
                 new Employee()
                 {
@@ -22,7 +22,7 @@ namespace Features
                 }
             };
 
-            IEnumerable<Employee> developers = new List<Employee>()
+            var developers = new List<Employee>()
             {
                 new Employee()
                 {
@@ -68,7 +68,19 @@ namespace Features
 
             writeOut(5);
 
-            foreach (var employee in developers.Where(e => e.Name.Length == 4).OrderByDescending(e => e.Name))
+            //            foreach (var employee in developers.Where(e => e.Name.Length == 4).OrderByDescending(e => e.Name))
+            //            {
+            //                Console.WriteLine($"{employee.Id} - {employee.Name}");
+            //            }
+
+            var query = from employee in developers
+                        where employee.Id % 2 != 0
+                        orderby employee.Id
+                        select employee;
+
+            var query2 = developers.Where(e => e.Id % 2 != 0).OrderBy(e => e.Id);
+
+            foreach (var employee in query2)
             {
                 Console.WriteLine($"{employee.Id} - {employee.Name}");
             }
