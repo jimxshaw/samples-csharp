@@ -7,6 +7,8 @@ namespace MeetHub.Models
     {
         public int Id { get; set; }
 
+        public bool IsCanceled { get; set; }
+
         public ApplicationUser Group { get; set; }
 
         // The GroupId is a string and not an int is because in the 

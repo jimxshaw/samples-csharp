@@ -251,6 +251,10 @@
     <Compile Include="Migrations\201608052320083_AddFollowing.Designer.cs">
       <DependentUpon>201608052320083_AddFollowing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608101645069_AddIsCanceledPropertyToMeetupModel.cs" />
+    <Compile Include="Migrations\201608101645069_AddIsCanceledPropertyToMeetupModel.Designer.cs">
+      <DependentUpon>201608101645069_AddIsCanceledPropertyToMeetupModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Attendance.cs" />
@@ -373,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608052320083_AddFollowing.resx">
       <DependentUpon>201608052320083_AddFollowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608101645069_AddIsCanceledPropertyToMeetupModel.resx">
+      <DependentUpon>201608101645069_AddIsCanceledPropertyToMeetupModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
