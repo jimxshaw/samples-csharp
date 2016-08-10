@@ -1,10 +1,10 @@
-﻿using MeetHub.DTOs;
-using MeetHub.Models;
-using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
+using MeetHub.DTOs;
+using MeetHub.Models;
+using Microsoft.AspNet.Identity;
 
-namespace MeetHub.Controllers
+namespace MeetHub.Controllers.Api
 {
     // A Data Transfer Object (DTO) is an architectural pattern used to send data across processes.
     // For example, we have a piece of code running on the client and another piece of code running 

@@ -1,10 +1,10 @@
-﻿using MeetHub.DTOs;
-using MeetHub.Models;
-using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
+using MeetHub.DTOs;
+using MeetHub.Models;
+using Microsoft.AspNet.Identity;
 
-namespace MeetHub.Controllers
+namespace MeetHub.Controllers.Api
 {
     [Authorize]
     public class FollowingsController : ApiController
