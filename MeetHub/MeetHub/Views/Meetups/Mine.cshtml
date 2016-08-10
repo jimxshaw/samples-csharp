@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MeetHub.Models.Meetup>
+@{
+    ViewBag.Title = "Mine";
+}
+
+<h2>My Upcoming Meetups</h2>
+
+<ul class="meetups voffset4">
+    @foreach (var meetup in Model)
+    {
+        <li>
+            <div class="date">
+                <div class="year">
+                    @meetup.DateTime.ToString("yyyy")
+                </div>
+                <div class="month">
+                    @meetup.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @meetup.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="title">@meetup.Title</span>
+                <span class="venue">
+                    @meetup.Venue
+                </span>
+                <span class="category">
+                    @meetup.Category.Name
+                </span>
+            </div>
+        </li>
+    }
+</ul>

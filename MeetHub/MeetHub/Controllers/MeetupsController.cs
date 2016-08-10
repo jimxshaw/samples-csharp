@@ -1,6 +1,7 @@
 ﻿using MeetHub.Models;
 using MeetHub.ViewModels;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -36,6 +37,19 @@ namespace MeetHub.Controllers
             };
 
             return View("Meetups", viewModel);
+        }
+
+        [Authorize]
+        public ActionResult Mine()
+        {
+            // Find all of my meetups and make sure they're in the future. 
+            var userId = User.Identity.GetUserId();
+            var meetups = _context.Meetups
+                                    .Where(m => m.GroupId == userId && m.DateTime > DateTime.Now)
+                                    .Include(m => m.Category)
+                                    .ToList();
+
+            return View(meetups);
         }
 
         [Authorize]
@@ -75,7 +89,7 @@ namespace MeetHub.Controllers
 
             _context.Meetups.Add(meetup);
             _context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine", "Meetups");
         }
     }
 }
