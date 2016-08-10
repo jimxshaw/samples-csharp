@@ -1,5 +1,6 @@
 ﻿using MeetHub.Models;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Linq;
 using System.Web.Http;
 
@@ -33,6 +34,33 @@ namespace MeetHub.Controllers.Api
             }
 
             meetup.IsCancelled = true;
+
+            // We send a notification when a meetup is cancelled.
+            var notification = new Notification()
+            {
+                DateTime = DateTime.Now,
+                Meetup = meetup,
+                Type = NotificationType.MeetupCancelled,
+            };
+
+            // Capture all users who planned to attend the cancelled meetup.
+            var attendees = _context.Attendances
+                                .Where(a => a.MeetupId == meetup.Id)
+                                .Select(a => a.Attendee)
+                                .ToList();
+
+            // Iterate over the list of attendees and create for each a UserNotification object.
+            // Populate the object and then add it to our database context.
+            foreach (var attendee in attendees)
+            {
+                var userNotification = new UserNotification()
+                {
+                    User = attendee,
+                    Notification = notification,
+                };
+
+                _context.UserNotifications.Add(userNotification);
+            }
 
             _context.SaveChanges();
 
