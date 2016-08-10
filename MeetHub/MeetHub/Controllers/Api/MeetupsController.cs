@@ -24,6 +24,14 @@ namespace MeetHub.Controllers.Api
             // Only the user who created the meetup can cancel it.
             var userId = User.Identity.GetUserId();
             var meetup = _context.Meetups.Single(m => m.Id == id && m.GroupId == userId);
+
+            // We add an if conditional to check if the selected meetup is already cancelled.
+            // If yes then we break out and ignore the cancel request. 
+            if (meetup.IsCancelled)
+            {
+                return NotFound();
+            }
+
             meetup.IsCancelled = true;
 
             _context.SaveChanges();
