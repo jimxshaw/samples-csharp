@@ -23,7 +23,7 @@ namespace MeetHub.Controllers
             var upcomingMeetups = _context.Meetups
                 .Include(m => m.Group)
                 .Include(m => m.Category)
-                .Where(m => m.DateTime > DateTime.Now && !m.IsCanceled);
+                .Where(m => m.DateTime > DateTime.Now && !m.IsCancelled);
 
             var viewModel = new MeetupsViewModel
             {

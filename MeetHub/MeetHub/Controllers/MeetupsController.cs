@@ -45,7 +45,7 @@ namespace MeetHub.Controllers
             // Find all of my meetups but only those that are in the future and are not cancelled. 
             var userId = User.Identity.GetUserId();
             var meetups = _context.Meetups
-                                    .Where(m => m.GroupId == userId && m.DateTime > DateTime.Now && !m.IsCanceled)
+                                    .Where(m => m.GroupId == userId && m.DateTime > DateTime.Now && !m.IsCancelled)
                                     .Include(m => m.Category)
                                     .ToList();
 

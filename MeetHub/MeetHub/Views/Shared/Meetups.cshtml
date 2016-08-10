@@ -24,7 +24,7 @@
             <div class="details">
                 <span class="title">
                     @meetup.Title
-                    @if (meetup.IsCanceled)
+                    @if (meetup.IsCancelled)
                     {
                         <span class="label label-warning">Cancelled</span>
                     }
@@ -39,7 +39,7 @@
                 </span>
                 <span class="category">
                     @meetup.Category.Name
-                    @if (Model.ShowActions)
+                    @if (Model.ShowActions && !meetup.IsCancelled)
                     {
                         <button data-meetup-id="@meetup.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Attend</button>
                     }

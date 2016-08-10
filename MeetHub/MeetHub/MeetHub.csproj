@@ -256,6 +256,10 @@
     <Compile Include="Migrations\201608101645069_AddIsCanceledPropertyToMeetupModel.Designer.cs">
       <DependentUpon>201608101645069_AddIsCanceledPropertyToMeetupModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608102006530_RenamedIsCancelledPropertyOfMeetupModel.cs" />
+    <Compile Include="Migrations\201608102006530_RenamedIsCancelledPropertyOfMeetupModel.Designer.cs">
+      <DependentUpon>201608102006530_RenamedIsCancelledPropertyOfMeetupModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Attendance.cs" />
@@ -382,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608101645069_AddIsCanceledPropertyToMeetupModel.resx">
       <DependentUpon>201608101645069_AddIsCanceledPropertyToMeetupModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608102006530_RenamedIsCancelledPropertyOfMeetupModel.resx">
+      <DependentUpon>201608102006530_RenamedIsCancelledPropertyOfMeetupModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -24,7 +24,7 @@ namespace MeetHub.Controllers.Api
             // Only the user who created the meetup can cancel it.
             var userId = User.Identity.GetUserId();
             var meetup = _context.Meetups.Single(m => m.Id == id && m.GroupId == userId);
-            meetup.IsCanceled = true;
+            meetup.IsCancelled = true;
 
             _context.SaveChanges();
 
