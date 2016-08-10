@@ -33,7 +33,7 @@ namespace MeetHub.Controllers
             {
                 UpcomingMeetups = meetups,
                 ShowActions = User.Identity.IsAuthenticated,
-                Heading = "My Meetups"
+                Heading = "Meetups I'm attending"
             };
 
             return View("Meetups", viewModel);
@@ -42,10 +42,10 @@ namespace MeetHub.Controllers
         [Authorize]
         public ActionResult Mine()
         {
-            // Find all of my meetups and make sure they're in the future. 
+            // Find all of my meetups but only those that are in the future and are not cancelled. 
             var userId = User.Identity.GetUserId();
             var meetups = _context.Meetups
-                                    .Where(m => m.GroupId == userId && m.DateTime > DateTime.Now)
+                                    .Where(m => m.GroupId == userId && m.DateTime > DateTime.Now && !m.IsCanceled)
                                     .Include(m => m.Category)
                                     .ToList();
 

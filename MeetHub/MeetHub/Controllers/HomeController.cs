@@ -19,7 +19,7 @@ namespace MeetHub.Controllers
         public ActionResult Index()
         {
             // On our index page, we make sure to only display the meetups 
-            // that are not canceled.
+            // that are not cancelled.
             var upcomingMeetups = _context.Meetups
                 .Include(m => m.Group)
                 .Include(m => m.Category)
