@@ -22,9 +22,16 @@
                 </div>
             </div>
             <div class="details">
-                <span class="title">@meetup.Title</span>
+                <span class="title">
+                    @meetup.Title
+                    @if (meetup.IsCanceled)
+                    {
+                        <span class="label label-warning">Cancelled</span>
+                    }
+                </span>
                 <span class="group">
                     @meetup.Group.Name
+
                     @if (Model.ShowActions)
                     {
                         <button data-followee-id="@meetup.GroupId" class="btn btn-link btn-sm js-toggle-following">Follow</button>
