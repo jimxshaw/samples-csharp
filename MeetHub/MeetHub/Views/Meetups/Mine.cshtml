@@ -48,30 +48,49 @@
         $(document).ready(function() {
             $(".js-cancel-meetup").click(function(event) {
                 var cancelLink = $(event.target);
-                // Always ask for confirmation before executing actions such as cancel or delete.
-                if (confirm("Are you sure you want to cancel this meetup?")) {
-                    // We put our jquery AJAX here. We specify our web api controller and 
-                    // concatenate the meetup id take from the cancel link click event. 
-                    // The method is DELETE, which was used as an [HttpDelete] tag attribute 
-                    // above our Cancel action.
-                    // Afterwards we get a promise, meaning we have to handle the done and failed 
-                    // scenarios. 
-                    $.ajax({
-                        url: "/api/meetups/" + cancelLink.attr("data-meetup-id"),
-                        method: "DELETE"
-                    }).done(function() {
-                        // If everything worked according to plan then we remove the meetup 
-                        // from this view. From our cancelLink, we grab the li tag and fade it 
-                        // out with an animation. Within the fadeout, we remove the meetup li
-                        // from the DOM.
-                        cancelLink.parents("li").fadeOut(function() {
-                            $(this).remove();
-                        });
 
-                    }).fail(function () {
-                        alert("Something failed!");
-                    });
-                }
+                // Always ask for confirmation before executing actions such as cancel or delete.
+
+                bootbox.dialog({
+                    message: "Are you sure you want to cancel this meetup?",
+                    title: "Confirm",
+                    buttons: {
+                        no: {
+                            label: "No",
+                            className: "btn-default pull-left btn-lg",
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Yes",
+                            className: "btn-danger btn-lg",
+                            callback: function () {
+                                // We put our jquery AJAX here. We specify our web api controller and 
+                                // concatenate the meetup id take from the cancel link click event. 
+                                // The method is DELETE, which was used as an [HttpDelete] tag attribute 
+                                // above our Cancel action.
+                                // Afterwards we get a promise, meaning we have to handle the done and failed 
+                                // scenarios. 
+                                $.ajax({
+                                    url: "/api/meetups/" + cancelLink.attr("data-meetup-id"),
+                                    method: "DELETE"
+                                }).done(function () {
+                                    // If everything worked according to plan then we remove the meetup 
+                                    // from this view. From our cancelLink, we grab the li tag and fade it 
+                                    // out with an animation. Within the fadeout, we remove the meetup li
+                                    // from the DOM.
+                                    cancelLink.parents("li").fadeOut(function () {
+                                        $(this).remove();
+                                    });
+
+                                }).fail(function () {
+                                    alert("Something failed!");
+                                });
+                            }
+                        }
+                    }
+                });
             });
         });
     </script>
