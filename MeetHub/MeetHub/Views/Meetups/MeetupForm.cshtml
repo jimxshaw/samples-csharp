@@ -1,11 +1,11 @@
 ﻿@model MeetHub.ViewModels.MeetupFormViewModel
 
 @{
-    ViewBag.Title = "Add a Meetup";
+    ViewBag.Title = @Model.Heading;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add a Meetup</h2>
+<h2>@Model.Heading</h2>
 @using (Html.BeginForm("Create", "Meetups"))
 {
     <p class="alert alert-info">* fields are <strong>required</strong></p>
@@ -48,8 +48,8 @@
         @Html.LabelFor(m => m.Description)
         @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-    <button type="reset" class="btn btn-default pull-right">Clear</button>
+    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+    <button type="reset" class="btn btn-default btn-lg pull-right">Clear</button>
 
 }
 @section scripts

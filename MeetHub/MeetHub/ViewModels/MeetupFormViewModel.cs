@@ -29,6 +29,8 @@ namespace MeetHub.ViewModels
 
         public IEnumerable<Category> Categories { get; set; }
 
+        public string Heading { get; set; }
+
         public DateTime GetDateTime()
         {
             return DateTime.Parse($"{Date} {Time}");

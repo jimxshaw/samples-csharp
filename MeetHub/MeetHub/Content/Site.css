@@ -129,7 +129,7 @@ h6,
 .form-control {
     font-size: 17px;
     padding: 4px 12px;
-    height: 40px;
+    height: 44px;
 }
 
 .form-control:focus {
@@ -210,6 +210,15 @@ h6,
     display: block;
     font-style: italic;
     font-size: 16px;
+}
+
+.meetups > li .actions {
+    font-size: 15px;
+    display: none;
+}
+
+.meetups > li:hover .actions {
+    display: block;
 }
 
 

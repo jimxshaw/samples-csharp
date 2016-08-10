@@ -57,10 +57,11 @@ namespace MeetHub.Controllers
         {
             var viewModel = new MeetupFormViewModel
             {
+                Heading = "Add a Meetup",
                 Categories = _context.Categories.ToList()
             };
 
-            return View(viewModel);
+            return View("MeetupForm", viewModel);
         }
 
         [Authorize]
@@ -74,7 +75,7 @@ namespace MeetHub.Controllers
             {
                 // We have to re-initialize our Categories list or a null exception will be thrown.
                 viewModel.Categories = _context.Categories.ToList();
-                return View("Create", viewModel);
+                return View("MeetupForm", viewModel);
             }
 
             var meetup = new Meetup
@@ -90,6 +91,28 @@ namespace MeetHub.Controllers
             _context.Meetups.Add(meetup);
             _context.SaveChanges();
             return RedirectToAction("Mine", "Meetups");
+        }
+
+        [Authorize]
+        public ActionResult Edit(int id)
+        {
+            // We cannot allow anyone to edit any meetup. The meetup's group id must match 
+            // the id of the currently logged in user id. 
+            var userId = User.Identity.GetUserId();
+            var meetup = _context.Meetups.Single(m => m.Id == id && userId == m.GroupId);
+
+            var viewModel = new MeetupFormViewModel
+            {
+                Heading = "Edit this Meetup",
+                Categories = _context.Categories.ToList(),
+                Date = meetup.DateTime.ToString("MMM d yyyy"),
+                Time = meetup.DateTime.ToString("HH:mm"),
+                Title = meetup.Title,
+                Venue = meetup.Venue,
+                Description = meetup.Description
+            };
+
+            return View("MeetupForm", viewModel);
         }
     }
 }
