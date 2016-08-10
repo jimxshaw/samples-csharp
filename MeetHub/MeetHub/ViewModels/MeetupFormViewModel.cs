@@ -1,8 +1,11 @@
 ﻿
+using MeetHub.Controllers;
 using MeetHub.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+using System.Web.Mvc;
 
 namespace MeetHub.ViewModels
 {
@@ -37,9 +40,20 @@ namespace MeetHub.ViewModels
         {
             get
             {
+                // This anonymous method takes in a controller and returns an ActionResult.
+                // We put it in an expression that represents the update action in the 
+                // MeetupsController.
+                Expression<Func<MeetupsController, ActionResult>> update =
+                    (c => c.Update(this));
+                Expression<Func<MeetupsController, ActionResult>> create =
+                    (c => c.Create(this));
+
+                // By using an expression, we can extract the method name at runtime.
+                var action = (Id != 0) ? update : create;
+                var actionName = (action.Body as MethodCallExpression).Method.Name;
                 // If we're dealing with a new meetup, our action will be Create but 
                 // if we're dealing with an existing meetup then our action will be Update. 
-                return (Id != 0) ? "Update" : "Create";
+                return actionName;
             }
         }
 
