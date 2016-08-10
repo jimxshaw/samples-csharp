@@ -103,6 +103,7 @@ namespace MeetHub.Controllers
 
             var viewModel = new MeetupFormViewModel
             {
+                Id = meetup.Id,
                 Heading = "Edit this Meetup",
                 Categories = _context.Categories.ToList(),
                 Date = meetup.DateTime.ToString("MMM d yyyy"),
@@ -114,5 +115,33 @@ namespace MeetHub.Controllers
 
             return View("MeetupForm", viewModel);
         }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken] // This is to prevent Cross-site Request Forgery (CSRF) attacks.
+        public ActionResult Update(MeetupFormViewModel viewModel)
+        {
+            // If our view model is not valid, return the user back to the Create view with 
+            // validation messages showing.
+            if (!ModelState.IsValid)
+            {
+                // We have to re-initialize our Categories list or a null exception will be thrown.
+                viewModel.Categories = _context.Categories.ToList();
+                return View("MeetupForm", viewModel);
+            }
+
+            var userId = User.Identity.GetUserId();
+            var meetup = _context.Meetups.Single(m => m.Id == viewModel.Id && m.GroupId == userId);
+
+            meetup.Title = viewModel.Title;
+            meetup.Venue = viewModel.Venue;
+            meetup.DateTime = viewModel.GetDateTime();
+            meetup.Description = viewModel.Description;
+            meetup.CategoryId = viewModel.Category;
+
+            _context.SaveChanges();
+            return RedirectToAction("Mine", "Meetups");
+        }
+
     }
 }

@@ -6,12 +6,16 @@
 }
 
 <h2>@Model.Heading</h2>
-@using (Html.BeginForm("Create", "Meetups"))
+@using (Html.BeginForm(Model.Action, "Meetups"))
 {
     <p class="alert alert-info">* fields are <strong>required</strong></p>
     //     This one line is all it takes to prevent
     //     Cross -site Request Forgery (CSRF) attacks.
     @Html.AntiForgeryToken()
+    // We render the meetup's id, if it exists, as a hidden field on this form.
+    // The id, or lack of it, will determine which action this form takes. It 
+    // will either be Create if no id exists or Update if an id does exist. 
+    @Html.HiddenFor(m => m.Id)
 
     <div class="form-group">
         @Html.LabelFor(m => m.Title)

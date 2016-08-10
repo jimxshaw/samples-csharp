@@ -8,6 +8,8 @@ namespace MeetHub.ViewModels
 {
     public class MeetupFormViewModel
     {
+        public int Id { get; set; }
+
         [Required]
         public string Venue { get; set; }
 
@@ -30,6 +32,16 @@ namespace MeetHub.ViewModels
         public IEnumerable<Category> Categories { get; set; }
 
         public string Heading { get; set; }
+
+        public string Action
+        {
+            get
+            {
+                // If we're dealing with a new meetup, our action will be Create but 
+                // if we're dealing with an existing meetup then our action will be Update. 
+                return (Id != 0) ? "Update" : "Create";
+            }
+        }
 
         public DateTime GetDateTime()
         {
