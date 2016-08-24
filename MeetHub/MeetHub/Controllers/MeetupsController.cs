@@ -131,13 +131,11 @@ namespace MeetHub.Controllers
             }
 
             var userId = User.Identity.GetUserId();
-            var meetup = _context.Meetups.Single(m => m.Id == viewModel.Id && m.GroupId == userId);
+            var meetup = _context.Meetups
+                .Include(m => m.Attendances.Select(a => a.Attendee))
+                .Single(m => m.Id == viewModel.Id && m.GroupId == userId);
 
-            meetup.Title = viewModel.Title;
-            meetup.Venue = viewModel.Venue;
-            meetup.DateTime = viewModel.GetDateTime();
-            meetup.Description = viewModel.Description;
-            meetup.CategoryId = viewModel.Category;
+            meetup.Modify(viewModel.GetDateTime(), viewModel.Venue, viewModel.Category);
 
             _context.SaveChanges();
             return RedirectToAction("Mine", "Meetups");

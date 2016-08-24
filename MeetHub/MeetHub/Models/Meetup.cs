@@ -61,5 +61,27 @@ namespace MeetHub.Models
                 attendee.Notify(notification);
             }
         }
+
+        public void Modify(DateTime dateTime, string venue, byte category)
+        {
+            // Instantiate a new Notification for this particular meetup object telling it that
+            // it's being updated. This meetup's DateTime and Venue will be the notification's 
+            // original DateTime and Venue.
+            var notification = new Notification(NotificationType.MeetupUpdated, this);
+            notification.OriginalDateTime = DateTime;
+            notification.OriginalVenue = Venue;
+
+            // This meetup's properties will be set with the new one passed in.
+            Venue = venue;
+            DateTime = dateTime;
+            CategoryId = category;
+
+            // For each attendee in the attendances collection that will attend this meetup, 
+            // notify them with the new notification object.
+            foreach (var attendee in Attendances.Select(a => a.Attendee))
+            {
+                attendee.Notify(notification);
+            }
+        }
     }
 }
