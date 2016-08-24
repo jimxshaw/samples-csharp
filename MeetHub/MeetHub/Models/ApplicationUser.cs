@@ -39,14 +39,7 @@ namespace MeetHub.Models
 
         public void Notify(Notification notification)
         {
-            var userNotification = new UserNotification()
-            {
-                // We're within application user and we simply set the User to keyword this, the ApplicationUser.
-                User = this,
-                Notification = notification,
-            };
-
-            UserNotifications.Add(userNotification);
+            UserNotifications.Add(new UserNotification(this, notification));
         }
     }
 }

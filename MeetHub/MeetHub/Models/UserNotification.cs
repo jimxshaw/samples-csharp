@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MeetHub.Models
@@ -17,10 +18,34 @@ namespace MeetHub.Models
         [Column(Order = 2)]
         public int NotificationId { get; set; }
 
-        public ApplicationUser User { get; set; }
+        // User and Notification have private setters so that they won't be arbitrarily set. They'll
+        // always be in their valid states. 
+        public ApplicationUser User { get; private set; }
 
-        public Notification Notification { get; set; }
+        public Notification Notification { get; private set; }
 
         public bool IsRead { get; set; }
+
+        // Our default constructor has to be created in order for Entity Framework to call it at run time, as it cannot 
+        // call the custom constructor. Everyone else has to use the custom constructor though because we 
+        // place the protected accessor on the default constructor. 
+        protected UserNotification()
+        {
+        }
+
+        public UserNotification(ApplicationUser user, Notification notification)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (notification == null)
+            {
+                throw new ArgumentNullException("notification");
+            }
+            User = user;
+            Notification = notification;
+        }
     }
 }
