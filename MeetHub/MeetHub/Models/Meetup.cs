@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace MeetHub.Models
@@ -34,6 +36,13 @@ namespace MeetHub.Models
 
         public string Description { get; set; }
 
+        // We use a private setter because when we initialize this collection, we don't want to accidentally set 
+        // it again with another collection. 
+        public ICollection<Attendance> Attendances { get; private set; }
 
+        public Meetup()
+        {
+            Attendances = new Collection<Attendance>();
+        }
     }
 }

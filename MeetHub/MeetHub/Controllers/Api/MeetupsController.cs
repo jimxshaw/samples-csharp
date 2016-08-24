@@ -1,5 +1,6 @@
 ﻿using MeetHub.Models;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 
@@ -23,7 +24,12 @@ namespace MeetHub.Controllers.Api
         {
             // Only the user who created the meetup can cancel it.
             var userId = User.Identity.GetUserId();
-            var meetup = _context.Meetups.Single(m => m.Id == id && m.GroupId == userId);
+
+            // Use the .Include method for eager loading.
+            // Capture all users who planned to attend the cancelled meetup.
+            var meetup = _context.Meetups
+                .Include(m => m.Attendances.Select(a => a.Attendee))
+                .Single(m => m.Id == id && m.GroupId == userId);
 
             // We add an if conditional to check if the selected meetup is already cancelled.
             // If yes then we break out and ignore the cancel request. 
@@ -37,15 +43,10 @@ namespace MeetHub.Controllers.Api
             // We send a notification when a meetup is cancelled.
             var notification = new Notification(NotificationType.MeetupCancelled, meetup);
 
-            // Capture all users who planned to attend the cancelled meetup.
-            var attendees = _context.Attendances
-                                .Where(a => a.MeetupId == meetup.Id)
-                                .Select(a => a.Attendee)
-                                .ToList();
-
-            // Iterate over the list of attendees and create for each a UserNotification object.
-            // Populate the object and then add it to our database context.
-            foreach (var attendee in attendees)
+            // Iterate over the list of attendees from our meetup's attendances collection.
+            // We pass the notification from above into the .Notify method of each attendee 
+            // then add it to our database context.
+            foreach (var attendee in meetup.Attendances.Select(a => a.Attendee))
             {
                 attendee.Notify(notification);
             }

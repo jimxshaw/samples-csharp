@@ -10,9 +10,13 @@ namespace MeetHub.Models
         // set later after the object has been created.
         // By having private setters, they're akin to read-only fields and will always be in their valid states. 
         public int Id { get; private set; }
+
         public DateTime DateTime { get; private set; }
+
         public NotificationType Type { get; private set; }
+
         public DateTime? OriginalDateTime { get; set; }
+
         public string OriginalVenue { get; set; }
 
         [Required]
