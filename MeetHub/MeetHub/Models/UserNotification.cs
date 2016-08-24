@@ -7,19 +7,22 @@ namespace MeetHub.Models
     // This is the cross table between the User and the Notification.
     public class UserNotification
     {
+        // Various properties have a private setters so that they won't be arbitrarily set. 
+        // For example, the UserId is a unique identifier. It shouldn't ever be 
+        // set later after the object has been created.
+        // By having private setters, they're akin to read-only fields and will always be in their valid states.
+
         // We must explicitly state the composite primary keys. As usual,
         // when we use the Key attribute we must also explicitly order of the 
         // columns. 
         [Key]
         [Column(Order = 1)]
-        public string UserId { get; set; }
+        public string UserId { get; private set; }
 
         [Key]
         [Column(Order = 2)]
-        public int NotificationId { get; set; }
+        public int NotificationId { get; private set; }
 
-        // User and Notification have private setters so that they won't be arbitrarily set. They'll
-        // always be in their valid states. 
         public ApplicationUser User { get; private set; }
 
         public Notification Notification { get; private set; }
