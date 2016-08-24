@@ -20,11 +20,13 @@ namespace MeetHub.Models
         // That's a key responsibility of the class.
         public ICollection<Following> Followers { get; set; }
         public ICollection<Following> Followees { get; set; }
+        public ICollection<UserNotification> UserNotifications { get; set; }
 
         public ApplicationUser()
         {
             Followers = new Collection<Following>();
             Followees = new Collection<Following>();
+            UserNotifications = new Collection<UserNotification>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -33,6 +35,18 @@ namespace MeetHub.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
+        }
+
+        public void Notify(Notification notification)
+        {
+            var userNotification = new UserNotification()
+            {
+                // We're within application user and we simply set the User to keyword this, the ApplicationUser.
+                User = this,
+                Notification = notification,
+            };
+
+            UserNotifications.Add(userNotification);
         }
     }
 }
