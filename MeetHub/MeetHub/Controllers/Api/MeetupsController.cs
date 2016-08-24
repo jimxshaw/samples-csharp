@@ -38,19 +38,10 @@ namespace MeetHub.Controllers.Api
                 return NotFound();
             }
 
-            meetup.IsCancelled = true;
+            // Cancel the meetup.
+            meetup.Cancel();
 
-            // We send a notification when a meetup is cancelled.
-            var notification = new Notification(NotificationType.MeetupCancelled, meetup);
-
-            // Iterate over the list of attendees from our meetup's attendances collection.
-            // We pass the notification from above into the .Notify method of each attendee 
-            // then add it to our database context.
-            foreach (var attendee in meetup.Attendances.Select(a => a.Attendee))
-            {
-                attendee.Notify(notification);
-            }
-
+            // Save the cancellation changes to our database. 
             _context.SaveChanges();
 
             return Ok();

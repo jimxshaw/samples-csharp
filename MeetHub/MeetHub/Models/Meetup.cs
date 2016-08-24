@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace MeetHub.Models
 {
@@ -9,7 +10,7 @@ namespace MeetHub.Models
     {
         public int Id { get; set; }
 
-        public bool IsCancelled { get; set; }
+        public bool IsCancelled { get; private set; }
 
         public ApplicationUser Group { get; set; }
 
@@ -43,6 +44,22 @@ namespace MeetHub.Models
         public Meetup()
         {
             Attendances = new Collection<Attendance>();
+        }
+
+        public void Cancel()
+        {
+            IsCancelled = true;
+
+            // We send a notification when a meetup is cancelled.
+            var notification = new Notification(NotificationType.MeetupCancelled, this);
+
+            // Iterate over the list of attendees from our meetup's attendances collection.
+            // We pass the notification from above into the .Notify method of each attendee 
+            // then add it to our database context.
+            foreach (var attendee in Attendances.Select(a => a.Attendee))
+            {
+                attendee.Notify(notification);
+            }
         }
     }
 }
