@@ -27,10 +27,12 @@ namespace MeetHub.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // An attendance has to have a meetup. We'll never delete any meetups though, only cancel them.
+            // An attendance has to have a meetup. A meetup has many attendances. 
+            // We'll never delete any meetups though, only cancel them.
             // So we'll have to turn off cascade on delete.
             modelBuilder.Entity<Attendance>()
-                .HasRequired(a => a.Meetup).WithMany()
+                .HasRequired(a => a.Meetup)
+                .WithMany(m => m.Attendances)
                 .WillCascadeOnDelete(false);
 
             // An application user has many followers. Each follower has a required followee.
@@ -48,7 +50,7 @@ namespace MeetHub.Models
             // Each UserNotification has only 1 user and 1 user can have many UserNotifications.
             modelBuilder.Entity<UserNotification>()
                 .HasRequired(n => n.User)
-                .WithMany()
+                .WithMany(u => u.UserNotifications)
                 .WillCascadeOnDelete(false);
 
             // Be sure to call base last.
