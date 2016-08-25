@@ -50,8 +50,8 @@ namespace MeetHub.Models
         {
             IsCancelled = true;
 
-            // We send a notification when a meetup is cancelled.
-            var notification = new Notification(NotificationType.MeetupCancelled, this);
+            // We send a notification when a meetup is cancelled. We call the static factory method.
+            var notification = Notification.MeetupCancelled(this);
 
             // Iterate over the list of attendees from our meetup's attendances collection.
             // We pass the notification from above into the .Notify method of each attendee 
@@ -66,10 +66,8 @@ namespace MeetHub.Models
         {
             // Instantiate a new Notification for this particular meetup object telling it that
             // it's being updated. This meetup's DateTime and Venue will be the notification's 
-            // original DateTime and Venue.
-            var notification = new Notification(NotificationType.MeetupUpdated, this);
-            notification.OriginalDateTime = DateTime;
-            notification.OriginalVenue = Venue;
+            // original DateTime and Venue. We call the static factory method.
+            var notification = Notification.MeetupUpdated(this, DateTime, Venue);
 
             // This meetup's properties will be set with the new one passed in.
             Venue = venue;
