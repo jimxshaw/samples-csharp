@@ -45,10 +45,49 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
+<script type="text/x-template" id="notifications-template">
+    <ul>
+        <%
+        _.each(notifications, function(notification) {
+        @* A notification type of 1 means a meetup has been cancelled. *@
+        if (notification.type == 1) { %>
+        <li><%= notification.meetup.group.name %> has cancelled the <%= notification.meetup.title %> meetup at <%= notification.meetup.venue %> at <%= notification.meetup.dateTime %>.</li>
+        <% }
+
+        @* A notification type of 2 means a meetup has been updated. *@
+        else if (notification.type == 2) {
+            var changes = [],
+                originalValues = [],
+                newValues = [];
+
+            @* If the original venue and meetup venue values don't match then that means 
+               the venue has changed.
+            *@
+            if (notification.originalValue != notification.meetup.venue) {
+                changes.push("venue");
+                originalValues.push(notification.originalVenue);
+                newValues.push(notification.meetup.venue);
+            }
+
+            if (notification.originalDateTime != notification.meetup.dateTime) {
+                changes.push("date/time");
+                originalValues.push(notification.originalDateTime);
+                newValues.push(notification.meetup.dateTime);
+            }
+        %>
+            <li><%= notification.meetup.group.name %> has changed the <%= changes.join(" and ") %> of the <%= notification.meetup.title %> meetup from <%= originalValues.join("/") %> to <%= newValues.join("/") %>.</li>
+        <%
+
+        }
+
+        })
+        %>
+    </ul>
+    </script>
     <script>
         $(document).ready(function () {
-            // Use jQuery to hit our notifications api endpoint to retrieve the 
-            // returned JSON, which contains the count of notifications. 
+            // Use jQuery to hit our notifications api endpoint to retrieve the
+            // returned JSON, which contains the count of notifications.
             $.getJSON("/api/notifications",
                 function (notifications) {
                     // Capture the js-notifications-count class that's part of our
@@ -59,23 +98,21 @@
                         .text(notifications.length)
                         .removeClass("hide")
                         .addClass("animated shake");
+
+                    // After clicking the notification globe/badge, we want a bootstrap popover with
+                    // notification info.
+                    $(".notifications").popover({
+                        html: true,
+                        title: "Notifications",
+                        content: function () {
+                            // All underscore.js methods start with _. like template here.
+                            var compiled = _.template($("#notifications-template").html());
+                            return compiled({ notifications: notifications });
+                        },
+                        placement: "bottom"
+                    });
                 }
             );
-
-            // After clicking the notification globe/badge, we want a bootstrap popover with 
-            // notification info.
-            $(".notifications").popover({
-                html: true,
-                title: "Notifications",
-                content: function () {
-                    // All underscore.js methods start with _. like template here.
-                    var compiled = _.template("Hello <%= name %>");
-                    var html = compiled({ name: "James" });
-
-                    return html;
-                },
-                placement: "bottom"
-            });
         });
     </script>
 </body>
