@@ -36,6 +36,9 @@ namespace MeetHub.Controllers.Api
                 .Include(n => n.Meetup.Group)
                 .ToList();
 
+            // Before asking AutoMapper to map a source type to the target type, we have to 
+            // tell it a mapping between the two types. 
+
             return notifications.Select(n => new NotificationDataTransferObject()
             {
                 DateTime = n.DateTime,
