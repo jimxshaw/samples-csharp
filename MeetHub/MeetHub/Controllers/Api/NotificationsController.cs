@@ -1,4 +1,5 @@
-﻿using MeetHub.Models;
+﻿using AutoMapper;
+using MeetHub.Models;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -37,30 +38,11 @@ namespace MeetHub.Controllers.Api
                 .ToList();
 
             // Before asking AutoMapper to map a source type to the target type, we have to 
-            // tell it a mapping between the two types.
-
-
-            return notifications.Select(n => new NotificationDataTransferObject()
-            {
-                DateTime = n.DateTime,
-                Meetup = new MeetupDataTransferObject()
-                {
-                    Group = new UserDataTransferObject()
-                    {
-                        Id = n.Meetup.Group.Id,
-                        Name = n.Meetup.Group.Name
-                    },
-                    DateTime = n.Meetup.DateTime,
-                    Id = n.Meetup.Id,
-                    IsCancelled = n.Meetup.IsCancelled,
-                    Title = n.Meetup.Title,
-                    Venue = n.Meetup.Venue,
-                    Description = n.Meetup.Description
-                },
-                OriginalDateTime = n.OriginalDateTime,
-                OriginalVenue = n.OriginalVenue,
-                Type = n.Type
-            });
+            // tell it a mapping between the two types. Those mappings take place in the 
+            // MappingProfile class in MeetHub\App_Start folder.
+            // In our return statement, we're not actually calling the Map method. We're simply 
+            // passing a reference to that method in the Mapper class, which is part of AutoMapper. 
+            return notifications.Select(Mapper.Map<Notification, NotificationDataTransferObject>);
         }
     }
 }
