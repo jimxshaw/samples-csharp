@@ -90,6 +90,14 @@
             // returned JSON, which contains the count of notifications.
             $.getJSON("/api/notifications",
                 function (notifications) {
+
+                    // To prevent the user from seeing a blank popover when there are no 
+                    // new notifications, we immediately exit the function when the 
+                    // notification JSON array is 0.
+                    if (notifications.length == 0) {
+                        return;
+                    }
+
                     // Capture the js-notifications-count class that's part of our
                     // badge in _LoginPartial.cshtml, put the notifications count
                     // there while removing the bootstrap hide class.
