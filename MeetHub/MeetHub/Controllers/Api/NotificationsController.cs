@@ -18,7 +18,11 @@ namespace MeetHub.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-        public IEnumerable<Notification> GetNewNotifications()
+        // We return a collection of NotificationDTO instead of simply Notification in order 
+        // to tailor the returned data to exactly what we want. Otherwise, we'd get so much 
+        // meta-data such as PasswordHash, SecurityStamp etc. or other sensitive info we 
+        // don't want to expose to the client.  
+        public IEnumerable<NotificationDataTransferObject> GetNewNotifications()
         {
             string userId = User.Identity.GetUserId();
 
@@ -32,7 +36,27 @@ namespace MeetHub.Controllers.Api
                 .Include(n => n.Meetup.Group)
                 .ToList();
 
-            return notifications;
+            return notifications.Select(n => new NotificationDataTransferObject()
+            {
+                DateTime = n.DateTime,
+                Meetup = new MeetupDataTransferObject()
+                {
+                    Group = new UserDataTransferObject()
+                    {
+                        Id = n.Meetup.Group.Id,
+                        Name = n.Meetup.Group.Name
+                    },
+                    DateTime = n.Meetup.DateTime,
+                    Id = n.Meetup.Id,
+                    IsCancelled = n.Meetup.IsCancelled,
+                    Title = n.Meetup.Title,
+                    Venue = n.Meetup.Venue,
+                    Description = n.Meetup.Description
+                },
+                OriginalDateTime = n.OriginalDateTime,
+                OriginalVenue = n.OriginalVenue,
+                Type = n.Type
+            });
         }
     }
 }
