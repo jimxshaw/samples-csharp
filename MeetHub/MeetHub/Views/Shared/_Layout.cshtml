@@ -67,8 +67,12 @@
             $(".notifications").popover({
                 html: true,
                 title: "Notifications",
-                content: function() {
-                    return "Hello world!";
+                content: function () {
+                    // All underscore.js methods start with _. like template here.
+                    var compiled = _.template("Hello <%= name %>");
+                    var html = compiled({ name: "James" });
+
+                    return html;
                 },
                 placement: "bottom"
             });
