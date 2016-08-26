@@ -29,11 +29,11 @@ namespace MeetHub.Controllers.Api
             string userId = User.Identity.GetUserId();
 
             // Get user notifications for the currently logged in user, select the 
-            // actual notifications that have details of what has happened 
+            // actual notifications, which haven't been read, that have details of what happened 
             // from the user notifications list then eager load the meetup & artist that 
             // this notification is referencing.
             var notifications = _context.UserNotifications
-                .Where(un => un.UserId == userId)
+                .Where(un => un.UserId == userId && !un.IsRead)
                 .Select(un => un.Notification)
                 .Include(n => n.Meetup.Group)
                 .ToList();
