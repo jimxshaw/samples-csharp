@@ -44,5 +44,21 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+            // Use jQuery to hit our notifications api endpoint to retrieve the 
+            // returned JSON, which contains the count of notifications. 
+            $.getJSON("/api/notifications",
+                function (notifications) {
+                    // Capture the js-notifications-count class that's part of our
+                    // badge in _LoginPartial.cshtml, put the notifications count
+                    // there while removing the bootstrap hide class.
+                    $(".js-notifications-count")
+                        .text(notifications.length)
+                        .removeClass("hide");
+                });
+        });
+    </script>
 </body>
 </html>

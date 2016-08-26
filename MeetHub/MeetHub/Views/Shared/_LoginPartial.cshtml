@@ -9,7 +9,13 @@
             <li class="notifications">
                 <a href="#">
                     <i class="glyphicon glyphicon-globe"></i>
-                    <span class="badge">2</span>
+                    @*
+                        Our badge has the bootstrap hide class, which hides it when our
+                        js-notifications-count class determines we have no notifications.
+                        The js-notifications-count is used with jQuery written on the
+                        _Layout.cshtml layout page to query our database.
+                    *@
+                    <span class="badge hide js-notifications-count"></span>
                 </a>
             </li>
             <li class="dropdown">
