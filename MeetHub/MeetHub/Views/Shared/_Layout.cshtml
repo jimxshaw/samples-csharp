@@ -54,9 +54,11 @@
                     // Capture the js-notifications-count class that's part of our
                     // badge in _LoginPartial.cshtml, put the notifications count
                     // there while removing the bootstrap hide class.
+                    // Incorporated animate.css by using its animation classes.
                     $(".js-notifications-count")
                         .text(notifications.length)
-                        .removeClass("hide");
+                        .removeClass("hide")
+                        .addClass("animated shake");
                 });
         });
     </script>
