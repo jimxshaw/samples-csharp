@@ -59,7 +59,19 @@
                         .text(notifications.length)
                         .removeClass("hide")
                         .addClass("animated shake");
-                });
+                }
+            );
+
+            // After clicking the notification globe/badge, we want a bootstrap popover with 
+            // notification info.
+            $(".notifications").popover({
+                html: true,
+                title: "Notifications",
+                content: function() {
+                    return "Hello world!";
+                },
+                placement: "bottom"
+            });
         });
     </script>
 </body>
