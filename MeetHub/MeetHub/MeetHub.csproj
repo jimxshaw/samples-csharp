@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -210,13 +214,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\AttendancesController.cs" />
-    <Compile Include="Controllers\Api\CategoryDataTransferObject.cs" />
+    <Compile Include="DTOs\CategoryDataTransferObject.cs" />
     <Compile Include="Controllers\Api\FollowingsController.cs" />
-    <Compile Include="Controllers\Api\MeetupDataTransferObject.cs" />
+    <Compile Include="DTOs\MeetupDataTransferObject.cs" />
     <Compile Include="Controllers\Api\MeetupsController.cs" />
-    <Compile Include="Controllers\Api\NotificationDataTransferObject.cs" />
+    <Compile Include="DTOs\NotificationDataTransferObject.cs" />
     <Compile Include="Controllers\Api\NotificationsController.cs" />
-    <Compile Include="Controllers\Api\UserDataTransferObject.cs" />
+    <Compile Include="DTOs\UserDataTransferObject.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeetupsController.cs" />
