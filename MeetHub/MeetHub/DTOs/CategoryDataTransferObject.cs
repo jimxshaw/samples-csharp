@@ -1,4 +1,4 @@
-﻿namespace MeetHub.Controllers.Api
+﻿namespace MeetHub.DTOs
 {
     public class CategoryDataTransferObject
     {

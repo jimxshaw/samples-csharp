@@ -1,7 +1,8 @@
-﻿using MeetHub.Models;
+﻿using MeetHub.Controllers.Api;
+using MeetHub.Models;
 using System;
 
-namespace MeetHub.Controllers.Api
+namespace MeetHub.DTOs
 {
     // NotificationDTO is simply a copy of Notification but with 
     // unneeded properties removed or changed. 

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MeetHub.Controllers.Api;
+using MeetHub.DTOs;
 using MeetHub.Models;
 
 namespace MeetHub

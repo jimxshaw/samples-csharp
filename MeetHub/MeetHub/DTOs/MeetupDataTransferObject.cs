@@ -1,6 +1,7 @@
-﻿using System;
+﻿using MeetHub.Controllers.Api;
+using System;
 
-namespace MeetHub.Controllers.Api
+namespace MeetHub.DTOs
 {
     // MeetupDTO is simply a copy of Meetup but with 
     // unneeded properties removed or changed.
