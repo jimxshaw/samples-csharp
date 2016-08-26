@@ -212,6 +212,7 @@
     <Compile Include="Controllers\Api\AttendancesController.cs" />
     <Compile Include="Controllers\Api\FollowingsController.cs" />
     <Compile Include="Controllers\Api\MeetupsController.cs" />
+    <Compile Include="Controllers\Api\NotificationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeetupsController.cs" />
