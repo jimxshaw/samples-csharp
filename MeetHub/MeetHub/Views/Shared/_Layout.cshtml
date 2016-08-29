@@ -51,7 +51,7 @@
         _.each(notifications, function(notification) {
         @* A notification type of 1 means a meetup has been cancelled. *@
         if (notification.type == 1) { %>
-        <li><span class="highlight"><%= notification.meetup.group.name %></span> has cancelled the <%= notification.meetup.title %> meetup at <%= notification.meetup.venue %> at <%= notification.meetup.dateTime %>.</li>
+        <li><span class="highlight"><%= notification.meetup.group.name %></span> has cancelled the <%= notification.meetup.title %> meetup at <%= notification.meetup.venue %> at <%= moment(notification.meetup.dateTime).format("MMM D YYYY h:mm a") %>.</li>
         <% }
 
         @* A notification type of 2 means a meetup has been updated. *@
@@ -71,8 +71,8 @@
 
             if (notification.originalDateTime != notification.meetup.dateTime) {
                 changes.push("date/time");
-                originalValues.push(notification.originalDateTime);
-                newValues.push(notification.meetup.dateTime);
+                originalValues.push(moment(notification.originalDateTime).format("MMM D YYYY h:mm a"));
+                newValues.push(moment(notification.meetup.dateTime).format("MMM D YYYY h:mm a"));
             }
         %>
             <li><span class="highlight"><%= notification.meetup.group.name %></span> has changed the <%= changes.join(" and ") %> of the <%= notification.meetup.title %> meetup from <%= originalValues.join("/") %> to <%= newValues.join("/") %>.</li>
