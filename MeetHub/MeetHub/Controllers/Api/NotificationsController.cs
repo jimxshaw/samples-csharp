@@ -45,5 +45,21 @@ namespace MeetHub.Controllers.Api
             // passing a reference to that method in the Mapper class, which is part of AutoMapper. 
             return notifications.Select(Mapper.Map<Notification, NotificationDataTransferObject>);
         }
+
+        [HttpPost]
+        public IHttpActionResult MarkAsRead()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var notifications = _context.UserNotifications
+                .Where(un => un.UserId == userId && !un.IsRead)
+                .ToList();
+
+            notifications.ForEach(n => n.Read());
+
+            _context.SaveChanges();
+
+            return Ok();
+        }
     }
 }

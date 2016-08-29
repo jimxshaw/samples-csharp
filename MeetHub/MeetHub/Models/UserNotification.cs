@@ -27,7 +27,7 @@ namespace MeetHub.Models
 
         public Notification Notification { get; private set; }
 
-        public bool IsRead { get; set; }
+        public bool IsRead { get; private set; }
 
         // Our default constructor has to be created in order for Entity Framework to call it at run time, as it cannot 
         // call the custom constructor. Everyone else has to use the custom constructor though because we 
@@ -49,6 +49,11 @@ namespace MeetHub.Models
             }
             User = user;
             Notification = notification;
+        }
+
+        public void Read()
+        {
+            IsRead = true;
         }
     }
 }
