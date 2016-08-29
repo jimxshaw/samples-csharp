@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using Foodies.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Foodies;
-using Foodies.Controllers;
+using System.Web.Mvc;
 
 namespace Foodies.Tests.Controllers
 {
@@ -35,7 +30,7 @@ namespace Foodies.Tests.Controllers
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.AreEqual(null, result.ViewBag.Message);
         }
 
         [TestMethod]
