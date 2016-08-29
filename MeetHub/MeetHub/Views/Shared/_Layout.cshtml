@@ -46,7 +46,7 @@
     @RenderSection("scripts", required: false)
 
 <script type="text/x-template" id="notifications-template">
-    <ul>
+    <ul class="notifications">
         <%
         _.each(notifications, function(notification) {
         @* A notification type of 1 means a meetup has been cancelled. *@
@@ -108,7 +108,7 @@
                         .addClass("animated shake");
 
                     // After clicking the notification globe/badge, we want a bootstrap popover with
-                    // notification info.
+                    // notification info. The attributes and values come from bootstrap -> javascript -> popover.
                     $(".notifications").popover({
                         html: true,
                         title: "Notifications",
@@ -117,7 +117,8 @@
                             var compiled = _.template($("#notifications-template").html());
                             return compiled({ notifications: notifications });
                         },
-                        placement: "bottom"
+                        placement: "bottom",
+                        template: '<div class="popover popover-notifications" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
                     });
                 }
             );
