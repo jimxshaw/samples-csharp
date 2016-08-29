@@ -259,7 +259,9 @@ h6,
     font-weight: bold;
 }
 
-
+#searchMeetups {
+    width: 300px;
+}
 
 
 

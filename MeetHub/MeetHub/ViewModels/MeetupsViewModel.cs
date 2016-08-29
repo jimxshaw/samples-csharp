@@ -8,5 +8,6 @@ namespace MeetHub.ViewModels
         public IEnumerable<Meetup> UpcomingMeetups { get; set; }
         public bool ShowActions { get; set; }
         public string Heading { get; set; }
+        public string SearchTerm { get; set; }
     }
 }
