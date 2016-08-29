@@ -52,6 +52,14 @@ namespace MeetHub.Controllers
             return View(meetups);
         }
 
+        [HttpPost]
+        public ActionResult Search(MeetupsViewModel viewModel)
+        {
+            // Searching is done through the search box on the Index page. We'll use HttpPost to submit a query to 
+            // the Index action of our HomeController. 
+            return RedirectToAction("Index", "Home", new { query = viewModel.SearchTerm });
+        }
+
         [Authorize]
         public ActionResult Create()
         {
