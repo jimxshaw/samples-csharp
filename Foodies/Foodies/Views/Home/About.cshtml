@@ -1,7 +1,13 @@
-﻿@{
+﻿@model Foodies.Models.AboutModel
+
+@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<h1>@Model.Name</h1>
+<h2>@Model.Location</h2>
+
+<div>
+    <p>Welcome to ASP.NET MVC 4!</p>
+</div>
+
