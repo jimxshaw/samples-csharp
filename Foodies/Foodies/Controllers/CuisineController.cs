@@ -1,15 +1,18 @@
-﻿using System.Web.Mvc;
+﻿using Foodies.Filters;
+using System.Web.Mvc;
 
 namespace Foodies.Controllers
 {
+    [LogAttribute]
     public class CuisineController : Controller
     {
         // GET: Cuisine
         public ActionResult Search(string name = "french")
         {
+
             var message = Server.HtmlEncode(name);
 
-            return Json(new { Message = message, Name = "James" }, JsonRequestBehavior.AllowGet);
+            return Content(message);
         }
     }
 }
