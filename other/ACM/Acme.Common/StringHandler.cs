@@ -17,6 +17,9 @@
                     }
                     result += letter;
                 }
+                // Trim excess spaces from the beginning and end of the string
+                // before assigning back to our result.
+                result = result.Trim();
             }
 
             return result;
