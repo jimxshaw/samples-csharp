@@ -2,8 +2,12 @@
 {
     public static class StringHandler
     {
-
-        public static string InsertSpaces(string source)
+        // For extension methods, they must reside in a static class. The 
+        // methods themselves must be static. Finally, the this keyword must 
+        // be placed in front of the first parameter in an extension method.
+        // By putting the this keyword there, the parameter no longer represents 
+        // a parameter passed to the method but represents the type being extended.
+        public static string InsertSpaces(this string source)
         {
             string result = string.Empty;
 
