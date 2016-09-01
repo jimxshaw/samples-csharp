@@ -21,5 +21,21 @@ namespace Acme.CommonTest
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void InsertSpacesTestWithExistingSpace()
+        {
+            // Arrange
+            var source = "Cross LugWrench";
+            var expected = "Cross Lug Wrench";
+
+            var stringHandler = new StringHandler();
+
+            // Act
+            var actual = stringHandler.InsertSpaces(source);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

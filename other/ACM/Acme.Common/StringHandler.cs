@@ -13,6 +13,8 @@
                 {
                     if (char.IsUpper(letter))
                     {
+                        // Trim any spaces already in the source string.
+                        result = result.Trim();
                         result += " ";
                     }
                     result += letter;
