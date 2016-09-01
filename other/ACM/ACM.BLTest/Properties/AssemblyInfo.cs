@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ACM.BL.Tests")]
+[assembly: AssemblyTitle("ACM.BLTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ACM.BL.Tests")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCompany("InStep Technologies, Inc.")]
+[assembly: AssemblyProduct("ACM.BLTest")]
+[assembly: AssemblyCopyright("Copyright © InStep Technologies, Inc. 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3dbe482a-34dc-4fc9-a4c8-305657cf7cf3")]
+[assembly: Guid("b2edc46b-3604-43b1-b71a-ed7212373fc3")]
 
 // Version information for an assembly consists of the following four values:
 //

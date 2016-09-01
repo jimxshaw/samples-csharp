@@ -1,32 +1,73 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ACM.BL
 {
     public class CustomerRepository
     {
-        public List<Customer> Retrieve()
+        private AddressRepository addressRepository { get; set; }
+
+        public CustomerRepository()
         {
-            return new List<Customer>();
+            addressRepository = new AddressRepository();
         }
 
+        /// <summary>
+        /// Retrieve one customer.
+        /// </summary>
         public Customer Retrieve(int customerId)
         {
-            var customer = new Customer(customerId);
+            // Create the instance of the Customer class
+            Customer customer = new Customer(customerId);
+            customer.AddressList = addressRepository.
+                RetrieveByCustomerId(customerId).ToList();
 
+            // Code that retrieves the defined customer
+
+            // Temporary hard coded values to return 
+            // a populated customer
             if (customerId == 1)
             {
-                customer.EmailAddress = "samwisegamgee@hobbiton.me";
-                customer.FirstName = "Samwise";
-                customer.LastName = "Gamgee";
+                customer.EmailAddress = "fbaggins@hobbiton.me";
+                customer.FirstName = "Frodo";
+                customer.LastName = "Baggins";
             }
-
             return customer;
         }
 
+        /// <summary>
+        /// Retrieves all customers.
+        /// </summary>
+        public List<Customer> Retrieve()
+        {
+            // Code that retrieves all customers
+            return new List<Customer>();
+        }
+
+        /// <summary>
+        /// Saves the current customer.
+        /// </summary>
+        /// <returns></returns>
         public bool Save(Customer customer)
         {
-            // Code that saves the defined customer.
-            return true;
+            var success = true;
+
+            if (customer.HasChanges && customer.IsValid)
+            {
+                if (customer.IsNew)
+                {
+                    // Call an Insert Stored Procedure
+
+                }
+                else
+                {
+                    // Call an Update Stored Procedure
+                }
+            }
+            return success;
         }
 
     }

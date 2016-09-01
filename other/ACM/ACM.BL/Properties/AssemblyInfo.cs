@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ACM.BL")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("InStep Technologies, Inc.")]
 [assembly: AssemblyProduct("ACM.BL")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright © InStep Technologies, Inc. 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a09feabf-45ed-4cc7-b378-cd04628ffbe7")]
+[assembly: Guid("4b1d14d2-0ec6-4669-829f-68728105916c")]
 
 // Version information for an assembly consists of the following four values:
 //

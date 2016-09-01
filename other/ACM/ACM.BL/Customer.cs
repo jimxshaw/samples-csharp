@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ACM.BL
 {
-    public class Customer
+    public class Customer : EntityBase
     {
-        public Customer() : this(0)
+        public Customer()
+            : this(0)
         {
 
         }
@@ -17,14 +22,22 @@ namespace ACM.BL
 
         public List<Address> AddressList { get; set; }
 
+        public int CustomerType { get; set; }
         public static int InstanceCount { get; set; }
 
         private string _lastName;
-
         public string LastName
         {
-            get { return _lastName; }
-            set { _lastName = value; }
+            get
+            {
+                // Any code here
+                return _lastName;
+            }
+            set
+            {
+                // Any code here
+                _lastName = value;
+            }
         }
 
         public string FirstName { get; set; }
@@ -50,12 +63,7 @@ namespace ACM.BL
             }
         }
 
-        public bool Save()
-        {
-            return true;
-        }
-
-        public bool Validate()
+        public override bool Validate()
         {
             var isValid = true;
 
@@ -65,5 +73,9 @@ namespace ACM.BL
             return isValid;
         }
 
+        public override string ToString()
+        {
+            return FullName;
+        }
     }
 }
