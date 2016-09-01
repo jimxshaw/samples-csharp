@@ -13,10 +13,8 @@ namespace Acme.CommonTest
             var source = "CrossLugWrench";
             var expected = "Cross Lug Wrench";
 
-            var stringHandler = new StringHandler();
-
             // Act
-            var actual = stringHandler.InsertSpaces(source);
+            var actual = StringHandler.InsertSpaces(source);
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -29,10 +27,8 @@ namespace Acme.CommonTest
             var source = "Cross LugWrench";
             var expected = "Cross Lug Wrench";
 
-            var stringHandler = new StringHandler();
-
             // Act
-            var actual = stringHandler.InsertSpaces(source);
+            var actual = StringHandler.InsertSpaces(source);
 
             // Assert
             Assert.AreEqual(expected, actual);
