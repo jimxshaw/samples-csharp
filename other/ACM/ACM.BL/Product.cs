@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ACM.BL
 {
@@ -21,7 +17,15 @@ namespace ACM.BL
         public Decimal? CurrentPrice { get; set; }
         public int ProductId { get; private set; }
         public string ProductDescription { get; set; }
-        public string ProductName { get; set; }
+
+        private string _productName;
+
+        public string ProductName
+        {
+            get { return _productName; }
+            set { _productName = value; }
+        }
+
 
         /// <summary>
         /// Validates the product data.
@@ -41,5 +45,7 @@ namespace ACM.BL
         {
             return ProductName;
         }
+
+
     }
 }
