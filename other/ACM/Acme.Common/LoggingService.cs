@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Acme.CommonTest
+namespace Acme.Common
 {
     public static class LoggingService
     {
