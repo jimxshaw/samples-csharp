@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Acme.Common;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ACM.BL
 {
-    public class Order : EntityBase
+    public class Order : EntityBase, ILoggable
     {
         public Order()
         {
@@ -29,11 +27,9 @@ namespace ACM.BL
         /// Validates the order data.
         /// </summary>
         /// <returns></returns>
-        public override bool  Validate()
+        public override bool Validate()
         {
-            var isValid = true;
-
-            if (OrderDate == null) isValid = false;
+            bool isValid = !(OrderDate == null);
 
             return isValid;
         }
@@ -41,6 +37,16 @@ namespace ACM.BL
         public override string ToString()
         {
             return OrderDate.Value.Date + " (" + OrderId + ")";
+        }
+
+        public string Log()
+        {
+            var logString = this.OrderId + ": " +
+                            this.OrderDate + " " +
+                            "CustomerId: " + this.CustomerId + " " +
+                            "ShippingAddressId: " + this.ShippingAddressId.ToString();
+
+            return logString;
         }
     }
 }
