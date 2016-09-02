@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ACM.BL
 {
@@ -76,6 +72,16 @@ namespace ACM.BL
         public override string ToString()
         {
             return FullName;
+        }
+
+        public string Log()
+        {
+            var logString = this.CustomerId + ": " +
+                            this.FullName + " " +
+                            "Email: " + this.EmailAddress + " " +
+                            "Status: " + this.EntityState.ToString();
+
+            return logString;
         }
     }
 }
