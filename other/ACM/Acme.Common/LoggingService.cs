@@ -5,11 +5,13 @@ namespace Acme.Common
 {
     public static class LoggingService
     {
-        public static void WriteToFile(List<object> changedItems)
+        // By passing in an interface, ILoggable, instead of a concrete type 
+        // it allows us to access any items through said interface.
+        public static void WriteToFile(List<ILoggable> changedItems)
         {
             foreach (var item in changedItems)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item.Log());
             }
         }
     }
