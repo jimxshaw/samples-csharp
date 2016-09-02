@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Acme.Common;
+using System.Collections.Generic;
 
 namespace ACM.BL
 {
-    public class Customer : EntityBase
+    public class Customer : EntityBase, ILoggable
     {
         public Customer()
             : this(0)
@@ -61,10 +62,7 @@ namespace ACM.BL
 
         public override bool Validate()
         {
-            var isValid = true;
-
-            if (string.IsNullOrWhiteSpace(LastName)) isValid = false;
-            if (string.IsNullOrWhiteSpace(EmailAddress)) isValid = false;
+            bool isValid = !(string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(EmailAddress));
 
             return isValid;
         }

@@ -3,7 +3,7 @@ using System;
 
 namespace ACM.BL
 {
-    public class Product : EntityBase
+    public class Product : EntityBase, ILoggable
     {
         public Product()
         {
@@ -37,10 +37,7 @@ namespace ACM.BL
         /// <returns></returns>
         public override bool Validate()
         {
-            var isValid = true;
-
-            if (string.IsNullOrWhiteSpace(ProductName)) isValid = false;
-            if (CurrentPrice == null) isValid = false;
+            bool isValid = !(string.IsNullOrWhiteSpace(ProductName) || CurrentPrice == null);
 
             return isValid;
         }
