@@ -11,24 +11,28 @@ namespace Cars
         {
             var cars = ProcessFile("fuel.csv");
 
-            var query = cars.Where(c => c.Manufacturer == "Audi" && c.Year == 2016)
-                            .OrderByDescending(c => c.Combined)
-                            .ThenBy(c => c.Name)
-                            .Select(c => c);
+            //            var query = cars.Where(c => c.Manufacturer == "Audi" && c.Year == 2016)
+            //                            .OrderByDescending(c => c.Combined)
+            //                            .ThenBy(c => c.Name)
+            //                            .Select(c => c);
 
-            //            var query = from car in cars
-            //                        where car.Manufacturer == "BMW"
-            //                        orderby car.Combined descending, car.Name ascending
-            //                        select car;
+            var query = from car in cars
+                        orderby car.Combined descending, car.Name ascending
+                        select new
+                        {
+                            car.Manufacturer,
+                            car.Name,
+                            car.Combined
+                        };
 
-            var result = cars.Any(c => c.Manufacturer == "Cherry");
+            //var result = cars.Select(c => new { c.Manufacturer, c.Name, c.Combined });
 
-            Console.WriteLine(result);
+            //Console.WriteLine(result);
 
-            //            foreach (var car in query)
-            //            {
-            //                Console.WriteLine($"{car.Name} : {car.Combined}");
-            //            }
+            foreach (var car in query)
+            {
+                Console.WriteLine($"{car.Manufacturer} {car.Name} : {car.Combined}");
+            }
         }
 
         private static List<Car> ProcessFile(string path)
