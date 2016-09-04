@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Cars
+﻿namespace Cars
 {
     public class Car
     {
@@ -13,8 +7,29 @@ namespace Cars
         public string Name { get; set; }
         public double Displacement { get; set; }
         public int Cylinders { get; set; }
+
+        // The following properties deal with fuel efficiency.
         public int City { get; set; }
         public int Highway { get; set; }
         public int Combined { get; set; }
+
+        public static Car ParseFromCsv(string line)
+        {
+            // Take each line (column) in the csv file and split it by the comma character.
+            // Note that the comma is of type char, not string.
+            var column = line.Split(',');
+
+            return new Car()
+            {
+                Year = int.Parse(column[0]),
+                Manufacturer = column[1],
+                Name = column[2],
+                Displacement = double.Parse(column[3]),
+                Cylinders = int.Parse(column[4]),
+                City = int.Parse(column[5]),
+                Highway = int.Parse(column[6]),
+                Combined = int.Parse(column[7])
+            };
+        }
     }
 }
