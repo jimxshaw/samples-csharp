@@ -11,9 +11,18 @@ namespace Cars
         {
             var cars = ProcessFile("fuel.csv");
 
-            var query = cars.OrderByDescending(car => car.Combined);
+            // Sort all cars by combined fuel efficiency descending and then sort it by 
+            // car name in ascending order.
 
-            foreach (var car in query.Take(10))
+            //            var query = cars.OrderByDescending(car => car.Combined)
+            //                            .ThenBy(c => c.Name)
+            //                            .ToList();
+
+            var query = from car in cars
+                        orderby car.Combined descending, car.Name ascending
+                        select car;
+
+            foreach (var car in query.ToList().Take(10))
             {
                 Console.WriteLine($"{car.Name} : {car.Combined}");
             }
