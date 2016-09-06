@@ -14,7 +14,7 @@ namespace Foodies.Controllers
                 City = "Dallas",
                 Country = "USA",
                 Name = "Dragon Cafe",
-                Id = 3268,
+                Id = 1,
                 Rating = 8,
                 State = "TX",
                 ZipCode = "76842"
@@ -25,7 +25,7 @@ namespace Foodies.Controllers
                 City = "New York",
                 Country = "USA",
                 Name = "Katz Deli",
-                Id = 1111,
+                Id = 2,
                 Rating = 9,
                 State = "NY",
                 ZipCode = "12345"
@@ -36,8 +36,8 @@ namespace Foodies.Controllers
                 City = "San Francisco",
                 Country = "USA",
                 Name = "West Coast Roast",
-                Id = 8989,
-                Rating = 6,
+                Id = 3,
+                Rating = 7,
                 State = "CA",
                 ZipCode = "45688"
 
@@ -47,7 +47,7 @@ namespace Foodies.Controllers
                 City = "Chicago",
                 Country = "USA",
                 Name = "Johnny Boy",
-                Id = 2366,
+                Id = 4,
                 Rating = 8,
                 State = "IL",
                 ZipCode = "63589"
@@ -58,8 +58,8 @@ namespace Foodies.Controllers
                 City = "Portland",
                 Country = "USA",
                 Name = "Seashore Lodge",
-                Id = 3314,
-                Rating = 5,
+                Id = 5,
+                Rating = 6,
                 State = "OR",
                 ZipCode = "93144"
 
