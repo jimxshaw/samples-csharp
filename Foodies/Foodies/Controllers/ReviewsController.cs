@@ -105,7 +105,9 @@ namespace Foodies.Controllers
         // GET: Reviews/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var review = reviews.SingleOrDefault(r => r.Id == id);
+
+            return View(review);
         }
 
         // POST: Reviews/Edit/5
