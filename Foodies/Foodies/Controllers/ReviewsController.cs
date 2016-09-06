@@ -1,13 +1,70 @@
-﻿using System;
+﻿using Foodies.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Foodies.Controllers
 {
     public class ReviewsController : Controller
     {
+        private static List<RestaurantReview> _reviews = new List<RestaurantReview>()
+        {
+            new RestaurantReview()
+            {
+                City = "Dallas",
+                Country = "USA",
+                Name = "Dragon Cafe",
+                Id = 3268,
+                Rating = 8,
+                State = "TX",
+                ZipCode = "76842"
+
+            },
+            new RestaurantReview()
+            {
+                City = "New York",
+                Country = "USA",
+                Name = "Katz Deli",
+                Id = 1111,
+                Rating = 9,
+                State = "NY",
+                ZipCode = "12345"
+
+            },
+            new RestaurantReview()
+            {
+                City = "San Francisco",
+                Country = "USA",
+                Name = "West Coast Roast",
+                Id = 8989,
+                Rating = 6,
+                State = "CA",
+                ZipCode = "45688"
+
+            },
+            new RestaurantReview()
+            {
+                City = "Chicago",
+                Country = "USA",
+                Name = "Johnny Boy",
+                Id = 2366,
+                Rating = 8,
+                State = "IL",
+                ZipCode = "63589"
+
+            },
+            new RestaurantReview()
+            {
+                City = "Portland",
+                Country = "USA",
+                Name = "Seashore Lodge",
+                Id = 3314,
+                Rating = 5,
+                State = "OR",
+                ZipCode = "93144"
+
+            }
+        };
+
         // GET: Reviews
         public ActionResult Index()
         {

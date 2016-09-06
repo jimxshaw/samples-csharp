@@ -1,6 +1,6 @@
 ﻿namespace Foodies.Models
 {
-    public class RestaurantReviews
+    public class RestaurantReview
     {
         public int Id { get; set; }
         public string Name { get; set; }
