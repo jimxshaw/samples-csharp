@@ -1,12 +1,13 @@
 ﻿using Foodies.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Foodies.Controllers
 {
     public class ReviewsController : Controller
     {
-        private static List<RestaurantReview> _reviews = new List<RestaurantReview>()
+        public static List<RestaurantReview> reviews = new List<RestaurantReview>()
         {
             new RestaurantReview()
             {
@@ -68,7 +69,9 @@ namespace Foodies.Controllers
         // GET: Reviews
         public ActionResult Index()
         {
-            return View();
+            var model = reviews.OrderBy(r => r.State).ToList();
+
+            return View(model);
         }
 
         // GET: Reviews/Details/5
