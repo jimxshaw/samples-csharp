@@ -20,9 +20,9 @@ List<Order> orders = new List<Order>()
 void Main()
 {
 	OrdersByCustomer().Dump();
-	orders.GroupBy(o => o.CustomerId).
-		ToDictionary(g => g.Key, g => g.ToList()).
-		Dump();
+	orders.GroupBy(o => o.CustomerId)
+		.ToDictionary(g => g.Key, g => g.ToList())
+		.Dump();
 }
 
 Dictionary<string, List<Order>> OrdersByCustomer()
@@ -35,9 +35,4 @@ Dictionary<string, List<Order>> OrdersByCustomer()
 		dict[order.CustomerId].Add(order);
 	}
 	return dict;
-}
-
-int CountRefundedOrdersLinq()
-{
-	return orders.Count(o => o.Status == "Refunded");
 }

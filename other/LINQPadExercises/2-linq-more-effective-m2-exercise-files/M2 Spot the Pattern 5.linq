@@ -26,6 +26,10 @@ int CountRefundedOrders()
 	return refundedCount;
 }
 
+int CountRefundedOrdersLinq() {
+	return orders.Count(o => o.Status == "Refunded");
+}
+
 decimal GetOrderTotal()
 {
 	decimal total = 0;
@@ -36,22 +40,15 @@ decimal GetOrderTotal()
 	return total;
 }
 
+decimal GetOrderTotalLinq() {
+	return orders.Sum(o => o.Amount);
+}
+
 void Main()
 {
-	CountRefundedOrders().Dump("Refunded Orders");
-	GetOrderTotal().Dump("Order Total");
+	//CountRefundedOrders().Dump("Refunded Orders");
+	//GetOrderTotal().Dump("Order Total");
 	CountRefundedOrdersLinq().Dump("Refunded Orders LINQ");
 	GetOrderTotalLinq().Dump("Order Total LINQ");
 }
 
-
-
-int CountRefundedOrdersLinq()
-{
-	return orders.Count(o => o.Status == "Refunded");
-}
-
-decimal GetOrderTotalLinq()
-{
-	return orders.Sum(o => o.Amount);
-}

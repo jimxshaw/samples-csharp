@@ -16,7 +16,7 @@ List<Order> orders = new List<Order>()
 
 void RefundOrder(int orderId)
 {
-	Order orderToRefund = orders.First(o => o.Id == orderId);
+	Order orderToRefund = orders.FirstOrDefault(o => o.Id == orderId);
 	Console.WriteLine("Refunding {0} to {1}", 
 		orderToRefund.Amount,
 		orderToRefund.CustomerName);
@@ -24,5 +24,11 @@ void RefundOrder(int orderId)
 
 void Main()
 {
-	RefundOrder(999);
+	try
+	{
+		RefundOrder(999);
+	}
+	catch (Exception e) {
+		e.Dump();
+	}
 }
