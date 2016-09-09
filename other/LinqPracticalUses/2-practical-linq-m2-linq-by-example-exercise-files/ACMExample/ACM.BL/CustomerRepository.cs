@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ACM.BL
 {
@@ -25,26 +22,8 @@ namespace ACM.BL
             //            where c.CustomerId == customerId
             //            select c;
 
-            //foundCustomer = query.First();
-
-            foundCustomer = customerList.FirstOrDefault(c =>
-                                c.CustomerId == customerId);
-
-            //foundCustomer = customerList.FirstOrDefault(c =>
-            //                {
-            //                    Debug.WriteLine(c.LastName);
-            //                    return c.CustomerId == customerId;
-            //                });
-
-            //foundCustomer = customerList.Where(c =>
-            //                    c.CustomerId == customerId)
-            //                    .Skip(1)
-            //                    .FirstOrDefault();
-
-            //foundCustomer = customerList.Where(c =>
-            //                    c.CustomerId == customerId)
-            //                    .Skip(1)
-            //                    .FirstOrDefault();
+            foundCustomer = customerList
+                            .FirstOrDefault(c => c.CustomerId == customerId);
 
             return foundCustomer;
 
@@ -53,26 +32,26 @@ namespace ACM.BL
         public List<Customer> Retrieve()
         {
             List<Customer> custList = new List<Customer>
-                    {new Customer() 
-                          { CustomerId = 1, 
+                    {new Customer()
+                          { CustomerId = 1,
                             FirstName="Frodo",
                             LastName = "Baggins",
                             EmailAddress = "fb@hob.me",
                             CustomerTypeId=1},
-                    new Customer() 
-                          { CustomerId = 2, 
+                    new Customer()
+                          { CustomerId = 2,
                             FirstName="Bilbo",
                             LastName = "Baggins",
                             EmailAddress = "bb@hob.me",
                             CustomerTypeId=null},
-                    new Customer() 
-                          { CustomerId = 3, 
+                    new Customer()
+                          { CustomerId = 3,
                             FirstName="Samwise",
                             LastName = "Gamgee",
                             EmailAddress = "sg@hob.me",
                             CustomerTypeId=1},
-                    new Customer() 
-                          { CustomerId = 4, 
+                    new Customer()
+                          { CustomerId = 4,
                             FirstName="Rosie",
                             LastName = "Cotton",
                             EmailAddress = "rc@hob.me",
