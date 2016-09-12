@@ -6,17 +6,21 @@ namespace GameConsole
     {
         static void Main(string[] args)
         {
-            PlayerCharacter player = new PlayerCharacter();
-            //player.Name = "James";
-            player.DaysSinceLastLogin = 8;
-            //player.DateOfBirth = new DateTime(1968, 12, 7);
-            //player.IsNoob = false;
+            PlayerCharacter[] players =
+            {
+                new PlayerCharacter()
+                {
+                    Name = "Johanna"
+                },
+                new PlayerCharacter(),
+                null
+            };
 
-            //PlayerDisplayer.Write(player);
+            string p1 = players?[0]?.Name;
+            string p2 = players?[1]?.Name;
+            string p3 = players?[2]?.Name;
 
-            int days = player?.DaysSinceLastLogin ?? -1;
-
-            Console.WriteLine(days);
+            Console.ReadLine();
         }
     }
 }
