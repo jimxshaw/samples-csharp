@@ -16,7 +16,7 @@ namespace GameConsole
                 Name = "Sara"
             };
 
-            var james = new PlayerCharacter(null)
+            var james = new PlayerCharacter(new NullDefense())
             {
                 Name = "James"
             };

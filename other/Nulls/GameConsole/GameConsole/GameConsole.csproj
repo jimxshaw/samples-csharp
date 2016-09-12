@@ -46,6 +46,7 @@
     <Compile Include="DragonArmorDefense.cs" />
     <Compile Include="ISpecialDefense.cs" />
     <Compile Include="LeatherArmorDefense.cs" />
+    <Compile Include="NullDefense.cs" />
     <Compile Include="PlayerCharacter.cs" />
     <Compile Include="PlayerDisplayer.cs" />
     <Compile Include="Program.cs" />
