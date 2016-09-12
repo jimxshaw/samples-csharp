@@ -1,8 +1,8 @@
 ﻿namespace GameConsole
 {
-    public class LeatherArmorDefense : ISpecialDefense
+    public class LeatherArmorDefense : SpecialDefense
     {
-        public int CalculateDamageReduction(int totalDamage)
+        public override int CalculateDamageReduction(int totalDamage)
         {
             return 5;
         }

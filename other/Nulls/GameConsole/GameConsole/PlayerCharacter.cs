@@ -14,14 +14,16 @@ namespace GameConsole
 
         private readonly ISpecialDefense _specialDefense;
 
-        public PlayerCharacter(ISpecialDefense specialDefense)
+        private readonly SpecialDefense _defense;
+
+        public PlayerCharacter(SpecialDefense defense)
         {
-            _specialDefense = specialDefense;
+            _defense = defense;
         }
 
         public void Hit(int damage)
         {
-            int damageReduction = 0;
+            //int damageReduction = 0;
 
             //if (_specialDefense != null)
             //{
@@ -32,7 +34,7 @@ namespace GameConsole
 
             // Since we wrote a NullDefense class that implements ISpecialDefense, we don't need 
             // to check for null in an if statement anymore.
-            int totalDamageTaken = damage - _specialDefense.CalculateDamageReduction(damage);
+            int totalDamageTaken = damage - _defense.CalculateDamageReduction(damage);
 
             Health -= totalDamageTaken;
 
