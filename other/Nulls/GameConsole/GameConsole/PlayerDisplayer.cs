@@ -8,7 +8,7 @@ namespace GameConsole
         {
             Console.WriteLine($"Name: {player.Name}");
 
-            if (player.DaysSinceLastLogin == -1)
+            if (player.DaysSinceLastLogin == null)
             {
                 Console.WriteLine("No value for DaysSinceLastLogin");
             }
@@ -17,13 +17,13 @@ namespace GameConsole
                 Console.WriteLine($"Days since last login: {player.DaysSinceLastLogin}");
             }
 
-            if (player.DateOfBirth == DateTime.MinValue)
+            if (player.DateOfBirth == null)
             {
                 Console.WriteLine("No DateOfBirth has been specified");
             }
             else
             {
-                Console.WriteLine($"Date of birth: {player.DateOfBirth.ToShortDateString()}");
+                Console.WriteLine($"Date of birth: {player.DateOfBirth.Value.ToShortDateString()}");
             }
         }
     }
