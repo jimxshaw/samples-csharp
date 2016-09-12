@@ -2,7 +2,7 @@
 
 namespace GameConsole
 {
-    class PlayerDisplayer
+    public static class PlayerDisplayer
     {
         public static void Write(PlayerCharacter player)
         {
