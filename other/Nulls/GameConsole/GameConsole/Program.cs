@@ -6,19 +6,24 @@ namespace GameConsole
     {
         static void Main(string[] args)
         {
-            PlayerCharacter[] players =
+            var mike = new PlayerCharacter(new LeatherArmorDefense())
             {
-                new PlayerCharacter()
-                {
-                    Name = "Johanna"
-                },
-                new PlayerCharacter(),
-                null
+                Name = "Mike"
             };
 
-            string p1 = players?[0]?.Name;
-            string p2 = players?[1]?.Name;
-            string p3 = players?[2]?.Name;
+            var sara = new PlayerCharacter(new DragonArmorDefense())
+            {
+                Name = "Sara"
+            };
+
+            var james = new PlayerCharacter(null)
+            {
+                Name = "James"
+            };
+
+            mike.Hit(30);
+            sara.Hit(30);
+            james.Hit(30);
 
             Console.ReadLine();
         }
