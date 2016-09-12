@@ -10,6 +10,7 @@ namespace GameConsole
             player.Name = "James";
             player.DaysSinceLastLogin = 8;
             player.DateOfBirth = new DateTime(1968, 12, 7);
+            player.IsNoob = false;
 
             PlayerDisplayer.Write(player);
         }

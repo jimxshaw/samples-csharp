@@ -5,8 +5,9 @@ namespace GameConsole
     public class PlayerCharacter
     {
         public string Name { get; set; }
-        public Nullable<int> DaysSinceLastLogin { get; set; }
-        public Nullable<DateTime> DateOfBirth { get; set; }
+        public int? DaysSinceLastLogin { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public bool? IsNoob { get; set; }
 
         public PlayerCharacter()
         {
@@ -19,8 +20,8 @@ namespace GameConsole
             // An alternative handling nulls for value types without using 
             // magic numbers would be to use the Nullable<T> class or placing 
             // the ? symbol next to the value type we want to nullify.
-            DaysSinceLastLogin = null;
-            DateOfBirth = null;
+            //DaysSinceLastLogin = null;
+            //DateOfBirth = null;
         }
     }
 }
