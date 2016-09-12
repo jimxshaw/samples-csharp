@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace AbstractFactory
@@ -21,9 +15,11 @@ namespace AbstractFactory
             {
                 if (_Connection == null)
                 {
+                    // See App.config for the connection string.
                     string connectionString = ConfigurationManager.ConnectionStrings["SQLServerConnectionString"].ConnectionString;
                     _Connection = new SqlConnection(connectionString);
                 }
+                // SqlConnection inherits from DbConnection so the return type is valid.
                 return _Connection;
             }
             set
