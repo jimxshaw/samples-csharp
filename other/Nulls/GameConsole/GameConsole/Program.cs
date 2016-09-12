@@ -16,14 +16,26 @@ namespace GameConsole
                 Name = "Sara"
             };
 
-            var james = new PlayerCharacter(new NullDefense())
+            var aaron = new PlayerCharacter(new NullDefense())
+            {
+                Name = "Aaron"
+            };
+
+            var james = new PlayerCharacter(SpecialDefense.Null)
             {
                 Name = "James"
             };
 
+            var carol = new PlayerCharacter(SpecialDefense.Null)
+            {
+                Name = "Carol"
+            };
+
             mike.Hit(30);
             sara.Hit(30);
+            aaron.Hit(30);
             james.Hit(30);
+            carol.Hit(30);
 
             Console.ReadLine();
         }
