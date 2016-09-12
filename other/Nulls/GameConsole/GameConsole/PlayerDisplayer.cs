@@ -6,17 +6,22 @@ namespace GameConsole
     {
         public static void Write(PlayerCharacter player)
         {
-            Console.WriteLine($"Name: {player.Name}");
+            Console.WriteLine(string.IsNullOrWhiteSpace(player.Name)
+                ? "Player name cannot be null or have only white space"
+                : $"Name: {player.Name}");
 
-            Console.WriteLine(player.DaysSinceLastLogin == null
-                ? "No value for DaysSinceLastLogin"
-                : $"Days since last login: {player.DaysSinceLastLogin}");
+            int days = player.DaysSinceLastLogin.GetValueOrDefault(-1);
+            Console.WriteLine($"{days} days since last login");
 
-            Console.WriteLine(player.DateOfBirth == null
+            //Console.WriteLine(!player.DaysSinceLastLogin.HasValue
+            //    ? "No value for DaysSinceLastLogin"
+            //    : $"Days since last login: {player.DaysSinceLastLogin}");
+
+            Console.WriteLine(!player.DateOfBirth.HasValue
                 ? "No DateOfBirth has been specified"
                 : $"Date of birth: {player.DateOfBirth.Value.ToShortDateString()}");
 
-            Console.WriteLine(player.IsNoob == null
+            Console.WriteLine(!player.IsNoob.HasValue
                 ? "Player newbie status is unknown"
                 : $"Is noob: {player.IsNoob}");
 
