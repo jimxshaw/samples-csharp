@@ -23,7 +23,7 @@ namespace GameConsole
             }
             else
             {
-                Console.WriteLine($"Date of birth: {player.DateOfBirth}");
+                Console.WriteLine($"Date of birth: {player.DateOfBirth.ToShortDateString()}");
             }
         }
     }
