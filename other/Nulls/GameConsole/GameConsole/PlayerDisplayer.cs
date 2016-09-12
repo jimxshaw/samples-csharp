@@ -6,12 +6,13 @@ namespace GameConsole
     {
         public static void Write(PlayerCharacter player)
         {
+
             Console.WriteLine(string.IsNullOrWhiteSpace(player.Name)
                 ? "Player name cannot be null or have only white space"
                 : $"Name: {player.Name}");
 
-            int days = player.DaysSinceLastLogin.GetValueOrDefault(-1);
-            Console.WriteLine($"{days} days since last login");
+            int days = player.DaysSinceLastLogin ?? -1;
+            Console.WriteLine($"{days} days in last login");
 
             //Console.WriteLine(!player.DaysSinceLastLogin.HasValue
             //    ? "No value for DaysSinceLastLogin"
