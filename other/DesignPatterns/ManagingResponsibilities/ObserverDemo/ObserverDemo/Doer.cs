@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ObserverDemo
 {
     public class Doer : ISubject
     {
+        private List<IObserver> observers = new List<IObserver>();
+
         public void DoSomethingWith(string data)
         {
             Console.WriteLine($"Do something with {data}");
@@ -12,17 +15,20 @@ namespace ObserverDemo
 
         public void Attach(IObserver observer)
         {
-            throw new NotImplementedException();
+            observers.Add(observer);
         }
 
         public void Detach(IObserver observer)
         {
-            throw new NotImplementedException();
+            observers.Remove(observer);
         }
 
         public void Notify()
         {
-            throw new NotImplementedException();
+            foreach (var observer in observers)
+            {
+                observer.Update();
+            }
         }
     }
 }
