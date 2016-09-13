@@ -12,6 +12,7 @@ namespace ObserverDemo
             doer.Attach(new UserInterface());
 
             doer.DoSomethingWith("input data");
+            doer.DoMore("additional data processing");
 
             Console.ReadLine();
         }

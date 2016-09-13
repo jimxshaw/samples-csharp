@@ -20,6 +20,7 @@ namespace ObserverDemo
         public void DoMore(string appendData)
         {
             _data += appendData;
+            AfterDoMore(_data, appendData);
         }
 
         public void Attach(IObserver observer)

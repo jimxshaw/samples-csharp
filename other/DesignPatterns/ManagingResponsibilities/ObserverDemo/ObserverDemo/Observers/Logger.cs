@@ -12,7 +12,7 @@ namespace ObserverDemo.Observers
 
         public void AfterDoMore(ISubject sender, string completeData, string appendedData)
         {
-
+            Console.WriteLine($"Logger: logging appended {appendedData.ToUpper()}");
         }
     }
 }
