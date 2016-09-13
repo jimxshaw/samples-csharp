@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObserverDemo.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ObserverDemo
@@ -9,7 +10,7 @@ namespace ObserverDemo
 
         public void DoSomethingWith(string data)
         {
-            Console.WriteLine($"Do something with {data}");
+            Console.WriteLine($"Doing something with {data}");
             Notify();
         }
 

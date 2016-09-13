@@ -1,4 +1,4 @@
-﻿namespace ObserverDemo
+﻿namespace ObserverDemo.Interfaces
 {
     public interface IObserver
     {

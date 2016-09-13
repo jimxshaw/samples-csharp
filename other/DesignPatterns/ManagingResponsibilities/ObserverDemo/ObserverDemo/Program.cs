@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObserverDemo.Observers;
+using System;
 
 namespace ObserverDemo
 {
@@ -7,8 +8,10 @@ namespace ObserverDemo
         static void Main(string[] args)
         {
             var doer = new Doer();
+            doer.Attach(new Logger());
+            doer.Attach(new UserInterface());
 
-            doer.DoSomethingWith("my data");
+            doer.DoSomethingWith("input data");
 
             Console.ReadLine();
         }
