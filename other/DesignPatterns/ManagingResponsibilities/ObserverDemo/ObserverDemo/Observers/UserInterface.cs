@@ -5,9 +5,9 @@ namespace ObserverDemo.Observers
 {
     public class UserInterface : IObserver
     {
-        public void Update(ISubject sender)
+        public void Update(ISubject sender, string data)
         {
-            Console.WriteLine($"UI: Hello user, take a look at {sender.Data.ToUpper()}");
+            Console.WriteLine($"UI: Hello user, take a look at {data.ToUpper()}");
         }
 
     }

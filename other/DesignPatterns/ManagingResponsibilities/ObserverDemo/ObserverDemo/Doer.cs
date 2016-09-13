@@ -8,13 +8,10 @@ namespace ObserverDemo
     {
         private List<IObserver> _observers = new List<IObserver>();
 
-        public string Data { get; private set; }
-
         public void DoSomethingWith(string data)
         {
             Console.WriteLine($"Doing something with {data}");
-            Data = data;
-            Notify();
+            Notify(data);
         }
 
         public void Attach(IObserver observer)
@@ -27,11 +24,11 @@ namespace ObserverDemo
             _observers.Remove(observer);
         }
 
-        public void Notify()
+        public void Notify(string data)
         {
             foreach (var observer in _observers)
             {
-                observer.Update(this);
+                observer.Update(this, data);
             }
         }
     }

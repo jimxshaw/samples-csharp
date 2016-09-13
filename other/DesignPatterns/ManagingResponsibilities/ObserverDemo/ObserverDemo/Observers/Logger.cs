@@ -5,9 +5,9 @@ namespace ObserverDemo.Observers
 {
     public class Logger : IObserver
     {
-        public void Update(ISubject sender)
+        public void Update(ISubject sender, string data)
         {
-            Console.WriteLine($"Logger: logging {sender.Data.ToUpper()}");
+            Console.WriteLine($"Logger: logging {data.ToUpper()}");
         }
     }
 }
