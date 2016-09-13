@@ -5,9 +5,14 @@ namespace ObserverDemo.Observers
 {
     public class Logger : IObserver
     {
-        public void Update(ISubject sender, string data)
+        public void AfterDoSomethingWith(ISubject sender, string data)
         {
             Console.WriteLine($"Logger: logging {data.ToUpper()}");
+        }
+
+        public void AfterDoMore(ISubject sender, string completeData, string appendedData)
+        {
+
         }
     }
 }
