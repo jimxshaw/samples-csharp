@@ -6,29 +6,32 @@ namespace ObserverDemo
 {
     public class Doer : ISubject
     {
-        private List<IObserver> observers = new List<IObserver>();
+        private List<IObserver> _observers = new List<IObserver>();
+
+        public string Data { get; private set; }
 
         public void DoSomethingWith(string data)
         {
             Console.WriteLine($"Doing something with {data}");
+            Data = data;
             Notify();
         }
 
         public void Attach(IObserver observer)
         {
-            observers.Add(observer);
+            _observers.Add(observer);
         }
 
         public void Detach(IObserver observer)
         {
-            observers.Remove(observer);
+            _observers.Remove(observer);
         }
 
         public void Notify()
         {
-            foreach (var observer in observers)
+            foreach (var observer in _observers)
             {
-                observer.Update();
+                observer.Update(this);
             }
         }
     }
