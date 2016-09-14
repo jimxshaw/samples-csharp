@@ -7,9 +7,16 @@ namespace ObserverDemo
     {
         private IList<IObserver<T>> _invocationList;
 
-        public MulticastNotifier(IEnumerable<IObserver<T>> observers)
+        private MulticastNotifier(IObserver<T> observer)
         {
-            _invocationList = new List<IObserver<T>>(observers);
+            _invocationList = new List<IObserver<T>>();
+            _invocationList.Add(observer);
+        }
+
+        private MulticastNotifier(MulticastNotifier<T> notifier, IObserver<T> observer)
+        {
+            _invocationList = new List<IObserver<T>>(notifier._invocationList);
+            _invocationList.Add(observer);
         }
 
         public void Notify(object sender, T data)
@@ -18,6 +25,16 @@ namespace ObserverDemo
             {
                 observer.Update(sender, data);
             }
+        }
+
+        public static MulticastNotifier<T> operator +(MulticastNotifier<T> notifier, IObserver<T> observer)
+        {
+            if (notifier == null)
+            {
+                return new MulticastNotifier<T>(observer);
+            }
+
+            return new MulticastNotifier<T>(notifier, observer);
         }
     }
 }
