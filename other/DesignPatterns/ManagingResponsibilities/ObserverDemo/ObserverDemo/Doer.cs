@@ -12,7 +12,6 @@ namespace ObserverDemo
 
         public void DoSomethingWith(string data)
         {
-            Console.WriteLine($"Doing something with {data}");
             _data = data;
             OnAfterDoSomethingWith(_data);
         }

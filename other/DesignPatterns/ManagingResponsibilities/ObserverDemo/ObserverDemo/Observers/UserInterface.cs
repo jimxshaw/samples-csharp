@@ -1,4 +1,6 @@
-﻿namespace ObserverDemo.Observers
+﻿using System;
+
+namespace ObserverDemo.Observers
 {
     public class UserInterface
     {
@@ -11,7 +13,7 @@
 
         public void AfterDoSomethingWithHandler(object sender, string data)
         {
-
+            Console.WriteLine($"UI: updating {data.ToUpper()}");
         }
     }
 }
