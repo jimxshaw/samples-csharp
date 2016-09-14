@@ -46,6 +46,7 @@
     <Compile Include="Doer.cs" />
     <Compile Include="Interfaces\IObserver.cs" />
     <Compile Include="Interfaces\ISubject.cs" />
+    <Compile Include="MulticastNotifier.cs" />
     <Compile Include="Observers\Logger.cs" />
     <Compile Include="Observers\UserInterface.cs" />
     <Compile Include="Program.cs" />

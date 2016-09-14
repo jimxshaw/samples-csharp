@@ -1,8 +1,7 @@
 ﻿namespace ObserverDemo.Interfaces
 {
-    public interface IObserver
+    public interface IObserver<T>
     {
-        void AfterDoSomethingWith(ISubject sender, string data);
-        void AfterDoMore(ISubject sender, string completeData, string appendedData);
+        void Update(object sender, T data);
     }
 }

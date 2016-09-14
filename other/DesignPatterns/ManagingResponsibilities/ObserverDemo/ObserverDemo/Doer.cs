@@ -1,12 +1,12 @@
-﻿using ObserverDemo.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace ObserverDemo
 {
-    public class Doer : ISubject
+    public class Doer
     {
-        private List<IObserver> _observers = new List<IObserver>();
+        public MulticastNotifier<string> AfterDoSomethingWith;
+
+        public MulticastNotifier<Tuple<string, string>> AfterDoMore;
 
         private string _data = string.Empty;
 
@@ -14,38 +14,28 @@ namespace ObserverDemo
         {
             Console.WriteLine($"Doing something with {data}");
             _data = data;
-            AfterDoSomething(_data);
+            OnAfterDoSomethingWith(_data);
         }
 
         public void DoMore(string appendData)
         {
             _data += appendData;
-            AfterDoMore(_data, appendData);
+            OnAfterDoMore(_data, appendData);
         }
 
-        public void Attach(IObserver observer)
+        private void OnAfterDoSomethingWith(string data)
         {
-            _observers.Add(observer);
-        }
-
-        public void Detach(IObserver observer)
-        {
-            _observers.Remove(observer);
-        }
-
-        public void AfterDoSomething(string data)
-        {
-            foreach (var observer in _observers)
+            if (AfterDoSomethingWith != null)
             {
-                observer.AfterDoSomethingWith(this, data);
+                AfterDoSomethingWith.Notify(this, data);
             }
         }
 
-        public void AfterDoMore(string completeData, string appendedData)
+        private void OnAfterDoMore(string completeData, string appendedData)
         {
-            foreach (var observer in _observers)
+            if (AfterDoMore != null)
             {
-                observer.AfterDoMore(this, completeData, appendedData);
+                AfterDoMore.Notify(this, Tuple.Create(completeData, appendedData));
             }
         }
     }
