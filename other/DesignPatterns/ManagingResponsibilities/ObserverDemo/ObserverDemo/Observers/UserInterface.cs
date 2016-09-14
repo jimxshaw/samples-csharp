@@ -1,16 +1,15 @@
-﻿using ObserverDemo.Interfaces;
-using System;
-
-namespace ObserverDemo.Observers
+﻿namespace ObserverDemo.Observers
 {
-    public class UserInterface : IObserver
+    public class UserInterface
     {
-        public void AfterDoSomethingWith(ISubject sender, string data)
+        public readonly Interfaces.IObserver<string> AfterDoSomethingWith;
+
+        public UserInterface()
         {
-            Console.WriteLine($"UI: Hello user, take a look at {data.ToUpper()}");
+            AfterDoSomethingWith = new NotificationSink<string>((sender, data) => AfterDoSomethingWithHandler(sender, data));
         }
 
-        public void AfterDoMore(ISubject sender, string completeData, string appendedData)
+        public void AfterDoSomethingWithHandler(object sender, string data)
         {
 
         }
