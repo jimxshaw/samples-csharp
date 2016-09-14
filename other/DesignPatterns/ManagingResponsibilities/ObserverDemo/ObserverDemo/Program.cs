@@ -1,5 +1,4 @@
-﻿using ObserverDemo.Observers;
-using System;
+﻿using System;
 
 namespace ObserverDemo
 {

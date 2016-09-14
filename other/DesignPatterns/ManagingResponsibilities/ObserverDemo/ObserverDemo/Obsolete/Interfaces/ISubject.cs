@@ -1,4 +1,4 @@
-﻿namespace ObserverDemo.Interfaces
+﻿namespace ObserverDemo.Obsolete
 {
     // This interface is no longer used because we now have the MulticastNotifier class.
     //public interface ISubject

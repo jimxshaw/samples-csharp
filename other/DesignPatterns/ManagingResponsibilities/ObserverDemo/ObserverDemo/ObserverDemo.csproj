@@ -44,17 +44,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Doer.cs" />
-    <Compile Include="Interfaces\IObserver.cs" />
-    <Compile Include="Interfaces\ISubject.cs" />
-    <Compile Include="MulticastNotifier.cs" />
-    <Compile Include="NotificationSink.cs" />
-    <Compile Include="Observers\Logger.cs" />
-    <Compile Include="Observers\UserInterface.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="Obsolete\Interfaces\IObserver.cs" />
+    <Compile Include="Obsolete\Interfaces\ISubject.cs" />
+    <Compile Include="Obsolete\MulticastNotifier.cs" />
+    <Compile Include="Obsolete\NotificationSink.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Obsolete\Observers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

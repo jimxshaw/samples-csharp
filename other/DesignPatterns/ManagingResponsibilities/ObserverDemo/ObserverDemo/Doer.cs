@@ -4,9 +4,9 @@ namespace ObserverDemo
 {
     public class Doer
     {
-        public MulticastNotifier<string> AfterDoSomethingWith;
+        public event EventHandler<string> AfterDoSomethingWith;
 
-        public MulticastNotifier<Tuple<string, string>> AfterDoMore;
+        public event EventHandler<Tuple<string, string>> AfterDoMore;
 
         private string _data = string.Empty;
 
@@ -26,7 +26,7 @@ namespace ObserverDemo
         {
             if (AfterDoSomethingWith != null)
             {
-                AfterDoSomethingWith.Notify(this, data);
+                AfterDoSomethingWith(this, data);
             }
         }
 
@@ -34,7 +34,7 @@ namespace ObserverDemo
         {
             if (AfterDoMore != null)
             {
-                AfterDoMore.Notify(this, Tuple.Create(completeData, appendedData));
+                AfterDoMore(this, Tuple.Create(completeData, appendedData));
             }
         }
     }
