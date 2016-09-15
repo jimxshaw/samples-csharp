@@ -16,6 +16,26 @@ textarea {
     width: 150px;
 }
 
+.headshot {
+    width: 60px;
+}
+
+.menu {
+    font-size: 12px;  
+}
+
+.menu li {
+    list-style: none;
+}
+
+/* 
+    Since .active class is inside the li and not a child of li, we don't
+    have a space between the li and the .active.
+*/
+.menu li.active {
+    font-weight: bold;
+}
+
 main {
     background: #eee;
 }
