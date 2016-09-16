@@ -1,14 +1,9 @@
 ﻿// site.js
 (function() {
-    var element = document.getElementById("username");
-    element.innerHTML = "Mark Hamill";
+    var $sidebarAndWrapper = $("#sidebar,#wrapper");
 
-    var main = document.getElementById("main");
-    main.onmouseenter = function() {
-        main.style = "background: #888";
-    };
-
-    main.onmouseleave = function() {
-        main.style = "";
-    };
+    $("#sidebarToggle").on("click", function() {
+        $sidebarAndWrapper.toggleClass("hide-sidebar");
+    });
+    
 })();
