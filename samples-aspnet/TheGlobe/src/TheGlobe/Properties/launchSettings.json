@@ -12,6 +12,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
+        "MailSettings__ToAddress": "darthvader@deathstar.net",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
