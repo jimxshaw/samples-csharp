@@ -34,7 +34,22 @@ namespace TheGlobe.Controllers.Web
         [HttpPost]
         public IActionResult Contact(ContactViewModel viewModel)
         {
-            _mailService.SendMail(_config["MailSettings:ToAddress"], viewModel.Email, "From The Globe", viewModel.Message);
+            if (viewModel.Email.Contains("fake.org"))
+            {
+                ModelState.AddModelError("Email", "We don't support fake.org addresses");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _mailService.SendMail(_config["MailSettings:ToAddress"], viewModel.Email, "From The Globe",
+                    viewModel.Message);
+
+                // Clear the form fields after the form is submitted.
+                ModelState.Clear();
+                // Displays a message after the form is submitted.
+                ViewBag.UserMessage = "Message Sent";
+            }
+
             return View();
         }
 
