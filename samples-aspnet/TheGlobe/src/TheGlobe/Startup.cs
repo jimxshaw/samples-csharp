@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using TheGlobe.Services;
 
 namespace TheGlobe
 {
@@ -16,6 +17,10 @@ namespace TheGlobe
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // AddScoped means we'd like our service to be reused but only within the scope of a single request.
+            // Other methods that could be used are AddTransient or AddSingleton.
+            services.AddScoped<IMailService, DebugMailService>();
+
             services.AddMvc();
         }
 
