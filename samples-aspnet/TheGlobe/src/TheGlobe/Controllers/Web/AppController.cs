@@ -17,6 +17,7 @@ namespace TheGlobe.Controllers.Web
 
         public IActionResult Contact()
         {
+            
             return View();
         }
 
