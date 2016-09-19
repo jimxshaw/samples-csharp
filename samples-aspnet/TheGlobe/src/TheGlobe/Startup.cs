@@ -13,23 +13,38 @@ namespace TheGlobe
 {
     public class Startup
     {
+        private IHostingEnvironment _env;
+
+        public Startup(IHostingEnvironment env)
+        {
+            _env = env;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // AddScoped means we'd like our service to be reused but only within the scope of a single request.
-            // Other methods that could be used are AddTransient or AddSingleton.
-            services.AddScoped<IMailService, DebugMailService>();
+
+            if (_env.IsDevelopment() || _env.IsEnvironment("Testing"))
+            {
+                // AddScoped means we'd like our service to be reused but only within the scope of a single request.
+                // Other methods that could be used are AddTransient or AddSingleton.
+                services.AddScoped<IMailService, DebugMailService>();
+            }
+            else
+            {
+                // Implement a real Mail Service.
+            }
 
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
 
-            if (env.IsDevelopment())
+            if (_env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
