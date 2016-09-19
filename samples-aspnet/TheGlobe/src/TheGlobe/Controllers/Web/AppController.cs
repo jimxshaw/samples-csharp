@@ -14,5 +14,15 @@ namespace TheGlobe.Controllers.Web
 
             return View();
         }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            return View();
+        }
     }
 }
