@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TheGlobe.ViewModels;
 
 namespace TheGlobe.Controllers.Web
 {
@@ -16,8 +17,13 @@ namespace TheGlobe.Controllers.Web
         }
 
         public IActionResult Contact()
+        {   
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Contact(ContactViewModel viewModel)
         {
-            
             return View();
         }
 
