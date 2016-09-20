@@ -21,24 +21,25 @@
             }
             <div class="form-group">
                 <label asp-for="Name">Name</label>
-                <input asp-for="Name" class="form-control"/>
-                <span asp-validation-for="Name"></span>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-muted"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Email">Email</label>
-                <input asp-for="Email" type="email" class="form-control"/>
-                <span asp-validation-for="Email"></span>
+                <input asp-for="Email" type="email" class="form-control" />
+                <span asp-validation-for="Email" class="text-muted"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Message">Message</label>
                 <textarea asp-for="Message" cols="40" rows="4" class="form-control"></textarea>
-                <span asp-validation-for="Message"></span>
+                <span asp-validation-for="Message" class="text-muted"></span>
             </div>
 
             <div class="form-group">
                 <input class="btn btn-success" type="submit" value="Send Message" />
+                <a class="btn btn-default pull-right" asp-controller="App" asp-action="Index">Cancel</a>
             </div>
         </form>
     </div>
