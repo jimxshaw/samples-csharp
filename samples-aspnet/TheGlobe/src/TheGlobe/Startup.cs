@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using TheGlobe.Models;
 using TheGlobe.Services;
 
 namespace TheGlobe
@@ -46,6 +47,8 @@ namespace TheGlobe
             {
                 // Implement a real Mail Service.
             }
+
+            services.AddDbContext<WorldContext>();
 
             services.AddMvc();
         }
