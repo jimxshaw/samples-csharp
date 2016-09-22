@@ -50,11 +50,15 @@ namespace TheGlobe
 
             services.AddDbContext<GlobeContext>();
 
+            services.AddTransient<GlobeContextSeedData>();
+
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, 
+            ILoggerFactory loggerFactory,
+            GlobeContextSeedData seeder)
         {
             loggerFactory.AddConsole();
 
@@ -72,6 +76,8 @@ namespace TheGlobe
                     template: "{controller}/{action}/{id?}",
                     defaults: new {controller = "App", action = "Index"});
             });
+
+            seeder.EnsureSeedData().Wait();
 
         }
     }

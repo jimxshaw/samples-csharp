@@ -3,6 +3,6 @@
     "ToAddress": "test123@example.net"
   },
   "ConnectionStrings": {
-    "GlobeContextConnection" : "Server=(OWNER-PC)\\SQLEXPRESS;Database=TheGlobeDb;Trusted_Connection=true;MultipleActiveResultSets=true;" 
+    "GlobeContextConnection" : "Server=(localdb)\\MSSQLLocalDB;Database=TheGlobeDb;Trusted_Connection=true;MultipleActiveResultSets=true;" 
   } 
 }
