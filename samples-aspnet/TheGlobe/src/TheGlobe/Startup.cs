@@ -54,6 +54,8 @@ namespace TheGlobe
 
             services.AddTransient<GlobeContextSeedData>();
 
+            services.AddLogging();
+
             services.AddMvc();
         }
 
@@ -67,6 +69,11 @@ namespace TheGlobe
             if (_env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                loggerFactory.AddDebug(LogLevel.Information);
+            }
+            else
+            {
+                loggerFactory.AddDebug(LogLevel.Error);
             }
 
             app.UseStaticFiles();
