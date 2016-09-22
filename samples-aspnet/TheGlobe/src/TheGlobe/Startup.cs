@@ -50,6 +50,8 @@ namespace TheGlobe
 
             services.AddDbContext<GlobeContext>();
 
+            services.AddScoped<IGlobeRepository, GlobeRepository>();
+
             services.AddTransient<GlobeContextSeedData>();
 
             services.AddMvc();
