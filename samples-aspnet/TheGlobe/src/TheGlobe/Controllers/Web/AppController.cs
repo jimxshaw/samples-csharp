@@ -15,18 +15,18 @@ namespace TheGlobe.Controllers.Web
     {
         private IMailService _mailService;
         private IConfigurationRoot _config;
-        private GlobeContext _context;
+        private IGlobeRepository _repository;
 
-        public AppController(IMailService mailService, IConfigurationRoot config, GlobeContext context)
+        public AppController(IMailService mailService, IConfigurationRoot config, IGlobeRepository repository)
         {
             _mailService = mailService;
             _config = config;
-            _context = context;
+            _repository = repository;
         }
 
         public IActionResult Index()
         {
-            var data = _context.Trips.ToList();
+            var data = _repository.GetAllTrips();
 
             return View(data);
         }
