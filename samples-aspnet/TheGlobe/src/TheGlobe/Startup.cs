@@ -48,7 +48,7 @@ namespace TheGlobe
                 // Implement a real Mail Service.
             }
 
-            services.AddDbContext<WorldContext>();
+            services.AddDbContext<GlobeContext>();
 
             services.AddMvc();
         }

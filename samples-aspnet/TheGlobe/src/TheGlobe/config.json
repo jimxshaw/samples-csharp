@@ -1,5 +1,8 @@
 {
   "MailSettings": {
-    "ToAddress" :  "test123@example.net" 
+    "ToAddress": "test123@example.net"
+  },
+  "ConnectionStrings": {
+    "GlobeContextConnection" : "Server=(OWNER-PC)\\SQLEXPRESS;Database=TheGlobeDb;Trusted_Connection=true;MultipleActiveResultSets=true;" 
   } 
 }

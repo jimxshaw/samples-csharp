@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using TheGlobe.Models;
 using TheGlobe.Services;
 using TheGlobe.ViewModels;
 
@@ -14,16 +15,20 @@ namespace TheGlobe.Controllers.Web
     {
         private IMailService _mailService;
         private IConfigurationRoot _config;
+        private GlobeContext _context;
 
-        public AppController(IMailService mailService, IConfigurationRoot config)
+        public AppController(IMailService mailService, IConfigurationRoot config, GlobeContext context)
         {
             _mailService = mailService;
             _config = config;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var data = _context.Trips.ToList();
+
+            return View(data);
         }
 
         public IActionResult Contact()
