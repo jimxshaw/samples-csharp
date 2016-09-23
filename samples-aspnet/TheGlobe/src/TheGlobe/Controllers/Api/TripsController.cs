@@ -10,9 +10,11 @@ namespace TheGlobe.Controllers.Api
 {
     public class TripsController : Controller
     {
-        public JsonResult Get()
+        [HttpGet("api/trips")]
+        public IActionResult Get()
         {
-            return Json(new Trip()
+
+            return Ok(new Trip()
             {
                 Name = "My Trip"
             });
