@@ -8,16 +8,30 @@ using TheGlobe.Models;
 
 namespace TheGlobe.Controllers.Api
 {
+    [Route("api/trips")]
     public class TripsController : Controller
     {
-        [HttpGet("api/trips")]
+        private IGlobeRepository _repository;
+
+        public TripsController(IGlobeRepository repository)
+        {
+            _repository = repository;
+        }
+
+        // Our HttpGet and HttpPost attributes are blank because we specified 
+        // the route attribute on the class itself and thus these two method 
+        // will assume what routing pattern in that route attribute.
+        [HttpGet("")]
         public IActionResult Get()
         {
 
-            return Ok(new Trip()
-            {
-                Name = "My Trip"
-            });
+            return Ok(_repository.GetAllTrips());
+        }
+
+        [HttpPost("")]
+        public IActionResult Post([FromBody] Trip theTrip)
+        {
+            return Ok(true);
         }
     }
 }

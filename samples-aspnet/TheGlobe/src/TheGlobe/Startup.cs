@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TheGlobe.Models;
 using TheGlobe.Services;
+using Newtonsoft.Json.Serialization;
 
 namespace TheGlobe
 {
@@ -56,7 +57,11 @@ namespace TheGlobe
 
             services.AddLogging();
 
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(config =>
+                {
+                    config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
