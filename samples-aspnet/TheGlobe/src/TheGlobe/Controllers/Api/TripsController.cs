@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TheGlobe.Models;
+using TheGlobe.ViewModels;
 
 namespace TheGlobe.Controllers.Api
 {
@@ -29,9 +30,16 @@ namespace TheGlobe.Controllers.Api
         }
 
         [HttpPost("")]
-        public IActionResult Post([FromBody] Trip theTrip)
+        public IActionResult Post([FromBody] TripViewModel theTrip)
         {
-            return Ok(true);
+            if (ModelState.IsValid)
+            {
+                // Save to the database.
+
+                return Created($"api/trips/{theTrip.Name}", theTrip);
+            }
+
+            return BadRequest(ModelState);
         }
     }
 }
