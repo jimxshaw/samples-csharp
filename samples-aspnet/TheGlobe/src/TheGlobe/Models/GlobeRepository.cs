@@ -18,6 +18,11 @@ namespace TheGlobe.Models
             _logger = logger;
         }
 
+        public void AddTrip(Trip trip)
+        {
+            _context.Add(trip);
+        }
+
         public IEnumerable<Trip> GetAllTrips()
         {
             _logger.LogInformation("Getting all Trips from the Database");
@@ -25,6 +30,9 @@ namespace TheGlobe.Models
             return _context.Trips.ToList();
         }
 
-
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _context.SaveChangesAsync()) > 0;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,21 +26,37 @@ namespace TheGlobe.Controllers.Api
         [HttpGet("")]
         public IActionResult Get()
         {
+            try
+            {
+                var results = _repository.GetAllTrips();
 
-            return Ok(_repository.GetAllTrips());
+                return Ok(Mapper.Map<IEnumerable<TripViewModel>>(results));
+            }
+            catch (Exception ex)
+            {
+                // TODO Logging.
+                return BadRequest(ex);
+            }
         }
 
         [HttpPost("")]
-        public IActionResult Post([FromBody] TripViewModel theTrip)
+        public async Task<IActionResult> Post([FromBody] TripViewModel theTrip)
         {
             if (ModelState.IsValid)
             {
                 // Save to the database.
+                var newTrip = Mapper.Map<Trip>(theTrip);
 
-                return Created($"api/trips/{theTrip.Name}", theTrip);
+                _repository.AddTrip(newTrip);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    return Created($"api/trips/{theTrip.Name}", Mapper.Map<TripViewModel>(newTrip));
+                }
+                
             }
 
-            return BadRequest(ModelState);
+            return BadRequest("Failed to save the trip");
         }
     }
 }

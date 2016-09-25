@@ -11,6 +11,8 @@ using Microsoft.Extensions.Logging;
 using TheGlobe.Models;
 using TheGlobe.Services;
 using Newtonsoft.Json.Serialization;
+using AutoMapper;
+using TheGlobe.ViewModels;
 
 namespace TheGlobe
 {
@@ -69,6 +71,14 @@ namespace TheGlobe
             ILoggerFactory loggerFactory,
             GlobeContextSeedData seeder)
         {
+            Mapper.Initialize(config => {
+                // By using CreateMap, we're mapping from ViewModel to Model but in order 
+                // to map back from model to ViewModel, we must call ReverseMap or an 
+                // AutoMapper error will occur. Even when our ViewModel or Model is inside 
+                // an IEnumerable, for example, AutoMapper can map collection to collection.
+                config.CreateMap<TripViewModel, Trip>().ReverseMap();
+            });
+
             loggerFactory.AddConsole();
 
             if (_env.IsDevelopment())
