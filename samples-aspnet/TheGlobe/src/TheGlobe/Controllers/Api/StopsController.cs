@@ -43,5 +43,35 @@ namespace TheGlobe.Controllers.Api
 
             return BadRequest("Failed to get stops");
         }
+
+        [HttpPost("")]
+        public async Task<IActionResult> Post(string tripName, [FromBody] StopViewModel viewModel)
+        {
+            try
+            {
+                // If the view model is valid
+                if (ModelState.IsValid)
+                {
+                    var newStop = Mapper.Map<Stop>(viewModel);
+
+                    // Lookup the Geocode
+
+                    // Save to the database
+                    _repository.AddStop(tripName, newStop);
+
+                    if (await _repository.SaveChangesAsync())
+                    {
+                        // The call to Created is the result of a post when we successfully save a new object. 
+                        return Created($"/api/trips/{tripName}/stops/{newStop.Name}", Mapper.Map<StopViewModel>(newStop));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to save new stop: {ex}");
+            }
+
+            return BadRequest("Failed to save new stop");
+        }
     }
 }
