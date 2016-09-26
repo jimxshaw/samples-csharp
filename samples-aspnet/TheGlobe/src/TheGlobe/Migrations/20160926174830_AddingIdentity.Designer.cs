@@ -8,9 +8,10 @@ using TheGlobe.Models;
 namespace TheGlobe.Migrations
 {
     [DbContext(typeof(GlobeContext))]
-    partial class GlobeContextModelSnapshot : ModelSnapshot
+    [Migration("20160926174830_AddingIdentity")]
+    partial class AddingIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
