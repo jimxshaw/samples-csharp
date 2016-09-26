@@ -55,6 +55,8 @@ namespace TheGlobe
 
             services.AddScoped<IGlobeRepository, GlobeRepository>();
 
+            services.AddTransient<GeoCoordinatesService>();
+
             services.AddTransient<GlobeContextSeedData>();
 
             services.AddLogging();
