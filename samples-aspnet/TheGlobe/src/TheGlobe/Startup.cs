@@ -12,6 +12,7 @@ using TheGlobe.Models;
 using TheGlobe.Services;
 using Newtonsoft.Json.Serialization;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using TheGlobe.ViewModels;
 
 namespace TheGlobe
@@ -59,6 +60,14 @@ namespace TheGlobe
 
             services.AddTransient<GlobeContextSeedData>();
 
+            services.AddIdentity<GlobeUser, IdentityRole>(config =>
+            {
+                config.User.RequireUniqueEmail = true;
+                config.Password.RequiredLength = 8;
+                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+            })
+            .AddEntityFrameworkStores<GlobeContext>();
+
             services.AddLogging();
 
             services.AddMvc()
@@ -96,6 +105,8 @@ namespace TheGlobe
             }
 
             app.UseStaticFiles();
+
+            app.UseIdentity();
 
             app.UseMvc(config =>
             {
