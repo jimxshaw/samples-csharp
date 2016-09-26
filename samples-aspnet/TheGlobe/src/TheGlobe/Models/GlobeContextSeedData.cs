@@ -29,7 +29,7 @@ namespace TheGlobe.Models
                     Email = "luke.skywalker@jeditemple.org"
                 };
 
-                _userManager.CreateAsync(user, "Password123!");
+                await _userManager.CreateAsync(user, "Password123!");
             }
 
             if (!_context.Trips.Any())
