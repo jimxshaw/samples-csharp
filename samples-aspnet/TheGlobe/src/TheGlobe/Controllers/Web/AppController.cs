@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using TheGlobe.Models;
 using TheGlobe.Services;
 using TheGlobe.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TheGlobe.Controllers.Web
 {
@@ -31,6 +32,12 @@ namespace TheGlobe.Controllers.Web
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Trips()
         {
             try
             {
