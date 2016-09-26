@@ -3,27 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace TheGlobe.Models
 {
     public class GlobeContextSeedData
     {
         private GlobeContext _context;
+        private UserManager<GlobeUser> _userManager;
 
-        public GlobeContextSeedData(GlobeContext context)
+        public GlobeContextSeedData(GlobeContext context, UserManager<GlobeUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task EnsureSeedData()
         {
+            // Test to see if the user exists. If not, create the user.
+            if (await _userManager.FindByEmailAsync("luke.skywalker@jeditemple.org") == null)
+            {
+                var user = new GlobeUser()
+                {
+                    UserName = "lukeskywalker",
+                    Email = "luke.skywalker@jeditemple.org"
+                };
+
+                _userManager.CreateAsync(user, "Password123!");
+            }
+
             if (!_context.Trips.Any())
             {
                 var usTrip = new Trip()
                 {
                     DateCreated = DateTime.UtcNow,
                     Name = "US Trip",
-                    UserName = "", // TODO Add UserName
+                    UserName = "lukeskywalker",
                     Stops = new List<Stop>()
                     {
                         new Stop() {  Name = "Atlanta, GA", Arrival = new DateTime(2014, 6, 4), Latitude = 33.748995, Longitude = -84.387982, Order = 0 },
@@ -43,7 +58,7 @@ namespace TheGlobe.Models
                 {
                     DateCreated = DateTime.UtcNow,
                     Name = "World Trip",
-                    UserName = "", // TODO Add UserName
+                    UserName = "lukeskywalker",
                     Stops = new List<Stop>()
                     {
                         new Stop() { Order = 0, Latitude =  33.748995, Longitude =  -84.387982, Name = "Atlanta, Georgia", Arrival = DateTime.Parse("Jun 3, 2014") },
