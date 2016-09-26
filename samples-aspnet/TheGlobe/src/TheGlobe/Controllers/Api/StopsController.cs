@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TheGlobe.Models;
+using TheGlobe.Services;
 using TheGlobe.ViewModels;
 
 namespace TheGlobe.Controllers.Api
@@ -15,13 +16,17 @@ namespace TheGlobe.Controllers.Api
     [Route("/api/trips/{tripName}/stops")]
     public class StopsController : Controller
     {
+        private GeoCoordinatesService _coordinatesService;
         private ILogger<StopsController> _logger;
         private IGlobeRepository _repository;
 
-        public StopsController(IGlobeRepository repository, ILogger<StopsController> logger)
+        public StopsController(IGlobeRepository repository, 
+            ILogger<StopsController> logger,
+            GeoCoordinatesService coordinatesService)
         {
             _repository = repository;
             _logger = logger;
+            _coordinatesService = coordinatesService;
         }
 
         [HttpGet("")]
@@ -55,14 +60,25 @@ namespace TheGlobe.Controllers.Api
                     var newStop = Mapper.Map<Stop>(viewModel);
 
                     // Lookup the Geocode
+                    var result = await _coordinatesService.GetCoordinatesAsync(newStop.Name);
 
-                    // Save to the database
-                    _repository.AddStop(tripName, newStop);
-
-                    if (await _repository.SaveChangesAsync())
+                    if (!result.Successful)
                     {
-                        // The call to Created is the result of a post when we successfully save a new object. 
-                        return Created($"/api/trips/{tripName}/stops/{newStop.Name}", Mapper.Map<StopViewModel>(newStop));
+                        _logger.LogError(result.Message);
+                    }
+                    else
+                    {
+                        newStop.Latitude = result.Latitude;
+                        newStop.Longitude = result.Longitude;
+
+                        // Save to the database
+                        _repository.AddStop(tripName, newStop);
+
+                        if (await _repository.SaveChangesAsync())
+                        {
+                            // The call to Created is the result of a post when we successfully save a new object. 
+                            return Created($"/api/trips/{tripName}/stops/{newStop.Name}", Mapper.Map<StopViewModel>(newStop));
+                        }
                     }
                 }
             }

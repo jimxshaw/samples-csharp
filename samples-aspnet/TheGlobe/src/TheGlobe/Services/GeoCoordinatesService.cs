@@ -22,7 +22,7 @@ namespace TheGlobe.Services
             _configuration = configuration;
         }
 
-        public async Task<GeoCoordinatesResult> GetCoordinates(string name)
+        public async Task<GeoCoordinatesResult> GetCoordinatesAsync(string name)
         {
             var result = new GeoCoordinatesResult()
             {
