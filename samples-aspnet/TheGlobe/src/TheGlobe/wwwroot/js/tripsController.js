@@ -24,11 +24,14 @@
         }
         ];
 
-        // This object will accept all the data about a new trip from the form.
+        // This object will accept all the data about a new trip.
         vm.newTrip = {};
 
         vm.addTrip = function() {
-            alert(vm.newTrip.name);
+            vm.trips.push({ name: vm.newTrip.name, created: new Date() });
+            // After we add the new trip from the form, we clear out the form 
+            // so we don't accidentally submit the same trip over and over.
+            vm.newTrip = {};
         };
     }
 })();
