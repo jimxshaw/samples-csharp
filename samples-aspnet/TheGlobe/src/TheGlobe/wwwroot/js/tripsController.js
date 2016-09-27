@@ -9,6 +9,10 @@
         .controller("tripsController", tripsController);
 
     function tripsController() {
-        
+        // The this keyword in this context is the object returned from 
+        // our tripsController. Abbreviated view model as vm.
+        var vm = this;
+
+        vm.name = "James";
     }
 })();
