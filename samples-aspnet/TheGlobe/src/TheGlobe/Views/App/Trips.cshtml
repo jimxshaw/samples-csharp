@@ -2,8 +2,11 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
-<div class="row">
+@section Scripts {
+    <script src="~/lib/angular/angular.min.js"></script>
+}
+<div class="row" ng-app="app-trips">
+    <div>{{"Addition: " + (2 + 2)}}</div>
     <div class="col-md-6">
         <h1>The Globe</h1>
         <p>Taking over the globe soon!</p>
