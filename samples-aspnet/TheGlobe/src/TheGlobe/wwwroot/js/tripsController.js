@@ -23,5 +23,12 @@
             created: new Date()
         }
         ];
+
+        // This object will accept all the data about a new trip from the form.
+        vm.newTrip = {};
+
+        vm.addTrip = function() {
+            alert(vm.newTrip.name);
+        };
     }
 })();
