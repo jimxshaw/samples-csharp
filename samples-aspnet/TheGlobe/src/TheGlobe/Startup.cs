@@ -12,6 +12,7 @@ using TheGlobe.Models;
 using TheGlobe.Services;
 using Newtonsoft.Json.Serialization;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using TheGlobe.ViewModels;
@@ -66,6 +67,23 @@ namespace TheGlobe
                 config.User.RequireUniqueEmail = true;
                 config.Password.RequiredLength = 8;
                 config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+                config.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents()
+                {
+                    OnRedirectToLogin = async context =>
+                    {
+                        // When the status code is 200 OK and the path is api then we'll proceed by returning 
+                        // the status code to be 401 Unauthorized.
+                        if (context.Request.Path.StartsWithSegments("/api") && context.Response.StatusCode == 200)
+                        {
+                            context.Response.StatusCode = 401;
+                        }
+                        else
+                        {
+                            context.Response.Redirect(context.RedirectUri);
+                        }
+                        await Task.Yield();
+                    }
+                };
             })
             .AddEntityFrameworkStores<GlobeContext>();
 
