@@ -13,6 +13,15 @@
         // our tripsController. Abbreviated view model as vm.
         var vm = this;
 
-        vm.name = "James";
+        vm.trips = [
+        {
+            name: "US Trip",
+            created: new Date()
+        },
+        {
+            name: "World Trip",
+            created: new Date()
+        }
+        ];
     }
 })();
