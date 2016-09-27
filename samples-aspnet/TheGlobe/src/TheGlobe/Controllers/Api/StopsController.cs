@@ -7,12 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using TheGlobe.Models;
 using TheGlobe.Services;
 using TheGlobe.ViewModels;
 
 namespace TheGlobe.Controllers.Api
 {
+    [Authorize]
     [Route("/api/trips/{tripName}/stops")]
     public class StopsController : Controller
     {
@@ -34,7 +36,7 @@ namespace TheGlobe.Controllers.Api
         {
             try
             {
-                var trip = _repository.GetTripByName(tripName);
+                var trip = _repository.GetTripByName(tripName, User.Identity.Name);
 
                 // What's actually returned from the database is a collection of raw model class of Stop but we don't want to return 
                 // the raw model. We want to return a collection of StopViewModel instead. To do this we use AutoMapper to map 
@@ -72,7 +74,7 @@ namespace TheGlobe.Controllers.Api
                         newStop.Longitude = result.Longitude;
 
                         // Save to the database
-                        _repository.AddStop(tripName, newStop);
+                        _repository.AddStop(tripName, newStop, User.Identity.Name);
 
                         if (await _repository.SaveChangesAsync())
                         {

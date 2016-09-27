@@ -8,9 +8,9 @@ namespace TheGlobe.Models
         IEnumerable<Trip> GetAllTrips();
         IEnumerable<Trip> GetUserTripsWithStops(string name);
         void AddTrip(Trip trip);
-        void AddStop(string tripName, Stop newStop);
+        void AddStop(string tripName, Stop newStop, string userName);
         Task<bool> SaveChangesAsync();
-        Trip GetTripByName(string tripName);
+        Trip GetTripByName(string tripName, string userName);
 
         
     }
