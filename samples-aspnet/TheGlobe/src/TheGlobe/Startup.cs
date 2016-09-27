@@ -13,6 +13,7 @@ using TheGlobe.Services;
 using Newtonsoft.Json.Serialization;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using TheGlobe.ViewModels;
 
 namespace TheGlobe
@@ -70,7 +71,19 @@ namespace TheGlobe
 
             services.AddLogging();
 
-            services.AddMvc()
+            services.AddMvc(config =>
+            {
+                // This filter's purpose is for if we attempt to goto an Http,
+                // it'll try to redirect us to Https. When credentials are sent
+                // over the wire, they'll be protected with a certificate. Any 
+                // site that accepts creditionals should use Https. 
+                // We put a condition so that it occurs only when 
+                // the environment is Production.
+                if (_env.IsProduction())
+                {
+                    config.Filters.Add(new RequireHttpsAttribute());
+                }
+            })
                 .AddJsonOptions(config =>
                 {
                     config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
