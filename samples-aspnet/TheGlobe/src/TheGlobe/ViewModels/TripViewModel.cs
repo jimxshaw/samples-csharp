@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheGlobe.Models;
 
 namespace TheGlobe.ViewModels
 {
@@ -12,6 +13,8 @@ namespace TheGlobe.ViewModels
         [Required]
         [StringLength(100, MinimumLength = 5)]
         public string Name { get; set; }
+
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+        public ICollection<Stop> Stops { get; set; }
     }
 }

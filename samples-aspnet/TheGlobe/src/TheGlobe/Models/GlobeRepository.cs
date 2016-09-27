@@ -42,7 +42,10 @@ namespace TheGlobe.Models
         {
             _logger.LogInformation("Getting all Trips from the Database");
 
-            return _context.Trips.ToList();
+            return _context.Trips
+                .Include(t => t.Stops)
+                .OrderBy(t => t.Name)
+                .ToList();
         }
 
         public Trip GetTripByName(string tripName)
@@ -51,6 +54,25 @@ namespace TheGlobe.Models
                 .Include(t => t.Stops)
                 .Where(t => t.Name == tripName)
                 .FirstOrDefault();
+        }
+
+        public IEnumerable<Trip> GetUserTripsWithStops(string name)
+        {
+            try
+            {
+                _logger.LogInformation("Getting all trips with stops from the database");
+
+                return _context.Trips
+                    .Include(t => t.Stops)
+                    .OrderBy(t => t.Name)
+                    .Where(t => t.UserName == name)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not get trips with stops from database", ex);
+                return null;
+            }
         }
 
         public async Task<bool> SaveChangesAsync()

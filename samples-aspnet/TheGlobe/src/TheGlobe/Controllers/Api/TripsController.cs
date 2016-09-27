@@ -30,9 +30,9 @@ namespace TheGlobe.Controllers.Api
         {
             try
             {
-                var results = _repository.GetAllTrips();
+                var trips = _repository.GetUserTripsWithStops(User.Identity.Name);
 
-                return Ok(Mapper.Map<IEnumerable<TripViewModel>>(results));
+                return Ok(Mapper.Map<IEnumerable<TripViewModel>>(trips));
             }
             catch (Exception ex)
             {
