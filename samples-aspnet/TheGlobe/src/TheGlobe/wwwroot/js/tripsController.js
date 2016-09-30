@@ -8,24 +8,31 @@
     angular.module("app-trips")
         .controller("tripsController", tripsController);
 
-    function tripsController() {
+    function tripsController($http) {
         // The this keyword in this context is the object returned from 
         // our tripsController. Abbreviated view model as vm.
         var vm = this;
 
-        vm.trips = [
-        {
-            name: "US Trip",
-            created: new Date()
-        },
-        {
-            name: "World Trip",
-            created: new Date()
-        }
-        ];
+        vm.trips = [];
 
         // This object will accept all the data about a new trip.
         vm.newTrip = {};
+
+        vm.errorMessage = "";
+        vm.isBusy = true;
+
+        $http.get("/api/trips")
+            .then(function(response) {
+                    // Promise success
+                    angular.copy(response.data, vm.trips);
+                },
+                function(error) {
+                    // Promise failure
+                    vm.errorMessage = "Failed to load data: " + error;
+                }
+            ).finally(function() {
+                vm.isBusy = false;
+            });
 
         vm.addTrip = function() {
             vm.trips.push({ name: vm.newTrip.name, created: new Date() });
