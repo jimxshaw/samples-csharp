@@ -19,6 +19,8 @@
         vm.newTrip = {};
 
         vm.errorMessage = "";
+        // This property representing a spinner for when 
+        // data is loading.
         vm.isBusy = true;
 
         $http.get("/api/trips")
@@ -35,10 +37,24 @@
             });
 
         vm.addTrip = function() {
-            vm.trips.push({ name: vm.newTrip.name, created: new Date() });
-            // After we add the new trip from the form, we clear out the form 
-            // so we don't accidentally submit the same trip over and over.
-            vm.newTrip = {};
+            vm.isBusy = true;
+            // Clear out any prior error messages.
+            vm.errorMessage = "";
+
+            $http.post("/api/trips", vm.newTrip)
+                .then(function(response) {
+                    // Promise success
+                    vm.trips.push(response.data);
+                    // If successful, clear out the new trip form.
+                    vm.newTrip = {};
+
+                }, function() {
+                    // Promise failure
+                    vm.errorMessage = "Failed to save new trip";
+                })
+                .finally(function() {
+                    vm.isBusy = false;
+                });
         };
     }
 })();
