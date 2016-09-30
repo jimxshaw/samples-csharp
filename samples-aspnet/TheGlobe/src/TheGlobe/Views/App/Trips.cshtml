@@ -16,7 +16,7 @@
             This wait-cursor tag is a custom angular directive we defined in our
             simpleControls.js file. This is a reusable piece that we can use anywhere.
         *@
-        <wait-cursor ng-show="vm.isBusy"></wait-cursor>
+        <wait-cursor display-when="vm.isBusy"></wait-cursor>
 
         <table class="table table-responsive table-striped">
             <tr ng-repeat="trip in vm.trips">
