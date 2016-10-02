@@ -17,6 +17,13 @@
                 templateUrl: "/views/tripsView.html"
             });
 
+            $routeProvider.when("/editor",
+            {
+                controller: "tripEditorController",
+                controllerAs: "vm",
+                templateUrl: "/views/tripEditorView.html"
+            });
+
             // This is what we do if none of the routes match.
             $routeProvider.otherwise({ redirectTo: "/" });
         });
