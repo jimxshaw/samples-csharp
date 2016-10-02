@@ -91,3 +91,7 @@ textarea {
     -o-transition: margin-left ease .25s;
     transition: margin-left ease .25s;
 }
+
+#buttonBack {
+    margin-left: 15px;
+}
