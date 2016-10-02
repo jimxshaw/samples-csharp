@@ -95,3 +95,8 @@ textarea {
 #buttonBack {
     margin-left: 15px;
 }
+
+#map {
+    width: 100%;
+    height: 600px;
+}
