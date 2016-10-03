@@ -138,7 +138,13 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Entities\Demographics.cs" />
+    <Compile Include="Entities\Favorite.cs" />
+    <Compile Include="Entities\Interest.cs" />
+    <Compile Include="Entities\InterestType.cs" />
     <Compile Include="Entities\Member.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\Photo.cs" />
     <Compile Include="Entities\Profile.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
