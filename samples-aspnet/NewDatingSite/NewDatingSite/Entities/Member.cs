@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NewDatingSite.Entities
 {
@@ -10,5 +11,8 @@ namespace NewDatingSite.Entities
         public DateTime Created { get; set; }
 
         public Profile Profile { get; set; }
+
+        public ICollection<Message> Messages { get; set; }
+        public ICollection<Favorite> Favorites { get; set; }
     }
 }
