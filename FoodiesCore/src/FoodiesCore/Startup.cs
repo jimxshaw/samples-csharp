@@ -46,6 +46,13 @@ namespace FoodiesCore
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseFileServer();
+
+            app.UseWelcomePage(new WelcomePageOptions()
+            {
+                Path = "/welcome"
+            });
+
             app.Run(async (context) =>
             {
                 var message = greeter.GetGreeting();
