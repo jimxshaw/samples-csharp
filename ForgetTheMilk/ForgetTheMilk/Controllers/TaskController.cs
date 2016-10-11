@@ -2,7 +2,7 @@
 
 namespace ForgetTheMilk.Controllers
 {
-    public class HomeController : Controller
+    public class TaskController : Controller
     {
         public ActionResult Index()
         {
