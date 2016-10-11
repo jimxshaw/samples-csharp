@@ -4,7 +4,7 @@
 
 <div class="jumbotron">
     <p>Add a Task: </p>
-    <form>
-        <input type="text" class="input-lg col-xs-12" name="task" />
+    <form action="@Url.Action("Add")" method="post">
+        <input type="text" class="input-lg col-xs-12" name="task" autofocus />
     </form>
 </div>
