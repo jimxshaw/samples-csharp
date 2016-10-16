@@ -27,16 +27,14 @@ namespace ConsoleVerification
             var descriptionShouldBe = "Buy groceries";
             DateTime? dueDateShouldBe = null;
 
-            if (descriptionShouldBe == task.Description && dueDateShouldBe == task.DueDate)
-            {
-                Console.WriteLine("SUCCESS");
-            }
-            else
-            {
-                Console.WriteLine("ERROR");
-                Console.WriteLine($"Description: {task.Description} -> Should Be: {descriptionShouldBe}");
-                Console.WriteLine($"Due Date: {task.DueDate} -> Should Be: {dueDateShouldBe}");
-            }
+            var success = descriptionShouldBe == task.Description && dueDateShouldBe == task.DueDate;
+            var failureMessage = "ERROR: "
+                    + "\n"
+                    + $"Description: {task.Description} -> Should Be: {descriptionShouldBe}"
+                    + "\n"
+                    + $"Due Date: {task.DueDate} -> Should Be: {dueDateShouldBe}";
+
+            PrintOutcome(success, failureMessage);
         }
 
         private static void TestMayDueDate()
@@ -47,15 +45,17 @@ namespace ConsoleVerification
             var descriptionShouldBe = "Buy groceries may 24";
             var dueDateShouldBe = new DateTime(DateTime.Today.Year, 5, 24);
 
-            if (dueDateShouldBe == task.DueDate)
-            {
-                Console.WriteLine("SUCCESS");
-            }
-            else
-            {
-                Console.WriteLine("ERROR");
-                Console.WriteLine($"Due Date: {task.DueDate} -> Should Be: {dueDateShouldBe}");
-            }
+            var success = dueDateShouldBe == task.DueDate;
+            var failureMessage = "ERROR: "
+                    + "\n"
+                    + $"Due Date: {task.DueDate} -> Should Be: {dueDateShouldBe}";
+
+            PrintOutcome(success, failureMessage);
+        }
+
+        private static void PrintOutcome(bool success, string failureMessage)
+        {
+            Console.WriteLine(success ? "SUCCESS" : failureMessage);
         }
     }
 }
