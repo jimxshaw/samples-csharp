@@ -10,16 +10,21 @@ namespace ConsoleVerification
     {
         static void Main(string[] args)
         {
-            while (true)
-            {
-                Console.WriteLine("Add a task: ");
-                var input = Console.ReadLine();
-                var task = new Task(input);
+            var input = "Buy groceries";
+            var task = new Task(input);
 
-                Console.WriteLine($"Description: {task.Description}");
-                Console.WriteLine($"Due Date: {task.DueDate}");
-                Console.WriteLine();
-            }
+            Console.WriteLine($"Description: {task.Description}");
+            Console.WriteLine($"Due Date: {task.DueDate}");
+            Console.WriteLine();
+
+            input = "Buy groceries may 24";
+            task = new Task(input);
+
+            Console.WriteLine($"Description: {task.Description}");
+            Console.WriteLine($"Due Date: {task.DueDate}");
+            Console.WriteLine();
+
+            Console.ReadLine();
         }
     }
 }
