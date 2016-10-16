@@ -10,6 +10,17 @@ namespace ConsoleVerification
     {
         static void Main(string[] args)
         {
+            TestDescriptionAndNoDueDate();
+
+            Console.WriteLine();
+
+            TestMayDueDate();
+
+            Console.ReadLine();
+        }
+
+        private static void TestDescriptionAndNoDueDate()
+        {
             var input = "Buy groceries";
             Console.WriteLine($"Scenario 1: {input}");
             var task = new Task(input);
@@ -26,14 +37,15 @@ namespace ConsoleVerification
                 Console.WriteLine($"Description: {task.Description} -> Should Be: {descriptionShouldBe}");
                 Console.WriteLine($"Due Date: {task.DueDate} -> Should Be: {dueDateShouldBe}");
             }
+        }
 
-            Console.WriteLine();
-
-            input = "Buy groceries may 24";
+        private static void TestMayDueDate()
+        {
+            var input = "Buy groceries may 24";
             Console.WriteLine($"Scenario 2: {input}");
-            task = new Task(input);
-            descriptionShouldBe = "Buy groceries may 24";
-            dueDateShouldBe = new DateTime(DateTime.Today.Year, 5, 24);
+            var task = new Task(input);
+            var descriptionShouldBe = "Buy groceries may 24";
+            var dueDateShouldBe = new DateTime(DateTime.Today.Year, 5, 24);
 
             if (dueDateShouldBe == task.DueDate)
             {
@@ -44,8 +56,6 @@ namespace ConsoleVerification
                 Console.WriteLine("ERROR");
                 Console.WriteLine($"Due Date: {task.DueDate} -> Should Be: {dueDateShouldBe}");
             }
-
-            Console.ReadLine();
         }
     }
 }
