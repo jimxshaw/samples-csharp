@@ -8,7 +8,7 @@ namespace ForgetTheMilk.Models
         public string Description { get; set; }
         public DateTime? DueDate { get; set; }
 
-        public Task(string task)
+        public Task(string task, DateTime today)
         {
             Description = task;
 
@@ -20,7 +20,14 @@ namespace ForgetTheMilk.Models
             {
                 var dueDate = dueDatePattern.Match(task);
                 var day = Convert.ToInt32(dueDate.Groups[1].Value);
-                DueDate = new DateTime(DateTime.Today.Year, 5, day);
+                DueDate = new DateTime(today.Year, 5, day);
+
+                if (DueDate < today)
+                {
+                    // If the user input date is prior to today's date then we'll assume the
+                    // user actually means next year and wrap the year by adding 1.
+                    DueDate = DueDate.Value.AddYears(1);
+                }
             }
         }
     }

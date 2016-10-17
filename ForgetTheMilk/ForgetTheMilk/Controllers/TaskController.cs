@@ -1,4 +1,5 @@
 ﻿using ForgetTheMilk.Models;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -16,7 +17,7 @@ namespace ForgetTheMilk.Controllers
         [HttpPost]
         public ActionResult Add(string task)
         {
-            var taskItem = new Task(task);
+            var taskItem = new Task(task, DateTime.Today);
 
             Tasks.Add(taskItem);
 
