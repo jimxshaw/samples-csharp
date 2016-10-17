@@ -12,7 +12,7 @@ namespace ForgetTheMilk.Models
         {
             Description = task;
 
-            var dueDatePattern = new Regex(@"may\s(\d\d)");
+            var dueDatePattern = new Regex(@"oct\s(\d\d)");
 
             var hasDueDate = dueDatePattern.IsMatch(task);
 
@@ -20,7 +20,7 @@ namespace ForgetTheMilk.Models
             {
                 var dueDate = dueDatePattern.Match(task);
                 var day = Convert.ToInt32(dueDate.Groups[1].Value);
-                DueDate = new DateTime(today.Year, 5, day);
+                DueDate = new DateTime(today.Year, 10, day);
 
                 if (DueDate < today)
                 {

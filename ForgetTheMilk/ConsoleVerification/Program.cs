@@ -14,11 +14,11 @@ namespace ConsoleVerification
 
             Console.WriteLine();
 
-            TestMayDueDateWithYearWrap();
+            TestMonthDueDateWithYearWrap();
 
             Console.WriteLine();
 
-            TestMayDueDateWithoutYearWrap();
+            TestMonthDueDateWithoutYearWrap();
 
             Console.ReadLine();
         }
@@ -43,17 +43,17 @@ namespace ConsoleVerification
             PrintOutcome(success, failureMessage);
         }
 
-        private static void TestMayDueDateWithYearWrap()
+        private static void TestMonthDueDateWithYearWrap()
         {
-            var input = "Buy groceries may 24";
+            var input = "Buy groceries oct 13";
             Console.WriteLine($"Scenario 2: {input}");
 
             var today = new DateTime(2016, 10, 16);
 
             var task = new Task(input, today);
 
-            var descriptionShouldBe = "Buy groceries may 24 - as of 2015-10-16";
-            var dueDateShouldBe = new DateTime(2017, 5, 24);
+            var descriptionShouldBe = "Buy groceries oct 12 - as of 2015-10-16";
+            var dueDateShouldBe = new DateTime(2017, 10, 13);
 
             var success = dueDateShouldBe == task.DueDate;
             var failureMessage = "ERROR: "
@@ -63,17 +63,17 @@ namespace ConsoleVerification
             PrintOutcome(success, failureMessage);
         }
 
-        private static void TestMayDueDateWithoutYearWrap()
+        private static void TestMonthDueDateWithoutYearWrap()
         {
-            var input = "Buy groceries may 24";
+            var input = "Buy groceries oct 15";
             Console.WriteLine($"Scenario 2: {input}");
 
-            var today = new DateTime(2016, 5, 23);
+            var today = new DateTime(2016, 10, 16);
 
             var task = new Task(input, today);
 
-            var descriptionShouldBe = "Buy groceries may 24 - as of 2016-05-23";
-            var dueDateShouldBe = new DateTime(2016, 5, 24);
+            var descriptionShouldBe = "Buy groceries oct 15 - as of 2016-10-15";
+            var dueDateShouldBe = new DateTime(2016, 10, 15);
 
             var success = dueDateShouldBe == task.DueDate;
             var failureMessage = "ERROR: "
