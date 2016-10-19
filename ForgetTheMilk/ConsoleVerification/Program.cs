@@ -10,7 +10,7 @@ namespace ConsoleVerification
     {
         static void Main(string[] args)
         {
-            TestDescriptionAndNoDueDate();
+            //TestDescriptionAndNoDueDate();
 
             Console.WriteLine();
 
@@ -23,25 +23,25 @@ namespace ConsoleVerification
             Console.ReadLine();
         }
 
-        private static void TestDescriptionAndNoDueDate()
-        {
-            var input = "Buy groceries";
-            Console.WriteLine($"Scenario 1: {input}");
+        //private static void TestDescriptionAndNoDueDate()
+        //{
+        //    var input = "Buy groceries";
+        //    Console.WriteLine($"Scenario 1: {input}");
 
-            var task = new Task(input, default(DateTime));
+        //    var task = new Task(input, default(DateTime));
 
-            var descriptionShouldBe = "Buy groceries";
-            DateTime? dueDateShouldBe = null;
+        //    var descriptionShouldBe = "Buy groceries";
+        //    DateTime? dueDateShouldBe = null;
 
-            var success = descriptionShouldBe == task.Description && dueDateShouldBe == task.DueDate;
-            var failureMessage = "ERROR: "
-                    + "\n"
-                    + $"Description: {task.Description} -> Should Be: {descriptionShouldBe}"
-                    + "\n"
-                    + $"Due Date: {task.DueDate} -> Should Be: {dueDateShouldBe}";
+        //    var success = descriptionShouldBe == task.Description && dueDateShouldBe == task.DueDate;
+        //    var failureMessage = "ERROR: "
+        //            + "\n"
+        //            + $"Description: {task.Description} -> Should Be: {descriptionShouldBe}"
+        //            + "\n"
+        //            + $"Due Date: {task.DueDate} -> Should Be: {dueDateShouldBe}";
 
-            PrintOutcome(success, failureMessage);
-        }
+        //    PrintOutcome(success, failureMessage);
+        //}
 
         private static void TestMonthDueDateWithYearWrap()
         {

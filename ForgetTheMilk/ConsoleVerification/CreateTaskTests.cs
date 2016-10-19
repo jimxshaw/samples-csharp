@@ -1,11 +1,13 @@
 ﻿using ForgetTheMilk.Models;
+using NUnit.Framework;
 using System;
 
 namespace ConsoleVerification
 {
-    public class TaskTests
+    public class CreateTaskTests
     {
-        public void TestDescriptionAndNoDueDate()
+        [Test]
+        public void DescriptionAndNoDueDate()
         {
             var input = "Buy groceries";
             Console.WriteLine($"Scenario 1: {input}");
@@ -22,7 +24,7 @@ namespace ConsoleVerification
                     + "\n"
                     + $"Due Date: {task.DueDate} -> Should Be: {dueDateShouldBe}";
 
-            Program.PrintOutcome(success, failureMessage);
+            Assert.That(success, failureMessage);
         }
     }
 }
