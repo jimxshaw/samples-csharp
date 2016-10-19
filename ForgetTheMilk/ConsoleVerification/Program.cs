@@ -83,7 +83,7 @@ namespace ConsoleVerification
             PrintOutcome(success, failureMessage);
         }
 
-        private static void PrintOutcome(bool success, string failureMessage)
+        public static void PrintOutcome(bool success, string failureMessage)
         {
             Console.WriteLine(success ? "SUCCESS" : failureMessage);
         }
