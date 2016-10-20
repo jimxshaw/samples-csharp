@@ -4,7 +4,7 @@ using System;
 
 namespace ConsoleVerification
 {
-    public class CreateTaskTests
+    public class CreateTaskTests : AssertionHelper
     {
         [Test]
         public void DescriptionAndNoDueDate()
@@ -13,7 +13,7 @@ namespace ConsoleVerification
 
             var task = new Task(input, default(DateTime));
 
-            Assert.AreEqual(input, task.Description);
+            Expect(task.Description, Is.EqualTo(input));
             Assert.AreEqual(null, task.DueDate);
         }
     }
