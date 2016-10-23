@@ -12,15 +12,17 @@ namespace ForgetTheMilk.Models
         {
             Description = task;
 
-            var dueDatePattern = new Regex(@"oct\s(\d\d)");
+            var dueDatePattern = new Regex(@"(sep|oct)\s(\d\d)");
 
             var hasDueDate = dueDatePattern.IsMatch(task);
 
             if (hasDueDate)
             {
                 var dueDate = dueDatePattern.Match(task);
-                var day = Convert.ToInt32(dueDate.Groups[1].Value);
-                DueDate = new DateTime(today.Year, 10, day);
+                var monthInput = dueDate.Groups[1].Value;
+                var month = monthInput == "oct" ? 10 : 9;
+                var day = Convert.ToInt32(dueDate.Groups[2].Value);
+                DueDate = new DateTime(today.Year, month, day);
 
                 if (DueDate < today)
                 {

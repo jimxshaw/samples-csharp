@@ -18,27 +18,40 @@ namespace ConsoleVerification
         }
 
         [Test]
-        public void TestMonthDueDateWithYearWrap()
+        public void MonthDueDateWithYearWrap()
         {
-            var input = "Buy groceries oct 13";
+            var input = "Buy groceries oct 17";
 
-            var today = new DateTime(2016, 10, 16);
+            var today = new DateTime(2016, 10, 23);
 
             var task = new Task(input, today);
 
-            Expect(task.DueDate, Is.EqualTo(new DateTime(2017, 10, 13)));
+            Expect(task.DueDate, Is.EqualTo(new DateTime(2017, 10, 17)));
         }
 
         [Test]
-        public void TestMonthDueDateWithoutYearWrap()
+        public void MonthDueDateWithoutYearWrap()
         {
-            var input = "Buy groceries oct 25";
+            var input = "Buy groceries oct 30";
 
-            var today = new DateTime(2016, 10, 16);
+            var today = new DateTime(2016, 10, 23);
 
             var task = new Task(input, today);
 
-            Expect(task.DueDate, Is.EqualTo(new DateTime(2016, 10, 25)));
+            Expect(task.DueDate, Is.EqualTo(new DateTime(2016, 10, 30)));
+        }
+
+        [Test]
+        public void AprilDueDate()
+        {
+            var input = "Groceries sep 13";
+
+            var today = new DateTime(2016, 10, 30);
+
+            var task = new Task(input, today);
+
+            Expect(task.DueDate, Is.Not.Null);
+            Expect(task.DueDate.Value.Month, Is.EqualTo(9));
         }
     }
 }
