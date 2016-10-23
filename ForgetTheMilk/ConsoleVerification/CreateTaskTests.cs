@@ -42,16 +42,26 @@ namespace ConsoleVerification
         }
 
         [Test]
-        public void AprilDueDate()
+        [TestCase("Groceries jan 13", 1)]
+        [TestCase("Groceries feb 13", 2)]
+        [TestCase("Groceries mar 13", 3)]
+        [TestCase("Groceries apr 13", 4)]
+        [TestCase("Groceries may 13", 5)]
+        [TestCase("Groceries jun 13", 6)]
+        [TestCase("Groceries jul 13", 7)]
+        [TestCase("Groceries aug 13", 8)]
+        [TestCase("Groceries sep 13", 9)]
+        [TestCase("Groceries oct 13", 10)]
+        [TestCase("Groceries nov 13", 11)]
+        [TestCase("Groceries dec 13", 12)]
+        public void DueDate(string input, int expectedMonth)
         {
-            var input = "Groceries sep 13";
-
             var today = new DateTime(2016, 10, 30);
 
             var task = new Task(input, today);
 
             Expect(task.DueDate, Is.Not.Null);
-            Expect(task.DueDate.Value.Month, Is.EqualTo(9));
+            Expect(task.DueDate.Value.Month, Is.EqualTo(expectedMonth));
         }
     }
 }

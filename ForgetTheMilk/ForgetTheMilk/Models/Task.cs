@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace ForgetTheMilk.Models
@@ -12,7 +13,7 @@ namespace ForgetTheMilk.Models
         {
             Description = task;
 
-            var dueDatePattern = new Regex(@"(sep|oct)\s(\d\d)");
+            var dueDatePattern = new Regex(@"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s(\d\d)");
 
             var hasDueDate = dueDatePattern.IsMatch(task);
 
@@ -20,7 +21,7 @@ namespace ForgetTheMilk.Models
             {
                 var dueDate = dueDatePattern.Match(task);
                 var monthInput = dueDate.Groups[1].Value;
-                var month = monthInput == "oct" ? 10 : 9;
+                var month = DateTime.ParseExact(monthInput, "MMM", CultureInfo.CurrentCulture).Month;
                 var day = Convert.ToInt32(dueDate.Groups[2].Value);
                 DueDate = new DateTime(today.Year, month, day);
 
