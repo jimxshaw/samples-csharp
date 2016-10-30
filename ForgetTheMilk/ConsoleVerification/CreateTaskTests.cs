@@ -1,5 +1,6 @@
 ﻿using ForgetTheMilk.Models;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using System;
 
 namespace ConsoleVerification
@@ -56,12 +57,20 @@ namespace ConsoleVerification
         [TestCase("Groceries dec 13", 12)]
         public void DueDate(string input, int expectedMonth)
         {
-            var today = new DateTime(2016, 10, 30);
-
-            var task = new Task(input, today);
+            var task = new Task(input, default(DateTime));
 
             Expect(task.DueDate, Is.Not.Null);
             Expect(task.DueDate.Value.Month, Is.EqualTo(expectedMonth));
+        }
+
+        [Test]
+        public void TwoDigitDay_ParseBothDigits()
+        {
+            var input = "Exercise sep 18";
+
+            var task = new Task(input, default(DateTime));
+
+            Expect(task.DueDate.Value.Day, Is.EqualTo(18));
         }
     }
 }

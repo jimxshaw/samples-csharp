@@ -13,7 +13,7 @@ namespace ForgetTheMilk.Models
         {
             Description = task;
 
-            var dueDatePattern = new Regex(@"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s(\d\d)");
+            var dueDatePattern = new Regex(@"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s(\d+)");
 
             var hasDueDate = dueDatePattern.IsMatch(task);
 
