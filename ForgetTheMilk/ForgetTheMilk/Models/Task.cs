@@ -8,6 +8,7 @@ namespace ForgetTheMilk.Models
     {
         public string Description { get; set; }
         public DateTime? DueDate { get; set; }
+        public string Link { get; set; }
 
         public Task(string task, DateTime today)
         {
@@ -25,19 +26,25 @@ namespace ForgetTheMilk.Models
                 var day = Convert.ToInt32(dueDate.Groups[2].Value);
                 var year = today.Year;
 
-                if (day < DateTime.DaysInMonth(year, month))
+                var shouldWrapYear = month < today.Month || (month == today.Month && day < today.Day);
+                if (shouldWrapYear)
                 {
-                    DueDate = new DateTime(year, month, day);
-
-                    if (DueDate < today)
-                    {
-                        // If the user input date is prior to today's date then we'll assume the
-                        // user actually means next year and wrap the year by adding 1.
-                        DueDate = DueDate.Value.AddYears(1);
-                    }
+                    year++;
                 }
 
+                if (day <= DateTime.DaysInMonth(year, month))
+                {
+                    DueDate = new DateTime(year, month, day);
+                }
+            }
 
+            var linkPattern = new Regex(@"(http://[^\s]+)");
+            var hasLink = linkPattern.IsMatch(task);
+
+            if (hasLink)
+            {
+                var link = linkPattern.Match(task);
+                Link = link.Groups[1].Value;
             }
         }
     }

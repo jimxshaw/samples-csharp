@@ -19,15 +19,15 @@ namespace ConsoleVerification
         }
 
         [Test]
-        public void MonthDueDateWithYearWrap()
+        [TestCase("Buy groceries oct 17")]
+        [TestCase("Buy groceries sep 17")]
+        public void MonthDueDateWithYearWrap(string input)
         {
-            var input = "Buy groceries oct 17";
-
-            var today = new DateTime(2016, 10, 23);
+            var today = new DateTime(2016, 10, 30);
 
             var task = new Task(input, today);
 
-            Expect(task.DueDate, Is.EqualTo(new DateTime(2017, 10, 17)));
+            Expect(task.DueDate.Value.Year, Is.EqualTo(2017));
         }
 
         [Test]
@@ -81,6 +81,17 @@ namespace ConsoleVerification
             var task = new Task(input, default(DateTime));
 
             Expect(task.DueDate, Is.Null);
+        }
+
+        [Test]
+        public void AddFeb29TaskInMarchOfYearBeforeLeapYear_ParsesDueDate()
+        {
+            var input = "Exercise feb 29";
+            var today = new DateTime(2016, 1, 31);
+
+            var task = new Task(input, today);
+
+            Expect(task.DueDate.Value, Is.EqualTo(new DateTime(2016, 2, 29)));
         }
     }
 }
