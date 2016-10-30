@@ -23,14 +23,21 @@ namespace ForgetTheMilk.Models
                 var monthInput = dueDate.Groups[1].Value;
                 var month = DateTime.ParseExact(monthInput, "MMM", CultureInfo.CurrentCulture).Month;
                 var day = Convert.ToInt32(dueDate.Groups[2].Value);
-                DueDate = new DateTime(today.Year, month, day);
+                var year = today.Year;
 
-                if (DueDate < today)
+                if (day < DateTime.DaysInMonth(year, month))
                 {
-                    // If the user input date is prior to today's date then we'll assume the
-                    // user actually means next year and wrap the year by adding 1.
-                    DueDate = DueDate.Value.AddYears(1);
+                    DueDate = new DateTime(year, month, day);
+
+                    if (DueDate < today)
+                    {
+                        // If the user input date is prior to today's date then we'll assume the
+                        // user actually means next year and wrap the year by adding 1.
+                        DueDate = DueDate.Value.AddYears(1);
+                    }
                 }
+
+
             }
         }
     }

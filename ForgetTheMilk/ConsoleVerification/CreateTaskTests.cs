@@ -72,5 +72,15 @@ namespace ConsoleVerification
 
             Expect(task.DueDate.Value.Day, Is.EqualTo(18));
         }
+
+        [Test]
+        public void DayIsPastTheLastDayOfTheMonth_DoesNotParseDueDate()
+        {
+            var input = "Exercise sep 63";
+
+            var task = new Task(input, default(DateTime));
+
+            Expect(task.DueDate, Is.Null);
+        }
     }
 }
