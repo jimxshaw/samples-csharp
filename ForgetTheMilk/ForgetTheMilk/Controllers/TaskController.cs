@@ -17,7 +17,7 @@ namespace ForgetTheMilk.Controllers
         [HttpPost]
         public ActionResult Add(string task)
         {
-            var taskItem = new Task(task, DateTime.Today);
+            var taskItem = new Task(task, DateTime.Today, new LinkValidator());
 
             Tasks.Add(taskItem);
 

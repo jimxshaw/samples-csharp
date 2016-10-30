@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ForgetTheMilk.Controllers;
+using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -10,7 +11,10 @@ namespace ForgetTheMilk.Models
         public DateTime? DueDate { get; set; }
         public string Link { get; set; }
 
-        public Task(string task, DateTime today)
+        // Even though we're injecting a LinkValidator, we set the default to null so by
+        // default we won't expect a link validator to be passed in. This way we don't 
+        // necessarily have to provide a link validator to all of our test methods.  
+        public Task(string task, DateTime today, ILinkValidator linkValidator = null)
         {
             Description = task;
 
@@ -43,8 +47,9 @@ namespace ForgetTheMilk.Models
 
             if (hasLink)
             {
-                var link = linkPattern.Match(task);
-                Link = link.Groups[1].Value;
+                var link = linkPattern.Match(task).Groups[1].Value;
+                linkValidator.Validate(link);
+                Link = link;
             }
         }
     }
