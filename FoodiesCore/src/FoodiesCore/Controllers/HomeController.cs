@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FoodiesCore.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FoodiesCore.Controllers
 {
-    public class HomeController
+    public class HomeController : Controller
     {
-        public string Index()
+        public IActionResult Index()
         {
-            return "Hello, from the Home Controller";
+            var model = new Restaurant { Id = 1, Name = "Jim's Sushi Shop" };
+
+            return new ObjectResult(model);
         }
     }
 }

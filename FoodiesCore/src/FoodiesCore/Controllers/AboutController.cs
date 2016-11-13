@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FoodiesCore.Controllers
 {
     [Route("[controller]")]
-    public class AboutController
+    public class AboutController : Controller
     {
         [Route("")] // By not specifying a route explicitly, this will serve as the default action when hitting the about controller.
         public string Home()
