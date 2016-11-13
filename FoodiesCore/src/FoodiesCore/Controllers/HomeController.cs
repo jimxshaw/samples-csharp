@@ -13,7 +13,7 @@ namespace FoodiesCore.Controllers
         {
             var model = new Restaurant { Id = 1, Name = "Jim's Sushi Shop" };
 
-            return new ObjectResult(model);
+            return View(model);
         }
     }
 }
