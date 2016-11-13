@@ -1,13 +1,19 @@
-﻿@model FoodiesCore.Models.Restaurant
+﻿@model IEnumerable<FoodiesCore.Models.Restaurant>
 
 <html>
 <head>
     <title>FoodiesCore</title>    
 </head>
 <body>
-    <h1>@Model.Name</h1>
-    <div>
-
-    </div>
+    <h1>Welcome!</h1>
+    
+    <table>
+        @foreach (var restaurant in Model)
+        {
+            <tr>
+                <td>@restaurant.Name</td>
+            </tr>
+        }
+    </table>
 </body>
 </html>
