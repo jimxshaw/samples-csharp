@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FoodiesCore.Models;
+﻿using System.Collections.Generic;
+using FoodiesCore.Entities;
 
 namespace FoodiesCore.Services
 {
@@ -20,7 +17,7 @@ namespace FoodiesCore.Services
             _restaurants = new List<Restaurant>
             {
                 new Restaurant { Id = 1, Name = "Texas Land and Cattle" },
-                new Restaurant { Id = 1, Name = "King Buffet" },
+                new Restaurant { Id = 2, Name = "King Buffet" },
                 new Restaurant { Id = 3, Name = "Pho Noodles" }
             };
         }
