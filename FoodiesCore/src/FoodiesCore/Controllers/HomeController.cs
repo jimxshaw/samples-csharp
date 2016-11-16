@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FoodiesCore.Models;
-using FoodiesCore.Services;
+﻿using FoodiesCore.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodiesCore.Controllers
