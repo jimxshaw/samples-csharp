@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using FoodiesCore.Entities;
 
 namespace FoodiesCore.Services
@@ -6,6 +7,7 @@ namespace FoodiesCore.Services
     public interface IRestaurantData
     {
         IEnumerable<Restaurant> GetAllRestaurants();
+        Restaurant GetRestaurant(int id);
     }
 
     public class InMemoryRestaurantData : IRestaurantData
@@ -25,6 +27,11 @@ namespace FoodiesCore.Services
         public IEnumerable<Restaurant> GetAllRestaurants()
         {
             return _restaurants;
+        }
+
+        public Restaurant GetRestaurant(int id)
+        {
+            return _restaurants.FirstOrDefault(r => r.Id == id);
         }
     }
 }

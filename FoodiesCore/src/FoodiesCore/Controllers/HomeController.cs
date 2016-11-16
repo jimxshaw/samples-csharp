@@ -25,5 +25,17 @@ namespace FoodiesCore.Controllers
 
             return View(model);
         }
+
+        public IActionResult Details(int id)
+        {
+            var model = _restaurantData.GetRestaurant(id);
+
+            if (model == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(model);
+        }
     }
 }
