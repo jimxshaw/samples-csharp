@@ -39,6 +39,7 @@ namespace FoodiesCore.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
