@@ -46,15 +46,22 @@ namespace FoodiesCore.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(RestaurantEditViewModel viewModel)
         {
-            var newRestaurant = new Restaurant();
-            newRestaurant.Cuisine = viewModel.Cuisine;
-            newRestaurant.Name = viewModel.Name;
+            if (ModelState.IsValid)
+            {
+                var newRestaurant = new Restaurant();
+                newRestaurant.Cuisine = viewModel.Cuisine;
+                newRestaurant.Name = viewModel.Name;
 
-            newRestaurant = _restaurantData.Add(newRestaurant);
+                newRestaurant = _restaurantData.Add(newRestaurant);
 
-            return RedirectToAction("Details", new { id = newRestaurant.Id });
+
+                return RedirectToAction("Details", new {id = newRestaurant.Id});
+            }
+
+            return View();
         }
     }
 }
