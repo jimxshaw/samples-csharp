@@ -1,4 +1,5 @@
-﻿using FoodiesCore.Services;
+﻿using FoodiesCore.Entities;
+using FoodiesCore.Services;
 using FoodiesCore.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,6 +42,18 @@ namespace FoodiesCore.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(RestaurantEditViewModel viewModel)
+        {
+            var newRestaurant = new Restaurant();
+            newRestaurant.Cuisine = viewModel.Cuisine;
+            newRestaurant.Name = viewModel.Name;
+
+            newRestaurant = _restaurantData.Add(newRestaurant);
+
+            return View("Details", newRestaurant);
         }
     }
 }
