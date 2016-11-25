@@ -11,6 +11,34 @@ namespace FoodiesCore.Services
         Restaurant Add(Restaurant newRestaurant);
     }
 
+    public class SqlRestaurantData : IRestaurantData
+    {
+        private FoodiesCoreDbContext _context;
+
+        public SqlRestaurantData(FoodiesCoreDbContext context)
+        {
+            _context = context;
+        }
+
+        public IEnumerable<Restaurant> GetAllRestaurants()
+        {
+            return _context.Restaurants;
+        }
+
+        public Restaurant GetRestaurant(int id)
+        {
+            return _context.Restaurants.FirstOrDefault(r => r.Id == id);
+        }
+
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+            _context.Add(newRestaurant);
+            _context.SaveChanges();
+
+            return newRestaurant;
+        }
+    }
+
     public class InMemoryRestaurantData : IRestaurantData
     {
         private static List<Restaurant> _restaurants;
