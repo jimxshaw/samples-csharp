@@ -55,7 +55,7 @@ namespace FoodiesCore.Controllers
                 newRestaurant.Cuisine = viewModel.Cuisine;
                 newRestaurant.Name = viewModel.Name;
 
-                newRestaurant = _restaurantData.Add(newRestaurant);
+                newRestaurant = _restaurantData.AddRestaurant(newRestaurant);
 
 
                 return RedirectToAction("Details", new {id = newRestaurant.Id});

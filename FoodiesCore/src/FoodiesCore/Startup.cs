@@ -1,8 +1,10 @@
-﻿using FoodiesCore.Services;
+﻿using FoodiesCore.Entities;
+using FoodiesCore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -30,7 +32,8 @@ namespace FoodiesCore
             services.AddMvc();
             services.AddSingleton(Configuration);
             services.AddSingleton<IGreeter, Greeter>();
-            services.AddScoped<IRestaurantData, InMemoryRestaurantData>();
+            services.AddScoped<IRestaurantData, SqlRestaurantData>();
+            services.AddDbContext<FoodiesCoreDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FoodiesCore")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

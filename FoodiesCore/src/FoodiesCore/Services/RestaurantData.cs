@@ -8,7 +8,7 @@ namespace FoodiesCore.Services
     {
         IEnumerable<Restaurant> GetAllRestaurants();
         Restaurant GetRestaurant(int id);
-        Restaurant Add(Restaurant newRestaurant);
+        Restaurant AddRestaurant(Restaurant newRestaurant);
     }
 
     public class SqlRestaurantData : IRestaurantData
@@ -30,7 +30,7 @@ namespace FoodiesCore.Services
             return _context.Restaurants.FirstOrDefault(r => r.Id == id);
         }
 
-        public Restaurant Add(Restaurant newRestaurant)
+        public Restaurant AddRestaurant(Restaurant newRestaurant)
         {
             _context.Add(newRestaurant);
             _context.SaveChanges();
@@ -63,7 +63,7 @@ namespace FoodiesCore.Services
             return _restaurants.FirstOrDefault(r => r.Id == id);
         }
 
-        public Restaurant Add(Restaurant newRestaurant)
+        public Restaurant AddRestaurant(Restaurant newRestaurant)
         {
             newRestaurant.Id = _restaurants.Max(r => r.Id) + 1;
             _restaurants.Add(newRestaurant);
