@@ -1,7 +1,9 @@
 ﻿@using FoodiesCore.Controllers
 @model FoodiesCore.Entities.Restaurant
 
-
+@{
+    ViewBag.Title = Model.Name;
+}
 
 <h1>@Model.Name</h1>
 
