@@ -9,6 +9,7 @@ namespace FoodiesCore.Services
         IEnumerable<Restaurant> GetAllRestaurants();
         Restaurant GetRestaurant(int id);
         Restaurant AddRestaurant(Restaurant newRestaurant);
+        void Commit();
     }
 
     public class SqlRestaurantData : IRestaurantData
@@ -36,6 +37,11 @@ namespace FoodiesCore.Services
             _context.SaveChanges();
 
             return newRestaurant;
+        }
+
+        public void Commit()
+        {
+            _context.SaveChanges();
         }
     }
 
@@ -69,6 +75,12 @@ namespace FoodiesCore.Services
             _restaurants.Add(newRestaurant);
 
             return newRestaurant;
+        }
+
+        public void Commit()
+        {
+            // In memory data changes are not transactional. If a change is made, 
+            // that change will be already committed.
         }
     }
 }

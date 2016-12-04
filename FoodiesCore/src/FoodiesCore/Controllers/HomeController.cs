@@ -57,6 +57,8 @@ namespace FoodiesCore.Controllers
 
                 newRestaurant = _restaurantData.AddRestaurant(newRestaurant);
 
+                // Call commit so that Entity Framework will execute an insert statement.
+                _restaurantData.Commit();
 
                 return RedirectToAction("Details", new {id = newRestaurant.Id});
             }
@@ -75,6 +77,28 @@ namespace FoodiesCore.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, RestaurantEditViewModel viewModel)
+        {
+            var restaurant = _restaurantData.GetRestaurant(id);
+
+            if (ModelState.IsValid)
+            {
+                restaurant.Cuisine = viewModel.Cuisine;
+                restaurant.Name = viewModel.Name;
+
+                // Entity Framework knows which particular restaurant, by the id, had its data
+                // updated. The commit method is called so that Entity Framework can reconcile
+                // the data changes with the database. 
+                _restaurantData.Commit();
+
+                return RedirectToAction("Details", new { id = restaurant.Id });
+            }
+
+            return View(restaurant);
         }
     }
 }
