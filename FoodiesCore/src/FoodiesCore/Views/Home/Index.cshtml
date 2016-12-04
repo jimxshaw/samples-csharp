@@ -1,30 +1,31 @@
 ﻿@model FoodiesCore.ViewModels.HomePageViewModel
 
-<html>
-<head>
-    <title>FoodiesCore</title>    
-</head>
-<body>
-    <h1>Welcome!</h1>
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Welcome!</h1>
+<div>
+    @Html.ActionLink("Create a Restaurant", "Create", "Home")
+</div>
+
+<div>
+    <table>
+        @foreach (var restaurant in Model.Restaurants)
+        {
+            <tr>
+                <td>
+                    <a href="/home/details/@restaurant.Id">Details</a>
+                    @Html.ActionLink("View", "Details", "Home", new { id = restaurant.Id })
+                </td>
+                <td>@restaurant.Name</td>
+            </tr>
+        }
+    </table>
+</div>
+
+@section footer {
     <h3>@Model.CurrentMessage</h3>
+}
 
-    <div>
-        @Html.ActionLink("Create a Restaurant", "Create", "Home")
-    </div>
-
-    <div>
-        <table>
-            @foreach (var restaurant in Model.Restaurants)
-            {
-                <tr>
-                    <td>
-                        <a href="/home/details/@restaurant.Id">Details</a>
-                        @Html.ActionLink("View", "Details", "Home", new { id = restaurant.Id })
-                    </td>
-                    <td>@restaurant.Name</td>
-                </tr>
-            }
-        </table>
-    </div>
-</body>
-</html>
