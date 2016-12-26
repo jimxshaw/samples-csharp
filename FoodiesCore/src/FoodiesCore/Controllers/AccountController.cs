@@ -2,13 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FoodiesCore.Entities;
 using FoodiesCore.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodiesCore.Controllers
 {
     public class AccountController : Controller 
     {
+        private UserManager<User> _userManager;
+        private SignInManager<User> _signInManager;
+
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -16,11 +27,28 @@ namespace FoodiesCore.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult Register(RegisterUserViewModel viewModel)
+        public async Task<IActionResult> Register(RegisterUserViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                
+                var user = new User
+                {
+                    UserName = viewModel.Username
+                };
+
+                var createResult = await _userManager.CreateAsync(user, viewModel.Password);
+
+                if (createResult.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, false);
+
+                    return RedirectToAction("Index", "Home");
+                }
+
+                foreach (var error in createResult.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
             }
 
             return View();
