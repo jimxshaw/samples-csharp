@@ -61,5 +61,35 @@ namespace FoodiesCore.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var loginResult = await _signInManager.PasswordSignInAsync(viewModel.Username, 
+                    viewModel.Password, viewModel.RememberMe, false);
+
+                if (loginResult.Succeeded)
+                {
+                    if (Url.IsLocalUrl(viewModel.ReturnUrl))
+                    {
+                        return Redirect(viewModel.ReturnUrl);
+                    }
+
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            ModelState.AddModelError("", "Could not login");
+
+            return View(viewModel);
+        }
     }
 }
