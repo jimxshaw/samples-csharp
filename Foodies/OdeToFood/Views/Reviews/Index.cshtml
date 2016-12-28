@@ -4,6 +4,10 @@
     ViewBag.Title = "Index";
 }
 
+@section featured {
+
+}
+
 <h2>The Latest Reviews</h2>
 
 @foreach (var item in Model)
@@ -13,7 +17,6 @@
         <span>@item.Rating</span>
         <p>@item.City, @item.Country</p>
     </div>
-    @:Review
 }
 
 <p>
