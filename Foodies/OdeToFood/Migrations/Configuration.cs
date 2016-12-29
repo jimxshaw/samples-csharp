@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using OdeToFood.Models;
+
 namespace OdeToFood.Migrations
 {
     using System;
@@ -9,23 +12,25 @@ namespace OdeToFood.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(OdeToFood.Models.OdeToFoodDb context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Restaurants.AddOrUpdate(r => r.Name, 
+                new Restaurant { Name = "Freebird", City = "Dallas", Country = "USA" },
+                new Restaurant { Name = "The Lazy Gator", City = "Miami", Country = "USA"},
+                new Restaurant { Name = "Chairman's Palace", City = "Beijing", Country = "China"},
+                new Restaurant
+                {
+                    Name = "Star of Munich",
+                    City = "Munich",
+                    Country = "Germany",
+                    Reviews = new List<RestaurantReview>
+                    {
+                        new RestaurantReview { Rating = 8, Body = "Large portions!", ReviewerName = "Dieter Hans" }
+                    }
+                });
         }
     }
 }
