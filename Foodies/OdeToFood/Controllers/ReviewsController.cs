@@ -14,26 +14,23 @@ namespace OdeToFood.Controllers
             new RestaurantReview
             {
                 Id = 1,
-                City = "Chicago",
-                Country = "USA",
-                Name = "Deep Dish Dive",
-                Rating = 10
+                Body = "Expensive but worth it.",
+                Rating = 10,
+                RestaurantId = 1
             },
             new RestaurantReview
             {
                 Id = 2,
-                City = "Paris",
-                Country = "France",
-                Name = "Eiffel Tower",
-                Rating = 7
+                Body = "Good selection of dishes.",
+                Rating = 7,
+                RestaurantId = 2
             },
             new RestaurantReview
             {
                 Id = 3,
-                City = "London",
-                Country = "UK",
-                Name = "Fish and Chips",
-                Rating = 6
+                Body = "It's cheap.",                    
+                Rating = 6,
+                RestaurantId = 3
             }
         };
 
@@ -50,7 +47,7 @@ namespace OdeToFood.Controllers
 
         public ActionResult Index()
         {
-            var model = _reviews.OrderBy(r => r.Country).Select(r => r);
+            var model = _reviews.Select(r => r);
 
             return View(model);
         }
