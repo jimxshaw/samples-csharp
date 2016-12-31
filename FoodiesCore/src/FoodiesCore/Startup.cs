@@ -60,7 +60,7 @@ namespace FoodiesCore
 
             app.UseMvc(ConfigureRoutes);
 
-            app.Run(context => context.Response.WriteAsync("Not found"));
+            //app.Run(context => context.Response.WriteAsync("Not found"));
         }
 
         private void ConfigureRoutes(IRouteBuilder routeBuilder)
