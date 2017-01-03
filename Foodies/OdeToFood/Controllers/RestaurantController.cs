@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using OdeToFood.Models;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using OdeToFood.Models;
 
 namespace OdeToFood.Controllers
 {
@@ -21,18 +17,8 @@ namespace OdeToFood.Controllers
             return View(db.Restaurants.ToList());
         }
 
-        //
-        // GET: /Restaurant/Details/5
 
-        public ActionResult Details(int id = 0)
-        {
-            Restaurant restaurant = db.Restaurants.Find(id);
-            if (restaurant == null)
-            {
-                return HttpNotFound();
-            }
-            return View(restaurant);
-        }
+
 
         //
         // GET: /Restaurant/Create
