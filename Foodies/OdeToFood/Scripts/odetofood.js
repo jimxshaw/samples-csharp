@@ -49,6 +49,22 @@ $(document).ready(function () {
         $input.autocomplete(options);
     };
 
+    var getPage = function () {
+        var $a = $(this);
+
+        var options = {
+            url: $a.attr("href"),
+            data: $("form").serialize(),
+            type: "get"
+        };
+
+        $.ajax(options).done(function (data) {
+            var target = $a.parents("div.pagedList").attr("data-odetofood-target");
+            $(target).replaceWith(data);
+        });
+        return false;
+    };
+
     // One of more forms could utilize ajax depending on whether or not the stated
     // html attribute is there. However many forms we capture, will use ajax to
     // submit with the passed in ajaxFormSubmit function.
@@ -56,5 +72,12 @@ $(document).ready(function () {
 
     // Find all the inputs with autocomplete then for each one, call the appropriate function.
     $("input[data-odetofood-autocomplete]").each(createAutocomplete);
+
+    // The main content is in the _Layout view and it contains all the html our view renders.
+    // Our click event is hooked up to main content because it doesn't get destroyed and
+    // re-drawn every time the page refreshes. That would defeat the purpose of what we 
+    // want to do, which is to prevent re-drawing page refreshes every time we click 
+    // the pagedList a tags.
+    $(".main-content").on("click", ".pagedList a", getPage);
 
 });
