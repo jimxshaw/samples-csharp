@@ -1,12 +1,9 @@
-using System.Collections.Generic;
 using OdeToFood.Models;
+using System.Collections.Generic;
 
 namespace OdeToFood.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<OdeToFood.Models.OdeToFoodDb>
     {
@@ -17,10 +14,10 @@ namespace OdeToFood.Migrations
 
         protected override void Seed(OdeToFood.Models.OdeToFoodDb context)
         {
-            context.Restaurants.AddOrUpdate(r => r.Name, 
+            context.Restaurants.AddOrUpdate(r => r.Name,
                 new Restaurant { Name = "Freebird", City = "Dallas", Country = "USA" },
-                new Restaurant { Name = "The Lazy Gator", City = "Miami", Country = "USA"},
-                new Restaurant { Name = "Chairman's Palace", City = "Beijing", Country = "China"},
+                new Restaurant { Name = "The Lazy Gator", City = "Miami", Country = "USA" },
+                new Restaurant { Name = "Chairman's Palace", City = "Beijing", Country = "China" },
                 new Restaurant
                 {
                     Name = "Star of Munich",
@@ -31,6 +28,11 @@ namespace OdeToFood.Migrations
                         new RestaurantReview { Rating = 8, Body = "Large portions!", ReviewerName = "Dieter Hans" }
                     }
                 });
+
+            for (int i = 0; i < 1000; i++)
+            {
+                context.Restaurants.AddOrUpdate(r => r.Name, new Restaurant { Name = i.ToString(), City = "Gilead", Country = "Midworld" });
+            }
         }
     }
 }
