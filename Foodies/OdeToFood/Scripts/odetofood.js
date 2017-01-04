@@ -26,9 +26,22 @@ $(document).ready(function () {
         return false;
     };
 
+    var createAutocomplete = function () {
+        var $input = $(this);
+
+        var options = {
+            source: $input.attr("data-odetofood-autocomplete")
+        };
+
+        $input.autocomplete(options);
+    };
+
     // One of more forms could utilize ajax depending on whether or not the stated
     // html attribute is there. However many forms we capture, will use ajax to
     // submit with the passed in ajaxFormSubmit function.
     $("form[data-odetofood-ajax='true']").submit(ajaxFormSubmit);
+
+    // Find all the inputs with autocomplete then for each one, call the appropriate function.
+    $("input[data-odetofood-autocomplete]").each(createAutocomplete);
 
 });

@@ -6,7 +6,7 @@
 
 <form method="get" action="@Url.Action("Index")" data-odetofood-ajax="true" data-odetofood-target="#restaurantList">
 
-    <input type="search" name="searchTerm" />
+    <input type="search" name="searchTerm" data-odetofood-autocomplete="@Url.Action("Autocomplete")" />
     <input type="submit" value="Search By Name" />
 </form>
 
