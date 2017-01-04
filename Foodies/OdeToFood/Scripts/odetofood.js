@@ -18,7 +18,10 @@ $(document).ready(function () {
         // we'll receive data. The data to update the html elements we specify.
         $.ajax(options).done(function(data) {
             var $target = $($form.attr("data-odetofood-target"));
-            $target.replaceWith(data);
+            var $newHtml = $(data);
+
+            $target.replaceWith($newHtml);
+            $newHtml.effect("highlight");
         });
 
         // We prevent the browser's default action, which is to navigate away and
@@ -26,11 +29,21 @@ $(document).ready(function () {
         return false;
     };
 
+    var submitAutocompleteForm = function (event, ui) {
+        var $input = $(this);
+
+        $input.val(ui.item.label);
+
+        var $form = $input.parents("form:first");
+        $form.submit();
+    };
+
     var createAutocomplete = function () {
         var $input = $(this);
 
         var options = {
-            source: $input.attr("data-odetofood-autocomplete")
+            source: $input.attr("data-odetofood-autocomplete"),
+            select: submitAutocompleteForm
         };
 
         $input.autocomplete(options);
