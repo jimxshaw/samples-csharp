@@ -7,16 +7,17 @@ namespace Queries
         public string Title { get; set; }
         public float Rating { get; set; }
 
-        private int _year;
-
+        int _year;
         public int Year
-        {
-            get
+        {   get
             {
-                Console.WriteLine($"Return {_year} for {Title}");
+                Console.WriteLine($"Returning {_year} for {Title}");                
                 return _year;
             }
-            set { _year = value; }
+            set
+            {
+                _year = value;
+            }
         }
     }
 }

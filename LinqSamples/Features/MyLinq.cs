@@ -1,22 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Features
+namespace Features.Linq
 {
     public static class MyLinq
     {
-        // The this keyword in front of the first parameter signals that this method is an extension method.
-        // We could call Count either using the usual static way with MyLinq.Count(sequence) or, in any place 
-        // we have IEnumerble<T>, simply invoke .Count(sequence). We can invoke with myArray.Count() or 
-        // myList.Count() or with any other IEnumerable collection.  
         public static int Count<T>(this IEnumerable<T> sequence)
         {
-            int counter = 0;
+            var count = 0;
             foreach (var item in sequence)
             {
-                counter += 1;
+                count += 1;
             }
-
-            return counter;
+            return count;
         }
     }
 }
