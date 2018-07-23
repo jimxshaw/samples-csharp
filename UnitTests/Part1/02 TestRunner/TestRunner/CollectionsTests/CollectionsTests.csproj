@@ -50,4 +50,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>C:\Temp\UnitTesting "$(TargetFileName)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

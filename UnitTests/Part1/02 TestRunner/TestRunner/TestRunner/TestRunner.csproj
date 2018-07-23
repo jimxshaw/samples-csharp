@@ -49,4 +49,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /y $(TargetFileName) C:\Temp\UnitTesting.exe</PostBuildEvent>
+  </PropertyGroup>
 </Project>
