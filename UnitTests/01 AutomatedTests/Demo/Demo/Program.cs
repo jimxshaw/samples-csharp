@@ -11,27 +11,23 @@ namespace Demo
   {
     static void Main(string[] args)
     {
-      IEnumerable<int> numbers = ReadData();
-
-      while (numbers.Any())
+      try
       {
-        var array = new MyArray(numbers);
-
-        Console.WriteLine($"Max = {array.Maximum()}");
-
-        numbers = ReadData();
+        // Test automation in its bare form means the testing
+        // application will instantiate the test class and invoke
+        // the test declared in it.
+        new MyArrayTests().Maximum_ArrayContainsOneValue_ReturnsThatValue();
+        Console.WriteLine("Test passed");
       }
+      catch
+      {
+        Console.WriteLine("Test failed");
+      }
+
+
+      Console.WriteLine("Press ENTER to continue... ");
+      Console.ReadLine();
     }
 
-    static IEnumerable<int> ReadData()
-    {
-      Console.Write("Enter elements: ");
-
-      string line = Console.ReadLine() ?? string.Empty;
-
-      string[] parts = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-      return parts.Select(int.Parse).ToList();
-    }
   }
 }
