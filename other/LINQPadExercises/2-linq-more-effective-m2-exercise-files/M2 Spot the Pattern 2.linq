@@ -33,13 +33,12 @@ void RefundOrder(int orderId)
 void Main()
 {
 	//RefundOrder(456);
-	RefundOrderLinq(999);
+	RefundOrderLinq(768);
 }
 
 void RefundOrderLinq(int orderId)
 {
-	Order orderToRefund = orders.
-		First(o => o.Id == orderId);
+	Order orderToRefund = orders.First(o => o.Id == orderId);
 		
 	Console.WriteLine("Refunding {0} to {1}",
 		orderToRefund.Amount,

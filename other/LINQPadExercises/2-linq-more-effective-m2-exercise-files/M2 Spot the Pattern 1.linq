@@ -17,3 +17,6 @@ foreach (var customer in customers)
 	}
 }
 
+foreach (var customer in customers.Where(c => !string.IsNullOrEmpty(c.Email))) {
+	Console.WriteLine($"Sending email to {customer.Name}");
+}
