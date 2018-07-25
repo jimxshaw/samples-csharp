@@ -11,6 +11,8 @@ namespace MyClassesTest
   {
     private const string BAD_FILE_NAME = @"C:\BadFile.txt";
 
+    private const string FILE_NAME = @"FileToDeploy.txt";
+
     private string _goodFileName;
 
     public TestContext TestContext { get; set; }
@@ -67,6 +69,26 @@ namespace MyClassesTest
     public void SimulateTimeout()
     {
       System.Threading.Thread.Sleep(2000);
+    }
+
+    [TestMethod]
+    [Owner("Lincoln")]
+    [DeploymentItem(FILE_NAME)]
+    public void FileNameDoesExistUsingDeploymentItem()
+    {
+      var fileProcess = new FileProcess();
+
+      string fileName;
+
+      bool fromCall;
+
+      fileName = TestContext.DeploymentDirectory + @"\" + FILE_NAME;
+
+      TestContext.WriteLine("Checking file: " + fileName);
+
+      fromCall = fileProcess.FileExists(fileName);
+
+      Assert.IsTrue(fromCall);
     }
 
     [TestMethod]
