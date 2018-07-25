@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyClasses;
+using System.Configuration;
 
 namespace MyClassesTest
 {
@@ -8,6 +9,8 @@ namespace MyClassesTest
   public class FileProcessTest
   {
     private const string BAD_FILE_NAME = @"C:\BadFile.txt";
+
+    private string _goodFileName;
 
     [TestMethod]
     public void FileNameDoesExist()
@@ -55,6 +58,16 @@ namespace MyClassesTest
       }
 
       Assert.Fail("Call to FileExists did not throw an argument null exception.");
+    }
+
+    public void SetGoodFileName()
+    {
+      _goodFileName = ConfigurationManager.AppSettings["GoodFileName"];
+
+      if (_goodFileName.Contains("[AppPath]"))
+      {
+        _goodFileName = _goodFileName.Replace("[AppPath]", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+      }
     }
   }
 }
