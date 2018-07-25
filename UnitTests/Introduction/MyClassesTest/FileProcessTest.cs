@@ -29,9 +29,12 @@ namespace MyClassesTest
     }
 
     [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
     public void FileNameNullOrEmpty_ThrowsArgumentNullException()
     {
-      Assert.Inconclusive();
+      var fileProcess = new FileProcess();
+
+      fileProcess.FileExists("");
     }
   }
 }
