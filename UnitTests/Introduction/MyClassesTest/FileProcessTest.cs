@@ -64,6 +64,8 @@ namespace MyClassesTest
     [TestMethod]
     [Description("Check to see if a file does exist")]
     [Owner("Washington")]
+    [Priority(0)]
+    [TestCategory("NoException")]
     public void FileNameDoesExist()
     {
       var fileProcess = new FileProcess();
@@ -83,12 +85,13 @@ namespace MyClassesTest
       //File.Delete(_goodFileName);
 
       Assert.IsTrue(fromCall);
-
     }
 
     [TestMethod]
     [Description("Check to see if a file does NOT exist")]
     [Owner("Washington")]
+    [Priority(0)]
+    [TestCategory("NoException")]
     public void FileNameDoesNotExist()
     {
       var fileProcess = new FileProcess();
@@ -101,6 +104,8 @@ namespace MyClassesTest
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     [Owner("Madison")]
+    [Priority(1)]
+    [TestCategory("Exception")]
     public void FileNameNullOrEmpty_ThrowsArgumentNullException()
     {
       var fileProcess = new FileProcess();
@@ -110,6 +115,8 @@ namespace MyClassesTest
 
     [TestMethod]
     [Owner("Jefferson")]
+    [Priority(1)]
+    [TestCategory("Exception")]
     public void FileNameNullOrEmpty_ThrowsArgumentNullException_UsingTryCatch()
     {
       var fileProcess = new FileProcess();
