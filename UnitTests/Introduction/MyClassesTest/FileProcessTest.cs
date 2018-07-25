@@ -13,6 +13,8 @@ namespace MyClassesTest
 
     private string _goodFileName;
 
+    public TestContext TestContext { get; set; }
+
     [TestMethod]
     public void FileNameDoesExist()
     {
@@ -20,9 +22,15 @@ namespace MyClassesTest
 
       SetGoodFileName();
 
+      TestContext.WriteLine($"Creating the file: {_goodFileName}");
+
       File.AppendAllText(_goodFileName, "This is some sample text.");
 
+      TestContext.WriteLine($"Testing the file: {_goodFileName}");
+
       bool fromCall = fileProcess.FileExists(_goodFileName);
+
+      TestContext.WriteLine($"Deleting the file: {_goodFileName}");
 
       File.Delete(_goodFileName);
 
