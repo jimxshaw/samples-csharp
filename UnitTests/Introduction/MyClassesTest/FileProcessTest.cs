@@ -21,7 +21,11 @@ namespace MyClassesTest
     [TestMethod]
     public void FileNameDoesNotExist()
     {
-      Assert.Inconclusive();
+      var fileProcess = new FileProcess();
+
+      bool fromCall = fileProcess.FileExists(@"C:\BadFile.txt");
+
+      Assert.IsFalse(fromCall);
     }
 
     [TestMethod]
