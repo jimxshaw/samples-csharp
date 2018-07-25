@@ -36,5 +36,23 @@ namespace MyClassesTest
 
       fileProcess.FileExists("");
     }
+
+    [TestMethod]
+    public void FileNameNullOrEmpty_ThrowsArgumentNullException_UsingTryCatch()
+    {
+      var fileProcess = new FileProcess();
+
+      try
+      {
+        fileProcess.FileExists("");
+      }
+      catch (ArgumentNullException)
+      {
+        // The test was successful.
+        return;
+      }
+
+      Assert.Fail("Call to FileExists did not throw an argument null exception.");
+    }
   }
 }
