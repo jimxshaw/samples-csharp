@@ -62,6 +62,14 @@ namespace MyClassesTest
     #endregion
 
     [TestMethod]
+    [Timeout(3000)]
+    [TestCategory("Other")]
+    public void SimulateTimeout()
+    {
+      System.Threading.Thread.Sleep(2000);
+    }
+
+    [TestMethod]
     [Description("Check to see if a file does exist")]
     [Owner("Washington")]
     [Priority(0)]
