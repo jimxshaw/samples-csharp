@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyClasses;
 using System.Configuration;
+using System.IO;
 
 namespace MyClassesTest
 {
@@ -17,7 +18,13 @@ namespace MyClassesTest
     {
       var fileProcess = new FileProcess();
 
-      bool fromCall = fileProcess.FileExists(@"C:\Windows\Regedit.exe");
+      SetGoodFileName();
+
+      File.AppendAllText(_goodFileName, "This is some sample text.");
+
+      bool fromCall = fileProcess.FileExists(_goodFileName);
+
+      File.Delete(_goodFileName);
 
       Assert.IsTrue(fromCall);
 
