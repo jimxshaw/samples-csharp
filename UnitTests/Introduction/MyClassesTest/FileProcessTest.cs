@@ -7,6 +7,8 @@ namespace MyClassesTest
   [TestClass]
   public class FileProcessTest
   {
+    private const string BAD_FILE_NAME = @"C:\BadFile.txt";
+
     [TestMethod]
     public void FileNameDoesExist()
     {
@@ -23,7 +25,7 @@ namespace MyClassesTest
     {
       var fileProcess = new FileProcess();
 
-      bool fromCall = fileProcess.FileExists(@"C:\BadFile.txt");
+      bool fromCall = fileProcess.FileExists(BAD_FILE_NAME);
 
       Assert.IsFalse(fromCall);
     }
