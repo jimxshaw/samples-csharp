@@ -13,6 +13,8 @@ namespace MyClassesTest
 
     private string _goodFileName;
 
+    public TestContext TestContext { get; set; }
+
     #region Class Initialization and Cleanup
     [ClassInitialize]
     public static void ClassInitialize(TestContext context)
@@ -27,26 +29,56 @@ namespace MyClassesTest
     }
     #endregion
 
-    public TestContext TestContext { get; set; }
+    #region Test Initialization and Cleanup
+    [TestInitialize]
+    public void TestInitialize()
+    {
+      if (TestContext.TestName == "FileNameDoesExist")
+      {
+        SetGoodFileName();
+
+        if (!string.IsNullOrEmpty(_goodFileName))
+        {
+          TestContext.WriteLine($"Creating File: {_goodFileName}");
+
+          File.AppendAllText(_goodFileName, "This is some sample text.");
+        }
+      }
+    }
+
+    [TestCleanup]
+    public void TestCleanup()
+    {
+      if (TestContext.TestName == "FileNameDoesExist")
+      {
+        if (!string.IsNullOrEmpty(_goodFileName))
+        {
+          TestContext.WriteLine($"Deleting File: {_goodFileName}");
+
+          File.Delete(_goodFileName);
+        }
+      }
+    }
+    #endregion
 
     [TestMethod]
     public void FileNameDoesExist()
     {
       var fileProcess = new FileProcess();
 
-      SetGoodFileName();
+      //SetGoodFileName();
 
-      TestContext.WriteLine($"Creating the file: {_goodFileName}");
+      //TestContext.WriteLine($"Creating the File: {_goodFileName}");
 
-      File.AppendAllText(_goodFileName, "This is some sample text.");
+      //File.AppendAllText(_goodFileName, "This is some sample text.");
 
       TestContext.WriteLine($"Testing the file: {_goodFileName}");
 
       bool fromCall = fileProcess.FileExists(_goodFileName);
 
-      TestContext.WriteLine($"Deleting the file: {_goodFileName}");
+      //TestContext.WriteLine($"Deleting the file: {_goodFileName}");
 
-      File.Delete(_goodFileName);
+      //File.Delete(_goodFileName);
 
       Assert.IsTrue(fromCall);
 
