@@ -13,6 +13,20 @@ namespace MyClassesTest
 
     private string _goodFileName;
 
+    #region Class Initialization and Cleanup
+    [ClassInitialize]
+    public static void ClassInitialize(TestContext context)
+    {
+      context.WriteLine("In the ClassInitialize method.");
+    }
+
+    [ClassCleanup]
+    public static void ClassCleanup()
+    {
+
+    }
+    #endregion
+
     public TestContext TestContext { get; set; }
 
     [TestMethod]
