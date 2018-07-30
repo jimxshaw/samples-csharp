@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssertClassTest.cs" />
+    <Compile Include="CollectionAssertClassTest.cs" />
     <Compile Include="FileProcessTest.cs" />
     <Compile Include="MyClassesTestInitialization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
