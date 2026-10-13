@@ -7,6 +7,7 @@ let process4 = fun action -> action 4
 
 // 2. mymap: empty list -> empty list. Otherwise transform the first item,
 // then let mymap handle the rest and put the two back together.
+// Must use recursion.
 let rec mymap = fun transform stackOfItems ->
     match stackOfItems with
     | [] -> []
@@ -21,4 +22,11 @@ let secondMin = fun numbers ->
     | smallest :: second :: leftovers -> second
     | fewerThanTwoNumbers -> failwith "Need at least two unique values!"
 
-
+// 4. zipper: pair up items from two lists by position.
+// If both lists have a top item, pair them and zip the rests.
+// If either list is empty, stop (extras are ignored).
+// Must use recursion.
+let rec zipper = fun firstStack secondStack ->
+    match (firstStack, secondStack) with 
+    | (topOfFirst :: restOfFirst, topOfSecond :: restOfSecond) -> (topOfFirst, topOfSecond) :: (zipper restOfFirst restOfSecond) 
+    | (leftoverFirst, leftoverSecond) -> []
