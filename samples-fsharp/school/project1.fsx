@@ -1,6 +1,7 @@
 // HELPER FUNCTIONS
 let add1 = fun n -> n + 1
 let sqr = fun n -> n * n
+let isEven = fun n -> n % 2 = 0
 
 // 1. process-4: hands 4 to the given function.
 let process4 = fun action -> action 4
@@ -30,3 +31,20 @@ let rec zipper = fun firstStack secondStack ->
     match (firstStack, secondStack) with 
     | (topOfFirst :: restOfFirst, topOfSecond :: restOfSecond) -> (topOfFirst, topOfSecond) :: (zipper restOfFirst restOfSecond) 
     | (leftoverFirst, leftoverSecond) -> []
+
+// 5. classify: split a list into [passing; failing] using a yes/no test.
+// A recursive helper sorts each item into one of two stacks, keeping order,
+// and returns them as a pair, classify wraps that pair as a 2-item list.
+// Must use recursion.
+let classify = fun test stackOfItems ->
+    let rec sortIntoTwoStacks = fun stack ->
+        match stack with
+        | [] -> ([], [])
+        | topItem :: restOfStack ->
+            let (passingRest, failingRest) = sortIntoTwoStacks restOfStack
+            if test topItem then (topItem :: passingRest, failingRest) 
+            else (passingRest, topItem :: failingRest)
+    let (passing, failing) = sortIntoTwoStacks stackOfItems
+    [passing; failing]
+
+
