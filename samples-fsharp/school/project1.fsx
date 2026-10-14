@@ -70,3 +70,12 @@ let luhn = fun number ->
         if remaining = 0L then 0L
         else digitValue (remaining % 10L) shouldDouble + sumDigits (remaining / 10L) (not shouldDouble)
     sumDigits number false % 10L = 0L
+
+// 8. my-sorted?: is the list in order according to `isInOrder`?
+// Check each neighboring pair; one failing pair makes the answer false.
+// Fewer than two items has no pairs, so it counts as sorted.
+// Named mySorted because F# names can't contain - or ?.
+let rec mySorted = fun isInOrder stackOfItems ->
+    match stackOfItems with
+    | first :: second :: restOfStack -> (isInOrder first second) && mySorted isInOrder (second :: restOfStack)
+    | fewerThanTwoItems -> true
