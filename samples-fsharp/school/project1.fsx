@@ -47,4 +47,13 @@ let classify = fun test stackOfItems ->
     let (passing, failing) = sortIntoTwoStacks stackOfItems
     [passing; failing]
 
-
+// 6. member-n-times?: is `target` in the list exactly `howMany` times?
+// Recursive helper counts matches (empty list -> 0, add 1 per match) so
+// the result is then compared to howMany.
+let memberNTimes = fun target howMany stackOfItems ->
+    let rec countMatches = fun stack ->
+        match stack with
+        | [] -> 0
+        | topItem :: restOfStack ->
+            if topItem = target then 1 + countMatches restOfStack else countMatches restOfStack
+    countMatches stackOfItems = howMany
