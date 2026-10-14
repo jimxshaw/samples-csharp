@@ -57,3 +57,16 @@ let memberNTimes = fun target howMany stackOfItems ->
         | topItem :: restOfStack ->
             if topItem = target then 1 + countMatches restOfStack else countMatches restOfStack
     countMatches stackOfItems = howMany
+
+// 7. luhn: is `number` a valid Luhn (checksum) number?
+// Walk the digits right to left, doubling every 2nd digit (a doubled
+// 2-digit result has its digits added). Valid if the total ends in 0.
+// Uses int64 (suffix L) since card-length numbers overflow int.
+// Helpers are functions only; no scratch `let` values (spec ban).
+let luhn = fun number ->
+    let digitValue = fun digit shouldDouble ->
+        if shouldDouble then (2L * digit) / 10L + (2L * digit) % 10L else digit
+    let rec sumDigits = fun remaining shouldDouble ->
+        if remaining = 0L then 0L
+        else digitValue (remaining % 10L) shouldDouble + sumDigits (remaining / 10L) (not shouldDouble)
+    sumDigits number false % 10L = 0L
