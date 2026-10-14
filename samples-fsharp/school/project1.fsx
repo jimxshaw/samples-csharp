@@ -96,3 +96,13 @@ let rec myFlatten = fun stackOfThings ->
     | [] -> []
     | (Item value) :: restOfStack -> value :: myFlatten restOfStack
     | (Group innerStack) :: restOfStack -> myFlatten innerStack @ myFlatten restOfStack
+
+// 10. my-list-ref: return the item at position `position` (first is 0).
+// Empty list -> error. Position 0 -> the top item. Otherwise ask for
+// position - 1 in the rest of the list.
+// Named myListRef because F# names can't contain hyphens.
+let rec myListRef = fun stackOfItems position ->
+    match stackOfItems with
+    | [] -> failwith "ERROR: Index out of bounds"
+    | topItem :: restOfStack ->
+        if position = 0 then topItem else myListRef restOfStack (position - 1)
