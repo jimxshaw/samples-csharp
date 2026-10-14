@@ -79,3 +79,20 @@ let rec mySorted = fun isInOrder stackOfItems ->
     match stackOfItems with
     | first :: second :: restOfStack -> (isInOrder first second) && mySorted isInOrder (second :: restOfStack)
     | fewerThanTwoItems -> true
+
+// 9. my-flatten: turn arbitrarily nested lists into one flat list.
+// F# lists can't nest freely so the input uses a Nested type: a single Item
+// or a Group (a list of more Nested things).
+// Empty -> []. Item -> keep it. Group -> flatten inside, flatten the
+// rest, then glue the two results together with @.
+// Named myFlatten because F# names can't contain hyphens.
+// Must use recursion.
+type Nested =
+    | Item of int
+    | Group of Nested list
+
+let rec myFlatten = fun stackOfThings ->
+    match stackOfThings with
+    | [] -> []
+    | (Item value) :: restOfStack -> value :: myFlatten restOfStack
+    | (Group innerStack) :: restOfStack -> myFlatten innerStack @ myFlatten restOfStack
