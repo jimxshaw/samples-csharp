@@ -47,4 +47,62 @@ let classify = fun test stackOfItems ->
     let (passing, failing) = sortIntoTwoStacks stackOfItems
     [passing; failing]
 
+// 6. member-n-times?: is `target` in the list exactly `howMany` times?
+// Recursive helper counts matches (empty list -> 0, add 1 per match) so
+// the result is then compared to howMany.
+let memberNTimes = fun target howMany stackOfItems ->
+    let rec countMatches = fun stack ->
+        match stack with
+        | [] -> 0
+        | topItem :: restOfStack ->
+            if topItem = target then 1 + countMatches restOfStack else countMatches restOfStack
+    countMatches stackOfItems = howMany
 
+// 7. luhn: is `number` a valid Luhn (checksum) number?
+// Walk the digits right to left, doubling every 2nd digit (a doubled
+// 2-digit result has its digits added). Valid if the total ends in 0.
+// Uses int64 (suffix L) since card-length numbers overflow int.
+// Helpers are functions only; no scratch `let` values (spec ban).
+let luhn = fun number ->
+    let digitValue = fun digit shouldDouble ->
+        if shouldDouble then (2L * digit) / 10L + (2L * digit) % 10L else digit
+    let rec sumDigits = fun remaining shouldDouble ->
+        if remaining = 0L then 0L
+        else digitValue (remaining % 10L) shouldDouble + sumDigits (remaining / 10L) (not shouldDouble)
+    sumDigits number false % 10L = 0L
+
+// 8. my-sorted?: is the list in order according to `isInOrder`?
+// Check each neighboring pair; one failing pair makes the answer false.
+// Fewer than two items has no pairs, so it counts as sorted.
+// Named mySorted because F# names can't contain - or ?.
+let rec mySorted = fun isInOrder stackOfItems ->
+    match stackOfItems with
+    | first :: second :: restOfStack -> (isInOrder first second) && mySorted isInOrder (second :: restOfStack)
+    | fewerThanTwoItems -> true
+
+// 9. my-flatten: turn arbitrarily nested lists into one flat list.
+// F# lists can't nest freely so the input uses a Nested type: a single Item
+// or a Group (a list of more Nested things).
+// Empty -> []. Item -> keep it. Group -> flatten inside, flatten the
+// rest, then glue the two results together with @.
+// Named myFlatten because F# names can't contain hyphens.
+// Must use recursion.
+type Nested =
+    | Item of int
+    | Group of Nested list
+
+let rec myFlatten = fun stackOfThings ->
+    match stackOfThings with
+    | [] -> []
+    | (Item value) :: restOfStack -> value :: myFlatten restOfStack
+    | (Group innerStack) :: restOfStack -> myFlatten innerStack @ myFlatten restOfStack
+
+// 10. my-list-ref: return the item at position `position` (first is 0).
+// Empty list -> error. Position 0 -> the top item. Otherwise ask for
+// position - 1 in the rest of the list.
+// Named myListRef because F# names can't contain hyphens.
+let rec myListRef = fun stackOfItems position ->
+    match stackOfItems with
+    | [] -> failwith "ERROR: Index out of bounds"
+    | topItem :: restOfStack ->
+        if position = 0 then topItem else myListRef restOfStack (position - 1)
